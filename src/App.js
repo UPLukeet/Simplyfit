@@ -6,12 +6,13 @@ import setup_page from './components/setup_page';
 import settings_page from './components/settings_page';
 import Error from './components/Error';
 import Nav from './components/Nav'
+import Hamburger from './components/Hamburger_menu'
 
 function App() {
   return (
   <Router>
     <div className='App'>
-      <Nav />
+      <Hamburger />
       <Switch>
         <Route path='/' component={setup_page} />
         <Route path='/main_page' component={main_page} />
