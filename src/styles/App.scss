@@ -1,8 +1,15 @@
-//Main scss file
-
-//Hamburger/slideout menu
-@import './partials/Hamburger_menu.scss';
+//general style for whole app
+@import './partials/Main.scss';
 
 //Navbar
 @import './partials/Nav.scss';
+
+//Navbar_DrawerButton
+@import './partials/DrawerButton.scss';
+
+//Navbar_SideDrawer
+@import './partials/SideDrawer.scss';
+
+//Site backdrop
+@import './partials/Backdrops.scss';
 
