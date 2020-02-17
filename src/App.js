@@ -12,21 +12,22 @@ import Backdrop from './components/Navigation/Backdrop';
 
 function App() {
   return (
-    <main style={{marginTop: '64px'}}>
+    <div className="App_margin">
   <Router>
     <div className='App'>
       <Nav />
       <SideDrawer />
+      <Backdrop />
       <Switch>
-        <Route path='/' component={setup_page} />
-        <Route path='/main_page' component={main_page} />
+        <Route path='/' component={setup_page} exact/>
+        <Route path='/setup_page' component={main_page} />
         <Route path='/settings_page' component={settings_page} />
         <Route  component={Error} />
-        
       </Switch>
+
     </div>
   </Router>
-  </main>
+  </div>
   );
 }
 
