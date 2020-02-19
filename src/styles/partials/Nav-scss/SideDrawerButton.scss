@@ -1,0 +1,23 @@
+//sideDrawerButton
+
+.sidedrawer_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sidedrawer_button:focus {
+    outline: none;
+}
+.sidebutton__line {
+    width: 30px;
+    height: 2px;
+    background: black;
+}

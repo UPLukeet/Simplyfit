@@ -5,7 +5,7 @@ import DrawerButton from './DrawerButton';
 const Nav = props => (
     <header className='toolbar'>
         <nav className='toolbar_nav'>
-            <div>
+            <div className='nav-drawer-button'>
                 <DrawerButton click={props.drawerClickHandler} />
             </div>
             <div className='toolbar_logo'><li>Simplyfit</li></div>

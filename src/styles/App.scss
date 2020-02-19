@@ -2,14 +2,17 @@
 @import './partials/Main.scss';
 
 //Navbar
-@import './partials/Nav.scss';
+@import './partials/Nav-scss/Nav.scss';
 
 //Navbar_DrawerButton
-@import './partials/DrawerButton.scss';
+@import './partials/Nav-scss/DrawerButton.scss';
+
+//Navbar_sideDrawerButton
+@import './partials/Nav-scss/sideDrawerButton.scss';
 
 //Navbar_SideDrawer
-@import './partials/SideDrawer.scss';
+@import './partials/Nav-scss/SideDrawer.scss';
 
 //Site backdrop
-@import './partials/Backdrops.scss';
+@import './partials/Nav-scss/Backdrops.scss';
 
