@@ -19,10 +19,11 @@
     margin-left: 1rem;
 }
 
-.toolbar_logo a {
+.toolbar_logo li {
      color: white;
      text-decoration: none;
      font-size: 1.5rem;
+     list-style-type: none;
 }
 
 .spacer {

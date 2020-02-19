@@ -6,9 +6,9 @@ const Nav = props => (
     <header className='toolbar'>
         <nav className='toolbar_nav'>
             <div>
-                <DrawerButton />
+                <DrawerButton click={props.drawerClickHandler} />
             </div>
-            <div className='toolbar_logo'><a>Simplyfit</a></div>
+            <div className='toolbar_logo'><li>Simplyfit</li></div>
             <div className='spacer'/>
             <div className='toolbar_nav-items'>
                 <ul>
