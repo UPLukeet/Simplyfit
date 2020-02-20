@@ -9,7 +9,6 @@ import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
 
-
 export class App extends Component {
   state = {
     sideDrawerOpen: false
@@ -22,23 +21,26 @@ export class App extends Component {
     });
   };
 
+  sidedrawerToggleClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  }
+
   backdropClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
   };
 
-
   render() {
     let backdrop;
-
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
+   
     return (
       <div className="App_margin">
         <Router>
           <div className='App'>
             <Nav drawerClickHandler={this.drawerToggleClickHandler} />
-            <SideDrawer show={this.state.sideDrawerOpen} />
+            <SideDrawer  sidedrawerClickHandler={this.sidedrawerToggleClickHandler}  show={this.state.sideDrawerOpen} />
               { backdrop }
               < Switch >
               <Route path='/' component={setup_page} exact />
