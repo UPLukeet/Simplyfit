@@ -1,9 +1,6 @@
 import React from 'react';
 
 
-var btn_bmi = document.getElementsByClassName('bmi_button');
-     btn_bmi.addEventListener('click', calculate_bmi());
-
     function calculate_bmi() {
         let Weight = document.getElementsByClassName('bmi_weight').value;
         let Height = document.getElementsByClassName('bmi_height').value;
@@ -13,7 +10,7 @@ var btn_bmi = document.getElementsByClassName('bmi_button');
         let bmr_calc = 88.2 + (13.362 + Weight) + (4.799 + Height) - (5.677 + Age);
 
         //if nothing entered show error
-        if (Weight, Height, Age == 0){
+        if (Weight, Height, Age == ""){
             alert("Please enter your Height, Weight and Age so we can achieve your goals!")
             }
             else{
@@ -26,10 +23,10 @@ var btn_bmi = document.getElementsByClassName('bmi_button');
 function setup_page () {
     return (
     <div className='setup_main'>
-     <input className= 'bmi_weight' type='number' placeholder='Weight in kg:'></input>
-     <input className= 'bmi_height' type='number' placeholder='Height in cm:'></input>
-     <input className= 'bmi_age' type='number' placeholder='Age:'></input>
-     <button className='bmi_button'>calculate</button>
+     <input className= 'setup_input' type='number' placeholder='Weight in kg:'/>
+     <input className= 'setup_input' type='number' placeholder='Height in cm:'/>
+     <input className= 'setup_input' type='number' placeholder='Age:'/>
+     <button onClick={calculate_bmi} className='bmi_button'>calculate</button>
      <p className='test_print'></p>
      </div>
     );
