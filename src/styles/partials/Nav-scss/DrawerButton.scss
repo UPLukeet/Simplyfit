@@ -16,8 +16,21 @@
 .drawer_button:focus {
     outline: none;
 }
-.button__line {
-    width: 30px;
-    height: 2px;
-    background: white;
+
+.button__line_1 {
+    width: 15px;
+    height: 2.5px;
+    background:rgb(26, 25, 25);
+}
+
+.button__line_2 {
+    width: 28px;
+    height: 2.5px;
+    background:rgb(26, 25, 25);
+}
+.button__line_3 {
+    margin-left: 13px;
+    width: 15px;
+    height: 2.5px;
+    background: rgb(26, 25, 25);
 }

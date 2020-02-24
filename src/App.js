@@ -43,7 +43,7 @@ export class App extends Component {
             <SideDrawer  sidedrawerClickHandler={this.sidedrawerToggleClickHandler}  show={this.state.sideDrawerOpen} />
               { backdrop }
               < Switch >
-              <Route path='/' component={setup_page} exact />
+              <Route path='/setup_page' component={setup_page} exact />
               <Route path='/main_page' component={main_page} />
               <Route path='/settings_page' component={settings_page} />
               <Route component={Error} />
