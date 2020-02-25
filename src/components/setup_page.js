@@ -84,7 +84,7 @@ function Units_Switch() {
 function setup_page() {
     return (
         <div className='setup_main'>
-            <select id="gender">
+            <select id="gender"  className='setup_dropdown'>
                 <option value="" disabled selected hidden>Choose a gender:</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -92,14 +92,14 @@ function setup_page() {
 
 
 
-            <select id="goal">
+            <select id="goal" className='setup_dropdown'>
                 <option value="" disabled selected hidden>Choose a goal:</option>
                 <option value="recomp">Recomp</option>
                 <option value="lose">Lose fat</option>
                 <option value="gain">Gain muscle</option>
             </select>
 
-            <select onClick={Units_Switch} id="units">
+            <select onClick={Units_Switch} id="units" className='setup_dropdown'>
                 <option value="" disabled selected hidden>Choose Kg/cm or lbs/feet:</option>
                 <option value="met">Metric(kg/cm)</option>
                 <option value="imp">Imperial(lbs/feet)</option>
@@ -107,7 +107,7 @@ function setup_page() {
 
             <input id='bmi_weight' className='setup_input' type='number' placeholder='Weight:' />
 
-            <select id="height_lbs">
+            <select id="height_lbs" className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height:</option>
                 <option value="152.4">5'0</option>
                 <option value="154.95">5'1</option>
