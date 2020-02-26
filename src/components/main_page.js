@@ -1,9 +1,10 @@
 import React from 'react';
+import setup_page from './setup_page'
 
 function main_page() {
     return (
         <div>
-        <h1>main page</h1>
+        <p id='test_print'></p>
         </div>
     );
 }

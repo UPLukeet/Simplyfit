@@ -1,5 +1,7 @@
 import React from 'react';
 
+var bmr;
+var bmi;
 
 function calculate_bmi() {
     //gets values of inputs from html
@@ -25,15 +27,11 @@ function calculate_bmi() {
         Weight = Weight / 2.2;
         Height = Height = Height_lbs_result;
     }
-    let bmi_calc = Height ^ 2;
+    let bmi_calc = Weight / (Height / 100 * Height / 100);
     let bmr_calc = 88.2 + (13.362 * Weight) + (4.799 * Height) - (5.677 * Age);
     let bmr_calc_female = 655.1 + (9.563 * Weight) + (1.850 * Height) - (4.676 * Age);
-    let bmi;
-    let bmr;
-
-
-
-
+    
+    
     //checks if male or female changes bmi and bmr depending
     if (Gender_result == 'female') {
         bmr = bmr_calc_female;
@@ -59,7 +57,7 @@ function calculate_bmi() {
         Test.innerHTML = document.write = bmi_calc + ' ' + bmr;
     }
     console.log(
-        Weight, Height, Age, Goal_result, Gender_result
+        bmi_calc
     );
 
 };
