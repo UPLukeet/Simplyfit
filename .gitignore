@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#fire base id
+
+REACT_APP_FIREBASE_KEY= AIzaSyCuwtZoSVsF_U4mJG1e5jdHozvHoemlOPs
+REACT_APP_FIREBASE_DOMAIN= simplyfit-a6af5.firebaseapp.com
+REACT_APP_FIREBASE_DATABASE= https://simplyfit-a6af5.firebaseio.com
+REACT_APP_FIREBASE_PROJECT_ID= simplyfit-a6af5
+REACT_APP_FIREBASE_STORAGE_BUCKET= simplyfit-a6af5.appspot.com
+REACT_APP_FIREBASE_SENDER_ID= 503671017599
+REACT_APP_FIREBASE_APP_ID= 1:503671017599:web:eba4257d165172dedb2f4a
+REACT_APP_FIREBASE_MEASUREMENT_ID= G-0GPRBNNBP6

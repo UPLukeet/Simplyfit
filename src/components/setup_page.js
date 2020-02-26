@@ -1,8 +1,9 @@
 import React from 'react';
-
+import { database } from './firebase'
 var bmr;
 var bmi;
 var health;
+var User_goal;
 
 function calculate_bmi() {
     //gets values of inputs from html
@@ -37,6 +38,9 @@ function calculate_bmi() {
     let bmi_calc = Weight / (Height / 100 * Height / 100);
     bmi = bmi_calc;
 
+    //writes value for user goal
+    User_goal = Goal_result;
+
     if (bmi < 18.5) {
         health = "You are considered underweight."
     }
@@ -63,21 +67,25 @@ function calculate_bmi() {
     if (Goal_result == 'recomp') bmr = bmr + 600;
     if (Goal_result == 'gain') bmr = bmr + 800;
 
-    console.log(
-        Height, Weight
-    );
     //if nothing entered show error
     if (Weight, Height, Age == 0) {
         alert("Please enter your Height, Weight and Age so we can achieve your goals!")
     }
     else {
-        //writes to html
-        Test.innerHTML = document.write = 'bmi:' + bmi + ' calories:' + bmr + ' ' + health;
+        //writes to firestore database
+        database.collection('Health_data').doc('User_data').set({
+            BMI: bmi,
+            BMR: bmr,
+            Goal: User_goal,
+            BMI_Health: health
+        })
+            .then(function () {
+                console.log("Successfully written");
+            })
+            .catch(function (error) {
+                console.error("Error writing", error);
+            });
     }
-    console.log(
-        bmi_calc
-    );
-
 };
 
 function Units_Switch() {

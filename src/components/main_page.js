@@ -1,5 +1,5 @@
 import React from 'react';
-import setup_page from './setup_page'
+import { database } from './firebase'
 
 function main_page() {
     return (
