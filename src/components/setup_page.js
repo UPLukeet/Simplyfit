@@ -2,6 +2,7 @@ import React from 'react';
 
 var bmr;
 var bmi;
+var health;
 
 function calculate_bmi() {
     //gets values of inputs from html
@@ -27,12 +28,29 @@ function calculate_bmi() {
         Weight = Weight / 2.2;
         Height = Height = Height_lbs_result;
     }
-    let bmi_calc = Weight / (Height / 100 * Height / 100);
+
+    //calculates male and female bmr
     let bmr_calc = 88.2 + (13.362 * Weight) + (4.799 * Height) - (5.677 * Age);
     let bmr_calc_female = 655.1 + (9.563 * Weight) + (1.850 * Height) - (4.676 * Age);
-    
-    
-    //checks if male or female changes bmi and bmr depending
+
+    //calculates bmi
+    let bmi_calc = Weight / (Height / 100 * Height / 100);
+    bmi = bmi_calc;
+
+    if (bmi < 18.5) {
+        health = "You are considered underweight."
+    }
+    if (bmi > 18.5 && bmi < 25) {
+        health = "You are within the healthy range."
+    }
+    if (bmi > 25) {
+        health = "You overweight, high volumes of muscle mass will throw off this result."
+    }
+    if (bmi > 30) {
+        health = "You are obese even with high levels of muscle mass we recommend cutting bodyfat levels."
+    }
+
+    //checks if male or female changes bmr
     if (Gender_result == 'female') {
         bmr = bmr_calc_female;
     }
@@ -54,7 +72,7 @@ function calculate_bmi() {
     }
     else {
         //writes to html
-        Test.innerHTML = document.write = bmi_calc + ' ' + bmr;
+        Test.innerHTML = document.write = 'bmi:' + bmi + ' calories:' + bmr + ' ' + health;
     }
     console.log(
         bmi_calc
@@ -82,7 +100,7 @@ function Units_Switch() {
 function setup_page() {
     return (
         <div className='setup_main'>
-            <select id="gender"  className='setup_dropdown'>
+            <select id="gender" className='setup_dropdown'>
                 <option value="" disabled selected hidden>Choose a gender:</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
