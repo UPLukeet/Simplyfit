@@ -1,6 +1,37 @@
+//fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .App {
     height: 100vh;
 }
+
 .App_margin {
     margin-top: 56px;
+}
+
+.main_Main {
+height: 100%;
+width: 100%;
+background: #bbbbbb;
+padding-top: 0.1rem;
+}
+
+.meal_divs {
+width: 100%;
+height: 10rem;
+margin-top: 1rem;
+background: white;
+}
+
+.food_heading {
+    font-family: 'Roboto';
+    width: 100%;
+    border-radius: 0 0 10px 0;
+    color: white;
+    background:rgb(78, 77, 182);
+    text-indent: 5px;
+}
+
+.food_text {
+    text-indent: 10px;
 }
