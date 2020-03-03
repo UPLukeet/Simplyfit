@@ -7,14 +7,6 @@ var bmr;
 var goal;
 var health;
 
-const nodes = [
-    { id:"bmi_Group", content:bmi, bmr, goal, health},
-  ]
-
-  const getNode = id => nodes.find(n => n.id === id);
-
-console.log(getNode('bmi_Group'));
-
 // starts the pull database funtion upon page load
 window.addEventListener('load', (event) => {pullData()});
 

@@ -1,11 +1,12 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { database } from './firebase'
 var bmr;
 var bmi;
 var health;
 var User_goal;
 
-function calculate_bmi() {
+function calculate_bmi() {   
     //gets values of inputs from html
     let Weight = document.getElementById('bmi_weight').value;
     let Height = document.getElementById('bmi_height').value;
@@ -23,7 +24,6 @@ function calculate_bmi() {
     let Height_lbs = document.getElementById('height_lbs');
     let Height_lbs_result = Height_lbs.options[Height_lbs.selectedIndex].value;
 
-    let Test = document.getElementById('test_print');
     //calulates the bmi and bmr of users
     if (Units_result == 'imp') {
         Weight = Weight / 2.2;
@@ -81,10 +81,13 @@ function calculate_bmi() {
         })
             .then(function () {
                 console.log("Successfully written");
+           
             })
             .catch(function (error) {
                 console.error("Error writing", error);
             });
+      
+
     }
 };
 
@@ -212,7 +215,6 @@ function setup_page() {
                 <p className='setup_text'>Input Age:</p>
                 <input id='bmi_age' className='setup_input' type='number' placeholder='Age:' />
                 <button onClick={calculate_bmi} className='bmi_button'>calculate</button>
-                <p id='test_print'></p>
             </div>
         </div>
     );
