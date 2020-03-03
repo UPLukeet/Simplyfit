@@ -7,6 +7,18 @@ var bmr;
 var goal;
 var health;
 
+const nodes = [
+    { id:"bmi_Group", content:bmi, bmr, goal, health},
+  ]
+
+  const getNode = id => nodes.find(n => n.id === id);
+
+console.log(getNode('bmi_Group'));
+
+// starts the pull database funtion upon page load
+window.addEventListener('load', (event) => {pullData()});
+
+
 function pullData() {
 
     //divides calories for meals
@@ -25,6 +37,7 @@ function pullData() {
     let Health_print = document.getElementById('health_print');
 
 
+    //connects to database and puts data into set variables
     database.collection('Health_data')
         .doc('User_data')
         .get()
@@ -49,8 +62,6 @@ function pullData() {
             Health_print.innerHTML = document.write = health;
             console.log("Successfully pulled");
         })
-
-    console.log(meal_One, meal_Two, meal_Three, snack)
 
 };
 
@@ -79,7 +90,6 @@ function main_page() {
                 <p className='food_heading'>Snack:</p>
                 <p className='food_text' id='snack_print'></p>
             </div>
-            <button onClick={pullData}>calculate</button>
         </div>
     );
 }
