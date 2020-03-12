@@ -8,29 +8,70 @@ export class main_page extends Component {
 
     constructor(props) {
         super(props);
+        this.bmr = null;
+        this.bmi = null;
+        this.health = null;
+        this.User_goal = null;
     }
 
 
-    // starts the pull database funtion upon page load
-    //window.addEventListener('load', (event) => { pullData() });
+    // starts the pull database funtion upon the rendering of this page
 
     componentDidMount() {
-        this.pulldata();
+        this.pulldata_Health();
+        this.pulldata_Meals();
+        this.pulldata_Ingredients();
     }
 
 
 
     //connects to database and puts data into set variables
-    pulldata() {
+    pulldata_Health() {
         database.collection('Health_data')
             .doc('User_data')
             .get()
             .then(doc => {
                 const data = doc.data();
+                console.log(data);
             })
             .then(function () {
-                console.log('data pulled')
+                //console.log(this.bmi)
             })
+            .catch(function (error) {
+                console.error("Error reading health", error);
+            });
+    }
+
+    pulldata_Meals() {
+        database.collection('Meals')
+            .doc()
+            .get()
+            .then(doc => {
+                const data = doc.data();
+                console.log(data);
+            })
+            .then(function () {
+                //console.log('pulled meal data')
+            })
+            .catch(function (error) {
+                console.error("Error reading meals", error);
+            });
+    }
+
+    pulldata_Ingredients() {
+        database.collection('Ingredients')
+            .doc()
+            .get()
+            .then(doc => {
+                const data = doc.data();
+                console.log(data);
+            })
+            .then(function () {
+                //console.log('pulled ingredient data')
+            })
+            .catch(function (error) {
+                console.error("Error reading ingredients", error);
+            });
     }
     /*pullData() {
 
