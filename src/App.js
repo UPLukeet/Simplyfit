@@ -29,11 +29,17 @@ export class App extends Component {
     this.setState({ sideDrawerOpen: false });
   };
 
+  componentDidMount() {
+    this.setState({ sideDrawerOpen: false });
+    console.log('didmount');
+  };
+
   render() {
     let backdrop;
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
     }
+
    
     return (
       <div className="App_margin">

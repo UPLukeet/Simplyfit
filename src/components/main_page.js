@@ -8,10 +8,9 @@ export class main_page extends Component {
 
     constructor(props) {
         super(props);
-        this.bmr = null;
-        this.bmi = null;
-        this.health = null;
-        this.User_goal = null;
+       this.health = {};
+       this.meals = {};
+       this.ingredients = {}
     }
 
 
@@ -32,7 +31,8 @@ export class main_page extends Component {
             .get()
             .then(doc => {
                 const data = doc.data();
-                console.log(data);
+                this.health= data;
+                console.log(this.health);
             })
             .then(function () {
                 //console.log(this.bmi)
@@ -48,6 +48,7 @@ export class main_page extends Component {
             .get()
             .then(doc => {
                 const data = doc.data();
+                this.meals = data;
                 console.log(data);
             })
             .then(function () {
@@ -64,7 +65,8 @@ export class main_page extends Component {
             .get()
             .then(doc => {
                 const data = doc.data();
-                console.log(data);
+                this.ingredients = data;
+                console.log(this.ingredients);
             })
             .then(function () {
                 //console.log('pulled ingredient data')
@@ -145,13 +147,15 @@ export class main_page extends Component {
     };*/
 
     render() {
+        const healthData = this.health;
+        const goal = this.User_goal;
         return (
             <div className='main_Main'>
                 <div className='meal_divs'>
-                    <p className='food_heading'>Status:</p>
-                    <p className='food_text' id='goal_print'></p>
-                    <p className='food_text' id='bmi_print'></p>
-                    <p className='food_text' id='health_print'></p>
+        <p className='food_heading'>Status:</p>
+                    <p className='food_text'>Your current goal is to: {healthData.Goal}</p>
+                    <p className='food_text'>Your BMI is: {healthData.BMI}</p>
+                    <p className='food_text' id='health_print'>Health: {healthData.BMI_Health}</p>
                 </div>
                 <div className='meal_divs'>
                     <p className='food_heading'>Meal one:</p>
