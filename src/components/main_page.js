@@ -148,7 +148,6 @@ export class main_page extends Component {
 
     render() {
         const healthData = this.health;
-        const goal = this.User_goal;
         return (
             <div className='main_Main'>
                 <div className='meal_divs'>

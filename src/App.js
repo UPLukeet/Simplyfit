@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { main_page } from './components/main_page';
-import setup_page from './components/setup_page';
+import { setup_page } from './components/setup_page';
 import settings_page from './components/settings_page';
 import Error from './components/Error';
 import Nav from './components/Navigation/Nav';
@@ -27,11 +27,6 @@ export class App extends Component {
 
   backdropClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
-  };
-
-  componentDidMount() {
-    this.setState({ sideDrawerOpen: false });
-    console.log('didmount');
   };
 
   render() {
