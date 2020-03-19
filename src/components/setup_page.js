@@ -121,25 +121,27 @@ export class setup_page extends Component {
 
 
     metericClickHandler = () => {
-        this.setState({imp_Units: false});
-        this.setState({met_Units: true});
+        this.setState({ imp_Units: false });
+        this.setState({ met_Units: true });
         console.log('Met Clicked')
 
-      }
+    }
 
     imperialClickHandler = () => {
-        this.setState({imp_Units: true});
-        this.setState({met_Units: false});
+        this.setState({ imp_Units: true });
+        this.setState({ met_Units: false });
         console.log('Imp Clicked')
     }
-    
+
 
     render() {
         let imperial;
         let meteric;
+        let heightUnits
+        let weightUnits
         if (this.state.imp_Units) {
             imperial = <select show={this.state.imp_Units} className='setup_dropdown'>
-                <option value="" disabled selected hidden>Height:</option>
+                <option value="" disabled selected hidden>Height: </option>
                 <option value="152.4">5'0</option>
                 <option value="154.95">5'1</option>
                 <option value="157.48">5'2</option>
@@ -159,11 +161,13 @@ export class setup_page extends Component {
                 <option value="193.04">6'4</option>
                 <option value="195.58">6'5</option>
             </select>
+            heightUnits = 'ft';
+            weightUnits = 'lbs';
         };
 
         if (this.state.met_Units) {
             meteric = <select show={this.state.met_units} className='setup_dropdown'>
-                <option value="" disabled selected hidden>Height:</option>
+                <option value="" disabled selected hidden>Height: </option>
                 <option value="150">150</option>
                 <option value="151">151</option>
                 <option value="152">152</option>
@@ -211,16 +215,25 @@ export class setup_page extends Component {
                 <option value="194">194</option>
                 <option value="195">195</option>
             </select>
+            heightUnits = 'Cm';
+            weightUnits = 'Kg';
         };
 
         function calculate_bmi() {
-           
+
         };
 
 
         return (
             <div className='wrapper'>
                 <div className='setup_main'>
+
+                            
+                <div className='setup_text'>
+                    <p>Input the units for Height/Weight: {weightUnits}/{heightUnits} </p>
+                        <button onClick={this.metericClickHandler}>Metric</button>
+                        <button onClick={this.imperialClickHandler}>Imperial</button>
+                    </div>
 
                     <p className='setup_text'>Input Gender:</p>
                     <select id="gender" className='setup_dropdown'>
@@ -238,20 +251,14 @@ export class setup_page extends Component {
                         <option value="gain">Gain muscle</option>
                     </select>
 
-                    <p className='setup_text'>Input the units for Height/Weight:</p>
-                    <div>
-                        <button onClick={this.metericClickHandler}>Metric</button>
-                        <button onClick={this.imperialClickHandler}>Imperial</button>
-                    </div>
-
-                    <p className='setup_text'>Input Weight:</p>
+                    <p className='setup_text'>Input Weight: {weightUnits}</p>
                     <input id='bmi_weight' className='setup_input' type='number' placeholder='Weight:' />
 
-                    <p className='setup_text'>Input Height:</p>
+                    <p className='setup_text'>Input Height: {heightUnits}</p>
 
-                    { imperial }
-                    { meteric }
-                    
+                    {imperial}
+                    {meteric}
+
                     <p className='setup_text'>Input Age:</p>
                     <input id='bmi_age' className='setup_input' type='number' placeholder='Age:' />
                     <button onClick={calculate_bmi} className='bmi_button'>calculate</button>
