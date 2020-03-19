@@ -116,14 +116,28 @@ export class setup_page extends Component {
 
     state = {
         imp_Units: false,
-        met_units: true
+        met_Units: true
     };
 
+
+    metericClickHandler = () => {
+        this.setState({imp_Units: false});
+        this.setState({met_Units: true});
+        console.log('Met Clicked')
+
+      }
+
+    imperialClickHandler = () => {
+        this.setState({imp_Units: true});
+        this.setState({met_Units: false});
+        console.log('Imp Clicked')
+    }
+    
 
     render() {
         let imperial;
         let meteric;
-        if (this.state.imp_units) {
+        if (this.state.imp_Units) {
             imperial = <select show={this.state.imp_Units} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height:</option>
                 <option value="152.4">5'0</option>
@@ -147,7 +161,7 @@ export class setup_page extends Component {
             </select>
         };
 
-        if (this.state.met_units) {
+        if (this.state.met_Units) {
             meteric = <select show={this.state.met_units} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height:</option>
                 <option value="150">150</option>
@@ -200,12 +214,9 @@ export class setup_page extends Component {
         };
 
         function calculate_bmi() {
-
+           
         };
 
-        change: function(event){
-            this.setState({value: event.target.value});
-        }
 
         return (
             <div className='wrapper'>
@@ -228,21 +239,19 @@ export class setup_page extends Component {
                     </select>
 
                     <p className='setup_text'>Input the units for Height/Weight:</p>
-                    <select onChange={this.change} value={this.state.value} className='setup_dropdown'>
-                        <option value="" disabled selected hidden>Choose Kg/cm or lbs/feet:</option>
-                        <option value='met'>Metric(kg/cm)</option>
-                        <option value='imp'>Imperial(lbs/feet)</option>
-                    </select>
+                    <div>
+                        <button onClick={this.metericClickHandler}>Metric</button>
+                        <button onClick={this.imperialClickHandler}>Imperial</button>
+                    </div>
 
                     <p className='setup_text'>Input Weight:</p>
                     <input id='bmi_weight' className='setup_input' type='number' placeholder='Weight:' />
 
                     <p className='setup_text'>Input Height:</p>
 
-                    {imperial}
-
-                    {meteric}
-
+                    { imperial }
+                    { meteric }
+                    
                     <p className='setup_text'>Input Age:</p>
                     <input id='bmi_age' className='setup_input' type='number' placeholder='Age:' />
                     <button onClick={calculate_bmi} className='bmi_button'>calculate</button>
