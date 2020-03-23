@@ -157,7 +157,7 @@ export class setup_page extends Component {
             console.log(this.state.Gender, this.state.Goal, this.state.Weight, this.state.Height, this.state.Age)
         }
         else {
-            alert("Please enter your Height, Weight and Age so we can achieve your goals!")
+            alert("Please fill in you information so we can achieve your goals!")
         };
 
     };
@@ -166,44 +166,25 @@ export class setup_page extends Component {
     handleChangeGender(event) {
 
         this.setState({ Gender: event.target.value })
-        if (this.state.Gender !== 'undefined') {
-            this.setState({ form_Gender: true });
-        }
-
     };
 
     handleChangeGoal(event) {
 
         this.setState({ Goal: event.target.value })
-        if (this.state.Goal !== 'undefined') {
-            this.setState({ form_Goal: true });
-        }
     };
 
     handleChangeWeight(event) {
 
         this.setState({ Weight: event.target.value })
-        if (this.state.Weight !== 'undefined') {
-            this.setState({ form_Weight: true });
-        }
     };
 
     handleChangeHeight(event) {
         this.setState({ Height: event.target.value })
-        if (this.state.Height !== 'undefined') {
-            this.setState({ form_Height: true });
-        }
     };
 
     handleChangeAge(event) {
 
         this.setState({ Age: event.target.value })
-        if (this.state.Age !== 'undefined') {
-            this.setState({ form_Age: true });
-        }
-        if (this.state.Age == '') {
-            this.setState({ form_Age: false });
-        }
 
     };
 
@@ -214,7 +195,7 @@ export class setup_page extends Component {
         let heightUnits
         let weightUnits
         if (this.state.imp_Units) {
-            imperial = <select show={this.state.imp_Units} name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
+            imperial = <select name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height: </option>
                 <option value="152.4">5'0</option>
                 <option value="154.95">5'1</option>
@@ -240,7 +221,7 @@ export class setup_page extends Component {
         };
 
         if (this.state.met_Units) {
-            meteric = <select show={this.state.met_units} name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
+            meteric = <select name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height: </option>
                 <option value="150">150</option>
                 <option value="151">151</option>
