@@ -157,19 +157,27 @@ export class main_page extends Component {
                     <p className='food_text' id='health_print'>Health: {healthData.BMI_Health}</p>
                 </div>
                 <div className='meal_divs'>
+                <div className='food_image'>
                     <p className='food_heading'>Meal one:</p>
+                    </div>
                     <p className='food_text' id='meal_one_print'></p>
                 </div>
                 <div className='meal_divs'>
+                <div className='food_image'>
                     <p className='food_heading'>Meal two:</p>
+                    </div>
                     <p className='food_text' id='meal_two_print'></p>
                 </div>
                 <div className='meal_divs'>
+                <div className='food_image'>
                     <p className='food_heading'>Meal three:</p>
+                    </div>
                     <p className='food_text' id='meal_three_print'></p>
                 </div>
                 <div className='meal_divs'>
+                <div className='food_image'>
                     <p className='food_heading'>Snacks:</p>
+                    </div>
                     <p className='food_text' id='snack_one_print'></p>
                     <p className='food_text' id='snack_two_print'></p>
                 </div>

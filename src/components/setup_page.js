@@ -112,35 +112,109 @@ export class setup_page extends Component {
     }*/
     constructor(props) {
         super(props);
-    }
-
-    state = {
-        imp_Units: false,
-        met_Units: true
     };
 
 
+
+    state = {
+        //sets state of unit switching
+        imp_Units: false,
+        met_Units: true,
+        form_Gender: false,
+        form_Goal: false,
+        form_Weight: false,
+        form_Height: false,
+        form_Age: false,
+        Gender: '',
+        Goal: '',
+        Weight: '',
+        Height: '',
+        Age: ''
+    };
+
+
+    //handles switch funtion of unit switching
     metericClickHandler = () => {
         this.setState({ imp_Units: false });
         this.setState({ met_Units: true });
         console.log('Met Clicked')
 
-    }
+    };
 
     imperialClickHandler = () => {
         this.setState({ imp_Units: true });
         this.setState({ met_Units: false });
         console.log('Imp Clicked')
-    }
+    };
 
+    imperialHeightChangeHandler = (event) => {
+        this.setState({ Height: event.target.value });
+        console.log(this.state.Height)
+    };
+
+    calculate_bmi = () => {
+        if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
+            console.log(this.state.Gender, this.state.Goal, this.state.Weight, this.state.Height, this.state.Age)
+        }
+        else {
+            alert("Please enter your Height, Weight and Age so we can achieve your goals!")
+        };
+
+    };
+
+
+    handleChangeGender(event) {
+
+        this.setState({ Gender: event.target.value })
+        if (this.state.Gender !== 'undefined') {
+            this.setState({ form_Gender: true });
+        }
+
+    };
+
+    handleChangeGoal(event) {
+
+        this.setState({ Goal: event.target.value })
+        if (this.state.Goal !== 'undefined') {
+            this.setState({ form_Goal: true });
+        }
+    };
+
+    handleChangeWeight(event) {
+
+        this.setState({ Weight: event.target.value })
+        if (this.state.Weight !== 'undefined') {
+            this.setState({ form_Weight: true });
+        }
+    };
+
+    handleChangeHeight(event) {
+        this.setState({ Height: event.target.value })
+        if (this.state.Height !== 'undefined') {
+            this.setState({ form_Height: true });
+        }
+    };
+
+    handleChangeAge(event) {
+
+        this.setState({ Age: event.target.value })
+        if (this.state.Age !== 'undefined') {
+            this.setState({ form_Age: true });
+        }
+        if (this.state.Age == '') {
+            this.setState({ form_Age: false });
+        }
+
+    };
 
     render() {
+
         let imperial;
         let meteric;
         let heightUnits
         let weightUnits
         if (this.state.imp_Units) {
-            imperial = <select show={this.state.imp_Units} className='setup_dropdown'>
+            imperial = <select show={this.state.imp_Units} name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height: </option>
                 <option value="152.4">5'0</option>
                 <option value="154.95">5'1</option>
@@ -166,7 +240,7 @@ export class setup_page extends Component {
         };
 
         if (this.state.met_Units) {
-            meteric = <select show={this.state.met_units} className='setup_dropdown'>
+            meteric = <select show={this.state.met_units} name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
                 <option value="" disabled selected hidden>Height: </option>
                 <option value="150">150</option>
                 <option value="151">151</option>
@@ -219,24 +293,20 @@ export class setup_page extends Component {
             weightUnits = 'Kg';
         };
 
-        function calculate_bmi() {
-
-        };
-
 
         return (
             <div className='wrapper'>
                 <div className='setup_main'>
 
-                            
-                <div className='setup_text'>
-                    <p>Input the units for Height/Weight: {weightUnits}/{heightUnits} </p>
+
+                    <div className='setup_text'>
+                        <p>Input the units for Height/Weight: {weightUnits}/{heightUnits} </p>
                         <button onClick={this.metericClickHandler}>Metric</button>
                         <button onClick={this.imperialClickHandler}>Imperial</button>
                     </div>
 
                     <p className='setup_text'>Input Gender:</p>
-                    <select id="gender" className='setup_dropdown'>
+                    <select name='Gender' value={this.state.Gender} onChange={this.handleChangeGender.bind(this)} className='setup_dropdown'>
                         <option value="" disabled selected hidden>Choose a gender:</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -244,7 +314,7 @@ export class setup_page extends Component {
 
 
                     <p className='setup_text'>Input the goal you'd like to achieve:</p>
-                    <select id="goal" className='setup_dropdown'>
+                    <select value={this.state.Goal} onChange={this.handleChangeGoal.bind(this)} className='setup_dropdown'>
                         <option value="" disabled selected hidden>Choose a goal:</option>
                         <option value="recomp">Recomp</option>
                         <option value="lose">Lose fat</option>
@@ -252,7 +322,7 @@ export class setup_page extends Component {
                     </select>
 
                     <p className='setup_text'>Input Weight: {weightUnits}</p>
-                    <input id='bmi_weight' className='setup_input' type='number' placeholder='Weight:' />
+                    <input value={this.state.Weight} onChange={this.handleChangeWeight.bind(this)} className='setup_input' type='number' placeholder='Weight:' />
 
                     <p className='setup_text'>Input Height: {heightUnits}</p>
 
@@ -260,8 +330,8 @@ export class setup_page extends Component {
                     {meteric}
 
                     <p className='setup_text'>Input Age:</p>
-                    <input id='bmi_age' className='setup_input' type='number' placeholder='Age:' />
-                    <button onClick={calculate_bmi} className='bmi_button'>calculate</button>
+                    <input value={this.state.Age} onChange={this.handleChangeAge.bind(this)} className='setup_input' type='number' placeholder='Age:' />
+                    <button onClick={this.calculate_bmi} className='bmi_button'>calculate</button>
                 </div>
             </div>
         );
