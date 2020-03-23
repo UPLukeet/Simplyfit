@@ -45,7 +45,7 @@ export class App extends Component {
               { backdrop }
               < Switch >
               <Route path='/setup_page' component={setup_page} exact />
-              <Route path='/main_page' component={main_page} />
+              <Route path='/' component={main_page} />
               <Route path='/settings_page' component={settings_page} />
               <Route component={Error} />
       </Switch>
