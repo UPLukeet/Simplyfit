@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
-import { database } from './firebase';
-import { Authentication } from './firebase'
 
 
-export class main_page extends Component {
-
-
-
-    constructor(props) {
-        super(props);
-        this.health = {};
-        this.meals = {};
-        this.ingredients = {}
-    }
+export class Main_page extends Component {
 
 
    

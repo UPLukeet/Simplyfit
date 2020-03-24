@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Authentication } from './firebase';
-import { database } from './firebase'
+
 
 export class Login_page extends Component {
 

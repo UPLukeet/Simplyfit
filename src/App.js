@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Authentication } from './components/firebase';
 import { database } from './components/firebase';
 
-import { main_page } from './components/main_page';
+import { Main_page } from './components/main_page';
 import { setup_page } from './components/setup_page';
 import { settings_page } from './components/settings_page';
-import Error from './components/Error';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
@@ -20,6 +19,7 @@ export class App extends Component {
     this.state = {
       user: {},
     }
+    this.authListener = this.authListener.bind(this);
   }
 
   state = {
@@ -127,7 +127,8 @@ export class App extends Component {
             < Switch >
               <Route path='/setup_page' component={setup_page} exact />
               <Route path='/settings_page' component={settings_page} exact />
-              {this.state.user ? (<Route path='/' component={main_page} exact />) : (<Login_page />)}
+              <Route path='/main_page' component={Main_page} />
+              {this.state.user ? (<Main_page />) : (<Login_page/>)}
             </Switch>
 
           </div>
