@@ -1,5 +1,6 @@
 import React from 'react';
 
+//blank top bar for non logged in users
 const Login_bar = props => (
     <header className='toolbar'>
         <nav className='toolbar_nav'>

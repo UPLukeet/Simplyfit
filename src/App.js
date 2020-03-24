@@ -27,10 +27,10 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    this.authListener();    
+    this.authListener();
   }
 
-  
+
   authListener() {
     Authentication.auth().onAuthStateChanged((user) => {
       console.log(user);
@@ -49,16 +49,16 @@ export class App extends Component {
 
   //connects to database and puts data into set variables
   pulldata_Health() {
-      database.collection('Health_data')
-        .doc(localStorage.getItem('user'))
-        .get()
-        .then(doc => {
-          const data = doc.data();
-          localStorage.setItem('user_data', JSON.stringify(data));
-          console.log(JSON.parse(localStorage.getItem('user_data')))
-        }).catch(function (error) {
-          console.error("Error reading health", error);
-        });
+    database.collection('Health_data')
+      .doc(localStorage.getItem('user'))
+      .get()
+      .then(doc => {
+        const data = doc.data();
+        localStorage.setItem('user_data', JSON.stringify(data));
+        console.log(JSON.parse(localStorage.getItem('user_data')))
+      }).catch(function (error) {
+        console.error("Error reading health", error);
+      });
 
   }
 
@@ -124,12 +124,15 @@ export class App extends Component {
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
-            < Switch >
-              <Route path='/setup_page' component={setup_page} exact />
-              <Route path='/settings_page' component={settings_page} exact />
-              <Route path='/main_page' component={Main_page} />
-              {this.state.user ? (<Main_page />) : (<Login_page/>)}
-            </Switch>
+
+            {this.state.user ? (
+              < Switch >
+                <Route path='/setup_page' component={setup_page} exact />,
+                <Route path='/settings_page' component={settings_page} exact />,
+                <Route path='/' component={Main_page} />
+              </Switch>
+            ) : (<Login_page />)}
+
 
           </div>
         </Router>

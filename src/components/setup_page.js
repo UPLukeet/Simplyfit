@@ -122,9 +122,9 @@ export class setup_page extends Component {
         form_Age: false,
         Gender: '',
         Goal: '',
-        Weight: 'null',
-        Height: 'null',
-        Age: 'null'
+        Weight: '',
+        Height: '',
+        Age: ''
     };
 
 
@@ -148,7 +148,7 @@ export class setup_page extends Component {
     };
 
     calculate_bmi = () => {
-        if (this.state.Gender !== '' && this.state.Age !== 'null' && this.state.Height !== 'null' && this.state.Weight !== 'null' && this.state.Goal !== '') {
+        if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
                 database.collection('Health_data').doc(localStorage.getItem('user')).set({
                     gender: this.state.Gender,
                     age: this.state.Age,
