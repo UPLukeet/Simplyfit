@@ -4,6 +4,7 @@ import { Authentication } from './firebase';
 
 export class Login_page extends Component {
 
+    //defines email and password and binds funtions
     constructor(props) {
         super(props);
         this.login = this.login.bind(this);
@@ -14,10 +15,13 @@ export class Login_page extends Component {
             password: ''
         };
     }
+
+    //gets the email and password from form
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    //checks firebase auth for login info
     login(e) {
         e.preventDefault();
         Authentication.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
@@ -27,6 +31,7 @@ export class Login_page extends Component {
         });
     }
 
+    //uploads signin data to firebase
     signup(e) {
         e.preventDefault();
         Authentication.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {

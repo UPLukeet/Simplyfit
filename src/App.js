@@ -14,6 +14,7 @@ import { Login_page } from './components/login_page';
 
 export class App extends Component {
 
+  //initiates user state
   constructor(props) {
     super(props);
     this.state = {
@@ -22,15 +23,17 @@ export class App extends Component {
     this.authListener = this.authListener.bind(this);
   }
 
+  //sets state of sidedraw
   state = {
     sideDrawerOpen: false,
   };
 
+  //onload runs funtion to check for authenication from firebase
   componentDidMount() {
     this.authListener();
   }
 
-
+//checks firebase for authentication
   authListener() {
     Authentication.auth().onAuthStateChanged((user) => {
       console.log(user);
@@ -47,7 +50,7 @@ export class App extends Component {
     });
   }
 
-  //connects to database and puts data into set variables
+  //connects to database and stores data to local storage
   pulldata_Health() {
     database.collection('Health_data')
       .doc(localStorage.getItem('user'))
@@ -96,13 +99,14 @@ export class App extends Component {
       });
   }
 
-
+  //sets state of side draw to oposite on click
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
   };
 
+  //change state of side draw to open and close
   sidedrawerToggleClickHandler = () => {
     this.setState({ sideDrawerOpen: false });
   }
@@ -112,6 +116,7 @@ export class App extends Component {
   };
 
   render() {
+    //reders different elements depding on authenticaion and if sidedrawer is open
     let backdrop;
     if (this.state.sideDrawerOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />
@@ -131,7 +136,7 @@ export class App extends Component {
                 <Route path='/settings_page' component={settings_page} exact />,
                 <Route path='/' component={Main_page} />
               </Switch>
-            ) : (<Login_page />)}
+            ) : (<Login_page/>)}
 
 
           </div>

@@ -10,6 +10,7 @@ export class settings_page extends Component {
         this.logout = this.logout.bind(this);
     }
 
+    //logs out of appliaction using firebase auth
     logout() {
         Authentication.auth().signOut();
     }

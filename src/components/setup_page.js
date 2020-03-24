@@ -115,11 +115,6 @@ export class setup_page extends Component {
         //sets state of unit switching
         imp_Units: false,
         met_Units: true,
-        form_Gender: false,
-        form_Goal: false,
-        form_Weight: false,
-        form_Height: false,
-        form_Age: false,
         Gender: '',
         Goal: '',
         Weight: '',
@@ -136,6 +131,7 @@ export class setup_page extends Component {
 
     };
 
+    //checks what units are picked and renders out different items depeding on state
     imperialClickHandler = () => {
         this.setState({ imp_Units: true });
         this.setState({ met_Units: false });
@@ -147,6 +143,7 @@ export class setup_page extends Component {
         console.log(this.state.Height)
     };
 
+    //writes users information to database if all input fields are filled and if not alerts user
     calculate_bmi = () => {
         if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
                 database.collection('Health_data').doc(localStorage.getItem('user')).set({
@@ -165,6 +162,7 @@ export class setup_page extends Component {
     }
 
 
+    //gets input from fiels
     handleChangeGender(event) {
 
         this.setState({ Gender: event.target.value })
@@ -191,7 +189,7 @@ export class setup_page extends Component {
     };
 
     render() {
-
+      //stores html segments
         let imperial;
         let meteric;
         let heightUnits

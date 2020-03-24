@@ -75,8 +75,8 @@ export class Main_page extends Component {
             })
 
     };*/
-
     render() {
+        //gets users data and renders it to <p> items
         const healthData = JSON.parse(localStorage.getItem('user_data'));
         console.log(healthData);
         return (

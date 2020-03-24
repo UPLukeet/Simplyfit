@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 
+//initialises firebase within 
 const firebaseApp = firebase.initializeApp( {
   apiKey: "AIzaSyCuwtZoSVsF_U4mJG1e5jdHozvHoemlOPs",
   authDomain: "simplyfit-a6af5.firebaseapp.com",
@@ -11,8 +12,10 @@ const firebaseApp = firebase.initializeApp( {
   measurementId: "G-0GPRBNNBP6"
 });
 
+//sets up firebase and fire store
 const database = firebaseApp.firestore();
 const Authentication = firebaseApp;
 
+//exports firebase to other components
 export { database }
 export { Authentication }
