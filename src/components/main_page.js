@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { database } from './firebase'
+import { database } from './firebase';
+import { Authentication } from './firebase'
 
 
 export class main_page extends Component {
@@ -8,9 +9,9 @@ export class main_page extends Component {
 
     constructor(props) {
         super(props);
-       this.health = {};
-       this.meals = {};
-       this.ingredients = {}
+        this.health = {};
+        this.meals = {};
+        this.ingredients = {}
     }
 
 
@@ -26,20 +27,22 @@ export class main_page extends Component {
 
     //connects to database and puts data into set variables
     pulldata_Health() {
-        database.collection('Health_data')
-            .doc('User_data')
-            .get()
-            .then(doc => {
-                const data = doc.data();
-                this.health= data;
-                console.log(this.health);
-            })
-            .then(function () {
-                //console.log(this.bmi)
-            })
-            .catch(function (error) {
-                console.error("Error reading health", error);
-            });
+        if (localStorage.getItem('user') !== 'null') {
+            database.collection('Health_data')
+                .doc(localStorage.getItem('user'))
+                .get()
+                .then(doc => {
+                    const data = doc.data();
+                    this.health = data;
+                    console.log(this.health);
+                })
+                .then(function () {
+                    //console.log(this.bmi)
+                })
+                .catch(function (error) {
+                    console.error("Error reading health", error);
+                });
+        }
     }
 
     pulldata_Meals() {
@@ -151,32 +154,32 @@ export class main_page extends Component {
         return (
             <div className='main_Main'>
                 <div className='meal_divs'>
-        <p className='food_heading'>Status:</p>
+                    <p className='food_heading'>Status:</p>
                     <p className='food_text'>Your current goal is to: {healthData.Goal}</p>
                     <p className='food_text'>Your BMI is: {healthData.BMI}</p>
                     <p className='food_text' id='health_print'>Health: {healthData.BMI_Health}</p>
                 </div>
                 <div className='meal_divs'>
-                <div className='food_image'>
-                    <p className='food_heading'>Meal one:</p>
+                    <div className='food_image'>
+                        <p className='food_heading'>Meal one:</p>
                     </div>
                     <p className='food_text' id='meal_one_print'></p>
                 </div>
                 <div className='meal_divs'>
-                <div className='food_image'>
-                    <p className='food_heading'>Meal two:</p>
+                    <div className='food_image'>
+                        <p className='food_heading'>Meal two:</p>
                     </div>
                     <p className='food_text' id='meal_two_print'></p>
                 </div>
                 <div className='meal_divs'>
-                <div className='food_image'>
-                    <p className='food_heading'>Meal three:</p>
+                    <div className='food_image'>
+                        <p className='food_heading'>Meal three:</p>
                     </div>
                     <p className='food_text' id='meal_three_print'></p>
                 </div>
                 <div className='meal_divs'>
-                <div className='food_image'>
-                    <p className='food_heading'>Snacks:</p>
+                    <div className='food_image'>
+                        <p className='food_heading'>Snacks:</p>
                     </div>
                     <p className='food_text' id='snack_one_print'></p>
                     <p className='food_text' id='snack_two_print'></p>

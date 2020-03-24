@@ -154,13 +154,20 @@ export class setup_page extends Component {
 
     calculate_bmi = () => {
         if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
-            console.log(this.state.Gender, this.state.Goal, this.state.Weight, this.state.Height, this.state.Age)
+                database.collection('Health_data').doc(localStorage.getItem('user')).set({
+                    gender: this.state.Gender,
+                    age: this.state.Age,
+                    height: this.state.Height,
+                    weight: this.state.Weight,
+                    goal: this.state.Goal
+                }).catch((error) => {
+                    alert(error.message)
+                    console.log('failed to write', error);
+                });
+        } else {
+            alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
-        else {
-            alert("Please fill in you information so we can achieve your goals!")
-        };
-
-    };
+    }
 
 
     handleChangeGender(event) {

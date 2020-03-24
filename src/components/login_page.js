@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Authentication } from './firebase';
+import { database } from './firebase'
 
 export class Login_page extends Component {
 
@@ -20,20 +21,21 @@ export class Login_page extends Component {
 
     login(e) {
         e.preventDefault();
-        Authentication.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        Authentication.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
         }).catch((error) => {
-            console.log(error);
-          });
-      }
-    
-      signup(e){
-        e.preventDefault();
-        Authentication.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).then((u)=>{console.log(u)})
-        .catch((error) => {
             alert(error.message)
             console.log(error);
-          })
+        });
+    }
+
+    signup(e) {
+        e.preventDefault();
+        Authentication.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).then((u) => { console.log(u) })
+            .catch((error) => {
+                alert(error.message)
+                console.log(error);
+            })
       }
 
     render() {
