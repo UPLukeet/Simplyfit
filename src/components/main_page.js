@@ -15,69 +15,7 @@ export class main_page extends Component {
     }
 
 
-    // starts the pull database funtion upon the rendering of this page
-
-    componentDidMount() {
-        this.pulldata_Health();
-        this.pulldata_Meals();
-        this.pulldata_Ingredients();
-    }
-
-
-
-    //connects to database and puts data into set variables
-    pulldata_Health() {
-        if (localStorage.getItem('user') !== 'null') {
-            database.collection('Health_data')
-                .doc(localStorage.getItem('user'))
-                .get()
-                .then(doc => {
-                    const data = doc.data();
-                    this.health = data;
-                    console.log(this.health);
-                })
-                .then(function () {
-                    //console.log(this.bmi)
-                })
-                .catch(function (error) {
-                    console.error("Error reading health", error);
-                });
-        }
-    }
-
-    pulldata_Meals() {
-        database.collection('Meals')
-            .doc()
-            .get()
-            .then(doc => {
-                const data = doc.data();
-                this.meals = data;
-                console.log(data);
-            })
-            .then(function () {
-                //console.log('pulled meal data')
-            })
-            .catch(function (error) {
-                console.error("Error reading meals", error);
-            });
-    }
-
-    pulldata_Ingredients() {
-        database.collection('Ingredients')
-            .doc()
-            .get()
-            .then(doc => {
-                const data = doc.data();
-                this.ingredients = data;
-                console.log(this.ingredients);
-            })
-            .then(function () {
-                //console.log('pulled ingredient data')
-            })
-            .catch(function (error) {
-                console.error("Error reading ingredients", error);
-            });
-    }
+   
     /*pullData() {
 
         //divides calories for meals
@@ -150,14 +88,17 @@ export class main_page extends Component {
     };*/
 
     render() {
-        const healthData = this.health;
+        const healthData = JSON.parse(localStorage.getItem('user_data'));
+        console.log(healthData);
         return (
             <div className='main_Main'>
                 <div className='meal_divs'>
                     <p className='food_heading'>Status:</p>
-                    <p className='food_text'>Your current goal is to: {healthData.Goal}</p>
-                    <p className='food_text'>Your BMI is: {healthData.BMI}</p>
-                    <p className='food_text' id='health_print'>Health: {healthData.BMI_Health}</p>
+                    <p className='food_text'>Your age is: { healthData.age }</p>
+                    <p className='food_text'>Your gender is: {healthData.gender}</p>
+                    <p className='food_text'>Your goal is: {healthData.goal}</p>
+                    <p className='food_text'>Your height is: {healthData.height}</p>
+                    <p className='food_text'>your weight is: {healthData.weight}</p>
                 </div>
                 <div className='meal_divs'>
                     <div className='food_image'>
