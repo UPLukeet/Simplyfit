@@ -67,9 +67,9 @@ export class Login_page extends Component {
     render() {
         return (
             <div className='signinBox'>
-                <h1 className="mui--text-display1">You're logged out or do not have an account sign in or sign up to start your fitness journey</h1>
                 <form>
-                    <div className='login_form'>
+                    <div className='login_form' className='form_box'>
+                        <p className="mui--text-subhead">Login:</p>
                         <div className="form_input">
                             <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="login_email" aria-describedby="emailHelp" />
                         </div>
@@ -77,7 +77,8 @@ export class Login_page extends Component {
                             <Input label='Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="login_password" />
                         </div>
                     </div>
-                    <div className='signin_form'>
+                    <div className='signin_form' className='form_box'>
+                    <p className="mui--text-subhead">Sign up:</p>
                         <div className="form_input">
                             <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="signin_email" aria-describedby="emailHelp" />
                         </div>

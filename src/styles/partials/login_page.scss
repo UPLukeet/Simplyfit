@@ -1,19 +1,30 @@
 
 .signinBox {
-    margin-top: 1rem;
+
+    margin-top: 3rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    height: 45%;
-    border-radius: 10px;
     position: fixed;
 
 }
 
-.form_input {
+.signinBox form {
+    width: 100vh;
+}
+
+.form_box {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
+.form_input {
+    
+}
+
+.login_form {
+    margin-top: 5rem;
+    }
+
 .signin_form {
-margin-top: 3rem;
+    margin-top: 6rem;
 }
