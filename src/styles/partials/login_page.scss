@@ -1,30 +1,28 @@
 
-.signinBox {
-
-    margin-top: 3rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    position: fixed;
-
-}
-
-.signinBox form {
-    width: 100vh;
+.spacer {
+    padding: 1.5rem;
 }
 
 .form_box {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-.form_input {
-    
+.divider {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
-.login_form {
-    margin-top: 5rem;
-    }
+.signin_buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.signin_form {
-    margin-top: 6rem;
+.signin_buttons button {
+    margin-bottom: 1.5rem;
+    width: 15rem;
 }
