@@ -20,4 +20,10 @@
 @import './partials/setup.scss';
 
 //login bar styles
-@import './partials/Login_bar.scss';
+@import './partials/login_bar.scss';
+
+//login page styles
+@import './partials/login_page.scss';
+
+// Material UI css import
+@import url("//cdn.muicss.com/mui-0.10.1/css/mui.min.css");

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Authentication } from './firebase';
+import { database } from './firebase';
+import { Link } from 'react-router-dom';
+import Button from 'muicss/lib/react/button';
+import Input from 'muicss/lib/react/input';
 
 
 export class Login_page extends Component {
@@ -11,8 +15,11 @@ export class Login_page extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
         this.state = {
-            email: '',
-            password: ''
+            login_email: '',
+            login_password: '',
+            signin_email: '',
+            signin_password: '',
+            signin_password2: ''
         };
     }
 
@@ -24,7 +31,7 @@ export class Login_page extends Component {
     //checks firebase auth for login info
     login(e) {
         e.preventDefault();
-        Authentication.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        Authentication.auth().signInWithEmailAndPassword(this.state.login_email, this.state.login_password).then((u) => {
         }).catch((error) => {
             alert(error.message)
             console.log(error);
@@ -32,33 +39,57 @@ export class Login_page extends Component {
     }
 
     //uploads signin data to firebase
+
     signup(e) {
+        if(this.state.signin_password == this.state.signin_password2) {
         e.preventDefault();
-        Authentication.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        Authentication.auth().createUserWithEmailAndPassword(this.state.signin_email, this.state.signin_password).then((u) => {
+           return database.collection('Health_data').doc(u.user.uid).set({
+                gender: '',
+                age: '',
+                height: '',
+                weight: '',
+                goal: ''
+            }).catch((error) => {
+                alert(error.message)
+                console.log('failed to write', error);
+            });
         }).then((u) => { console.log(u) })
             .catch((error) => {
                 alert(error.message)
                 console.log(error);
             })
-      }
+        } else {
+            alert('please make sure passwords match')
+        }
+    }
 
     render() {
         return (
-            <div>
-                <h1>You are logged out! please either sign in or sign up bellow</h1>
-                <p>login Page</p>
+            <div className='signinBox'>
+                <h1 className="mui--text-display1">You're logged out or do not have an account sign in or sign up to start your fitness journey</h1>
                 <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input value={this.state.email} onChange={this.handleChange} type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div className='login_form'>
+                        <div className="form_input">
+                            <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="login_email" aria-describedby="emailHelp" />
+                        </div>
+                        <div className="form_input">
+                            <Input label='Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="login_password" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input value={this.state.password} onChange={this.handleChange} type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    <div className='signin_form'>
+                        <div className="form_input">
+                            <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="signin_email" aria-describedby="emailHelp" />
+                        </div>
+                        <div className="form_input">
+                            <Input label='Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="signin_password" />
+                        </div>
+                        <div className="form_input">
+                            <Input label='Confirm Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="signin_password2" />
+                        </div>
                     </div>
-                    <button type="submit" onClick={this.login} class="btn btn-primary">Login</button>
-                    <button onClick={this.signup} style={{ marginLeft: '25px' }} className="btn btn-success">Signup</button>
+                    <Button onClick={this.login} type="submit" size="large" color="primary" variant="raised">Login</Button>
+                    <Button onClick={this.signup} size="large" color="primary" variant="raised">Sign up</Button>
                 </form>
             </div>
         );

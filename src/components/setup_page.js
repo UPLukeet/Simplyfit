@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { database } from './firebase'
-
+import { Link } from 'react-router-dom'
 
 export class setup_page extends Component {
 
@@ -273,7 +273,6 @@ export class setup_page extends Component {
             heightUnits = 'Cm';
             weightUnits = 'Kg';
         };
-
 
         return (
             <div className='wrapper'>

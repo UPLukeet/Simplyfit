@@ -1,5 +1,6 @@
 import React from 'react';
  
+//logs error in routing
 const Error = () => {
     return (
        <div>

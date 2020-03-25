@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SideDrawerButton from './SideDrawerButton'
 
+//side drawer slides out and is main naviagtion on mobile
 const sideDrawer = props => {
     let drawerClasses = 'side-drawer';
     if (props.show) {
@@ -12,7 +13,7 @@ const sideDrawer = props => {
           <SideDrawerButton click={props.sidedrawerClickHandler}/>
         </div>
         <ul>
-            <li><Link to='/main_page'>Main page</Link></li>
+            <li><Link to='/'>Main page</Link></li>
             <li><Link to='/setup_page'>Setup page</Link></li>
             <li><Link to='/settings_page'>Settings page</Link></li>
         </ul>

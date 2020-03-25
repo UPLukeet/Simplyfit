@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 export class Main_page extends Component {
 
 
-   
+
     /*pullData() {
 
         //divides calories for meals
@@ -75,15 +75,27 @@ export class Main_page extends Component {
             })
 
     };*/
+    constructor(props) {
+        super(props);
+        this.state = {
+            healthData: null 
+        }
+    }
+
+    componentDidMount() {
+        this.setState({healthData: JSON.parse(localStorage.getItem('user_data'))})
+    }
+
+
     render() {
         //gets users data and renders it to <p> items
-        const healthData = JSON.parse(localStorage.getItem('user_data'));
+        const healthData = this.state.healthData;
         console.log(healthData);
-        return (
+        return healthData == null ? "" : (
             <div className='main_Main'>
                 <div className='meal_divs'>
                     <p className='food_heading'>Status:</p>
-                    <p className='food_text'>Your age is: { healthData.age }</p>
+                    <p className='food_text'>Your age is: {healthData.age}</p>
                     <p className='food_text'>Your gender is: {healthData.gender}</p>
                     <p className='food_text'>Your goal is: {healthData.goal}</p>
                     <p className='food_text'>Your height is: {healthData.height}</p>

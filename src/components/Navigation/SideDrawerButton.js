@@ -1,5 +1,6 @@
 import React from 'react';
 
+//closes sidedrawer on click
 const sidedrawerButton = props => (
     <button className='sidedrawer_button' onClick={props.click}>
         <div className='sidebutton__line_1'/>

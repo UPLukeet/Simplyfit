@@ -19,6 +19,7 @@ export class App extends Component {
     super(props);
     this.state = {
       user: {},
+      user_data: (localStorage.getItem('user_data')),
     }
     this.authListener = this.authListener.bind(this);
   }
@@ -46,6 +47,7 @@ export class App extends Component {
       } else {
         this.setState({ user: null })
         localStorage.removeItem('user');
+        localStorage.removeItem('user_data')
       }
     });
   }
@@ -72,7 +74,7 @@ export class App extends Component {
       .then(doc => {
         const data = doc.data();
         this.meals = data;
-        console.log(data);
+        //console.log(data);
       })
       .then(function () {
         //console.log('pulled meal data')
@@ -89,7 +91,7 @@ export class App extends Component {
       .then(doc => {
         const data = doc.data();
         this.ingredients = data;
-        console.log(this.ingredients);
+        //console.log(this.ingredients);
       })
       .then(function () {
         //console.log('pulled ingredient data')
@@ -126,18 +128,17 @@ export class App extends Component {
       <div className="App_margin">
         <Router>
           <div className='App'>
+            
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
 
-            {this.state.user ? (
-              < Switch >
-                <Route path='/setup_page' component={setup_page} exact />,
+            {this.state.user ? 
+              (< Switch >
                 <Route path='/settings_page' component={settings_page} exact />,
+                <Route path='/setup_page' component={setup_page} exact />,
                 <Route path='/' component={Main_page} />
-              </Switch>
-            ) : (<Login_page/>)}
-
+              </Switch>): (<Login_page/>)}
 
           </div>
         </Router>
