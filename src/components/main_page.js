@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TestImage from '../assets/Pancakes.jpg';
 
 
 export class Main_page extends Component {
@@ -78,12 +79,12 @@ export class Main_page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            healthData: null 
+            healthData: null
         }
     }
 
     componentDidMount() {
-        this.setState({healthData: JSON.parse(localStorage.getItem('user_data'))})
+        this.setState({ healthData: JSON.parse(localStorage.getItem('user_data')) })
     }
 
 
@@ -93,40 +94,37 @@ export class Main_page extends Component {
         console.log(healthData);
         return healthData == null ? "" : (
             <div className='main_Main'>
-                <div className='App_margin'/>
-                <div className='meal_divs'>
-                    <p className='food_heading'>Status:</p>
-                    <p className='food_text'>Your age is: {healthData.age}</p>
-                    <p className='food_text'>Your gender is: {healthData.gender}</p>
-                    <p className='food_text'>Your goal is: {healthData.goal}</p>
-                    <p className='food_text'>Your height is: {healthData.height}</p>
-                    <p className='food_text'>your weight is: {healthData.weight}</p>
+                <div className='App_margin' />
+
+                <div className='statusbar'>
+                    <p className='food_text'>age: {healthData.age}</p>
+                    <p className='food_text'>gender: {healthData.gender}</p>
+                    <p className='food_text'>goal: {healthData.goal}</p>
+                    <p className='food_text'>height: {healthData.height}</p>
+                    <p className='food_text'>weight: {healthData.weight}</p>
                 </div>
-                <div className='meal_divs'>
-                    <div className='food_image'>
-                        <p className='food_heading'>Meal one:</p>
-                    </div>
-                    <p className='food_text' id='meal_one_print'></p>
+
+
+                <div className='meal_container'>
+                <img src={TestImage} />
+                    <p>Test1</p>
                 </div>
-                <div className='meal_divs'>
-                    <div className='food_image'>
-                        <p className='food_heading'>Meal two:</p>
-                    </div>
-                    <p className='food_text' id='meal_two_print'></p>
+
+                <div className='meal_container'>
+                <img src={TestImage} />
+                    <p>Test2</p>
                 </div>
-                <div className='meal_divs'>
-                    <div className='food_image'>
-                        <p className='food_heading'>Meal three:</p>
-                    </div>
-                    <p className='food_text' id='meal_three_print'></p>
+
+                <div className='meal_container'>
+                <img src={TestImage} />
+                    <p>Test3</p>
                 </div>
-                <div className='meal_divs'>
-                    <div className='food_image'>
-                        <p className='food_heading'>Snacks:</p>
-                    </div>
-                    <p className='food_text' id='snack_one_print'></p>
-                    <p className='food_text' id='snack_two_print'></p>
+
+                <div className='meal_container'>
+                <img src={TestImage} />
+                    <p>Test4</p>
                 </div>
+
             </div>
         );
     }
