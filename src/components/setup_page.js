@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import { database } from './firebase'
+//import Radio from 'muicss/lib/react/radio'
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+
+//import Input from 'muicss/lib/react/input';
 import { Link } from 'react-router-dom'
 
 export class setup_page extends Component {
@@ -146,16 +159,16 @@ export class setup_page extends Component {
     //writes users information to database if all input fields are filled and if not alerts user
     calculate_bmi = () => {
         if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
-                database.collection('Health_data').doc(localStorage.getItem('user')).set({
-                    gender: this.state.Gender,
-                    age: this.state.Age,
-                    height: this.state.Height,
-                    weight: this.state.Weight,
-                    goal: this.state.Goal
-                }).catch((error) => {
-                    alert(error.message)
-                    console.log('failed to write', error);
-                });
+            database.collection('Health_data').doc(localStorage.getItem('user')).set({
+                gender: this.state.Gender,
+                age: this.state.Age,
+                height: this.state.Height,
+                weight: this.state.Weight,
+                goal: this.state.Goal
+            }).catch((error) => {
+                alert(error.message)
+                console.log('failed to write', error);
+            });
         } else {
             alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
@@ -180,6 +193,7 @@ export class setup_page extends Component {
 
     handleChangeHeight(event) {
         this.setState({ Height: event.target.value })
+        console.log(this.state.Height)
     };
 
     handleChangeAge(event) {
@@ -189,129 +203,150 @@ export class setup_page extends Component {
     };
 
     render() {
-      //stores html segments
+        //stores html segments
         let imperial;
         let meteric;
         let heightUnits
         let weightUnits
         if (this.state.imp_Units) {
-            imperial = <select name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
-                <option value="" disabled selected hidden>Height: </option>
-                <option value="152.4">5'0</option>
-                <option value="154.95">5'1</option>
-                <option value="157.48">5'2</option>
-                <option value="160.02">5'3</option>
-                <option value="162.56">5'4</option>
-                <option value="165.1">5'5</option>
-                <option value="167.74">5'6</option>
-                <option value="170.18">5'7</option>
-                <option value="172.72">5'8</option>
-                <option value="175.26">5'9</option>
-                <option value="177.8">5'10</option>
-                <option value="180.34">5'11</option>
-                <option value="182.88">6'0</option>
-                <option value="185.45">6'1</option>
-                <option value="187.96">6'2</option>
-                <option value="190.5">6'3</option>
-                <option value="193.04">6'4</option>
-                <option value="195.58">6'5</option>
-            </select>
+            imperial = (<FormControl className='material_input'>
+                <InputLabel htmlFor="age-native-simple">Height(ft)</InputLabel>
+                <Select native name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)}>
+                    <option disabled selected hidden aria-label="None" value="" />
+                    <option value="152.4">5'0</option>
+                    <option value="154.95">5'1</option>
+                    <option value="157.48">5'2</option>
+                    <option value="160.02">5'3</option>
+                    <option value="162.56">5'4</option>
+                    <option value="165.1">5'5</option>
+                    <option value="167.74">5'6</option>
+                    <option value="170.18">5'7</option>
+                    <option value="172.72">5'8</option>
+                    <option value="175.26">5'9</option>
+                    <option value="177.8">5'10</option>
+                    <option value="180.34">5'11</option>
+                    <option value="182.88">6'0</option>
+                    <option value="185.45">6'1</option>
+                    <option value="187.96">6'2</option>
+                    <option value="190.5">6'3</option>
+                    <option value="193.04">6'4</option>
+                    <option value="195.58">6'5</option>
+                </Select>
+            </FormControl>)
             heightUnits = 'ft';
             weightUnits = 'lbs';
         };
 
         if (this.state.met_Units) {
-            meteric = <select name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)} className='setup_dropdown'>
-                <option value="" disabled selected hidden>Height: </option>
-                <option value="150">150</option>
-                <option value="151">151</option>
-                <option value="152">152</option>
-                <option value="153">154</option>
-                <option value="154">154</option>
-                <option value="155">155</option>
-                <option value="156">156</option>
-                <option value="157">158</option>
-                <option value="158">159</option>
-                <option value="159">159</option>
-                <option value="160">160</option>
-                <option value="161">161</option>
-                <option value="162">162</option>
-                <option value="163">163</option>
-                <option value="164">164</option>
-                <option value="165">165</option>
-                <option value="166">166</option>
-                <option value="167">167</option>
-                <option value="168">168</option>
-                <option value="169">169</option>
-                <option value="170">170</option>
-                <option value="171">171</option>
-                <option value="172">172</option>
-                <option value="173">173</option>
-                <option value="174">174</option>
-                <option value="175">175</option>
-                <option value="176">176</option>
-                <option value="177">177</option>
-                <option value="178">178</option>
-                <option value="179">179</option>
-                <option value="180">180</option>
-                <option value="181">181</option>
-                <option value="182">182</option>
-                <option value="183">183</option>
-                <option value="184">184</option>
-                <option value="185">185</option>
-                <option value="186">186</option>
-                <option value="187">187</option>
-                <option value="188">188</option>
-                <option value="189">189</option>
-                <option value="190">190</option>
-                <option value="191">191</option>
-                <option value="192">192</option>
-                <option value="193">193</option>
-                <option value="194">194</option>
-                <option value="195">195</option>
-            </select>
+            meteric = (<FormControl className='material_input'>
+                <InputLabel htmlFor="age-native-simple">Height(Cm)</InputLabel>
+                <Select native name='Height' value={this.state.Height} onChange={this.handleChangeHeight.bind(this)}>
+                    <option disabled selected hidden aria-label="None" value="" />
+                    <option value="150">150</option>
+                    <option value="151">151</option>
+                    <option value="152">152</option>
+                    <option value="153">154</option>
+                    <option value="154">154</option>
+                    <option value="155">155</option>
+                    <option value="156">156</option>
+                    <option value="157">158</option>
+                    <option value="158">159</option>
+                    <option value="159">159</option>
+                    <option value="160">160</option>
+                    <option value="161">161</option>
+                    <option value="162">162</option>
+                    <option value="163">163</option>
+                    <option value="164">164</option>
+                    <option value="165">165</option>
+                    <option value="166">166</option>
+                    <option value="167">167</option>
+                    <option value="168">168</option>
+                    <option value="169">169</option>
+                    <option value="170">170</option>
+                    <option value="171">171</option>
+                    <option value="172">172</option>
+                    <option value="173">173</option>
+                    <option value="174">174</option>
+                    <option value="175">175</option>
+                    <option value="176">176</option>
+                    <option value="177">177</option>
+                    <option value="178">178</option>
+                    <option value="179">179</option>
+                    <option value="180">180</option>
+                    <option value="181">181</option>
+                    <option value="182">182</option>
+                    <option value="183">183</option>
+                    <option value="184">184</option>
+                    <option value="185">185</option>
+                    <option value="186">186</option>
+                    <option value="187">187</option>
+                    <option value="188">188</option>
+                    <option value="189">189</option>
+                    <option value="190">190</option>
+                    <option value="191">191</option>
+                    <option value="192">192</option>
+                    <option value="193">193</option>
+                    <option value="194">194</option>
+                    <option value="195">195</option>
+                </Select>
+            </FormControl>)
             heightUnits = 'Cm';
             weightUnits = 'Kg';
         };
 
         return (
-            <div className='wrapper'>
-                <div className='setup_main'>
+            <div className='setup_main'>
+            <div className='App_margin'/>
+                <h1>Please fill in the fields bellow to start your fitness journey</h1>
 
+                <div className='material_input_spacing'>
+                    <FormControl className='material_input' component="fieldset" className='material_input'>
+                        <FormLabel component="legend">Input the units for Height/Weight:</FormLabel>
+                        <RadioGroup aria-label="units">
+                            <FormControlLabel value='Meteric(Kg/Cm)' onClick={this.metericClickHandler} control={<Radio />} label='Meteric(Kg/Cm)' />
+                            <FormControlLabel value='Imperial(lbs/ft)' onClick={this.imperialClickHandler} control={<Radio />} label='Imperial(lbs/ft)' />
+                        </RadioGroup>
+                    </FormControl>
+                </div>
 
-                    <div className='setup_text'>
-                        <p>Input the units for Height/Weight: {weightUnits}/{heightUnits} </p>
-                        <button onClick={this.metericClickHandler}>Metric</button>
-                        <button onClick={this.imperialClickHandler}>Imperial</button>
-                    </div>
+                <div className='material_input_spacing'>
+                    <FormControl className='material_input'>
+                        <InputLabel htmlFor="age-native-simple">Gender</InputLabel>
+                        <Select native name='Gender' value={this.state.Gender} onChange={this.handleChangeGender.bind(this)}>
+                            <option disabled selected hidden aria-label="None" value="" />
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </Select>
+                    </FormControl>
+                </div >
 
-                    <p className='setup_text'>Input Gender:</p>
-                    <select name='Gender' value={this.state.Gender} onChange={this.handleChangeGender.bind(this)} className='setup_dropdown'>
-                        <option value="" disabled selected hidden>Choose a gender:</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                <div className='material_input_spacing'>
+                    <FormControl className='material_input'>
+                        <InputLabel htmlFor="age-native-simple">Goal</InputLabel>
+                        <Select native name='Gender' value={this.state.Goal} onChange={this.handleChangeGoal.bind(this)}>
+                            <option disabled selected hidden aria-label="None" value="" />
+                            <option value="recomp">Recomp</option>
+                            <option value="lose">Lose fat</option>
+                            <option value="gain">Gain muscle</option>
+                        </Select>
+                    </FormControl>
+                </div>
 
+                <div className='material_input_spacing'>
+                    <TextField className='material_input' value={this.state.Weight} onChange={this.handleChangeWeight.bind(this)} type='number' label={'Weight(' + weightUnits + ')'} id="standard-basic" />
+                </div>
 
-                    <p className='setup_text'>Input the goal you'd like to achieve:</p>
-                    <select value={this.state.Goal} onChange={this.handleChangeGoal.bind(this)} className='setup_dropdown'>
-                        <option value="" disabled selected hidden>Choose a goal:</option>
-                        <option value="recomp">Recomp</option>
-                        <option value="lose">Lose fat</option>
-                        <option value="gain">Gain muscle</option>
-                    </select>
-
-                    <p className='setup_text'>Input Weight: {weightUnits}</p>
-                    <input value={this.state.Weight} onChange={this.handleChangeWeight.bind(this)} className='setup_input' type='number' placeholder='Weight:' />
-
-                    <p className='setup_text'>Input Height: {heightUnits}</p>
-
+                <div className='material_input_spacing'>
                     {imperial}
                     {meteric}
+                </div>
 
-                    <p className='setup_text'>Input Age:</p>
-                    <input value={this.state.Age} onChange={this.handleChangeAge.bind(this)} className='setup_input' type='number' placeholder='Age:' />
-                    <button onClick={this.calculate_bmi} className='bmi_button'>calculate</button>
+                <div className='material_input_spacing'>
+                    <TextField className='material_input' value={this.state.Age} onChange={this.handleChangeAge.bind(this)} type='number' label='Age' id="standard-basic" />
+                </div>
+
+                <div className='setup_button'>
+                    <Button onClick={this.calculate_bmi} size="large" color="primary" variant="contained">calculate</Button>
                 </div>
             </div>
         );

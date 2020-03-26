@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Authentication } from './firebase';
 import { database } from './firebase';
 import { Link } from 'react-router-dom';
-import Button from 'muicss/lib/react/button';
-import Input from 'muicss/lib/react/input';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Divider from 'muicss/lib/react/divider';
 
 
@@ -62,46 +62,47 @@ export class Login_page extends Component {
                     console.log(error);
                 })
         } else {
-            alert('please make sure passwords match')
+            alert('Please make sure passwords match.')
         }
     }
 
     render() {
         return (
             <div className='login_container'>
+                <div className='App_margin'/>
                 <div className='spacer'/>
                 <form className='form_box'>
                     <div>
-                        <p className="mui--text-subhead">Login:</p>
+                        <p>Login:</p>
                         <div className="form_input">
-                            <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="login_email" aria-describedby="emailHelp" />
+                            <TextField label='Email adress' id="standard-basic" value={this.state.email} onChange={this.handleChange} type="email" name="login_email" aria-describedby="emailHelp" />
                         </div>
                         <div className="form_input">
-                            <Input label='Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="login_password" />
+                            <TextField label='Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="login_password" />
                         </div>
                     </div>
                 </form>
 
-                <Divider className='divider' />
+                <div className='divider'/>
 
                 <form className='form_box'>
                     <div>
-                        <p className="mui--text-subhead">Sign up:</p>
+                        <p>Sign up:</p>
                         <div className="form_input">
-                            <Input label='Email adress' floatingLabel={true} value={this.state.email} onChange={this.handleChange} type="email" name="signin_email" aria-describedby="emailHelp" />
+                            <TextField label='Email adress' id="standard-basic" value={this.state.email} onChange={this.handleChange} type="email" name="signin_email" aria-describedby="emailHelp" />
                         </div>
                         <div className="form_input">
-                            <Input label='Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="signin_password" />
+                            <TextField label='Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="signin_password" />
                         </div>
                         <div className="form_input">
-                            <Input label='Confirm Password' floatingLabel={true} value={this.state.password} onChange={this.handleChange} type="password" name="signin_password2" />
+                            <TextField label='Confirm Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="signin_password2" />
                         </div>
                     </div>
                 </form>
 
                 <div className='signin_buttons'>
-                    <Button onClick={this.login} type="submit" size="large" color="primary" variant="raised">Login</Button>
-                    <Button onClick={this.signup} size="large" color="primary" variant="raised">Sign up</Button>
+                    <Button onClick={this.login} size="large" color="primary" variant="contained">Login</Button>
+                    <Button onClick={this.signup} size="large" color="primary" variant="contained">Sign up</Button>
                 </div>
 
             </div>

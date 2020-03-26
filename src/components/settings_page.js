@@ -19,6 +19,7 @@ export class settings_page extends Component {
 
         return (
             <div>
+                <div className='App_margin'/>
                 <p>Log out by pressing the button bellow</p>
                 
                 <Link to='/'><button onClick={this.logout}>Log out</button></Link>

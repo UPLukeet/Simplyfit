@@ -125,10 +125,9 @@ export class App extends Component {
     };
 
     return (
-      <div className="App_margin">
+      <div>
         <Router>
           <div className='App'>
-            
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}

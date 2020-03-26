@@ -93,6 +93,7 @@ export class Main_page extends Component {
         console.log(healthData);
         return healthData == null ? "" : (
             <div className='main_Main'>
+                <div className='App_margin'/>
                 <div className='meal_divs'>
                     <p className='food_heading'>Status:</p>
                     <p className='food_text'>Your age is: {healthData.age}</p>
