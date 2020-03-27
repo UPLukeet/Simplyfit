@@ -103,8 +103,8 @@ export class Main_page extends Component {
         this.setState({ mealOne_box: false });
     };
 
-     //handles clicks for meal two
-     mealTwoClickHandler = (event) => {
+    //handles clicks for meal two
+    mealTwoClickHandler = (event) => {
         this.setState({ mealTwo_box: true });
     };
 
@@ -112,8 +112,8 @@ export class Main_page extends Component {
         this.setState({ mealTwo_box: false });
     };
 
-     //handles clicks for meal three
-     mealThreeClickHandler = (event) => {
+    //handles clicks for meal three
+    mealThreeClickHandler = (event) => {
         this.setState({ mealThree_box: true });
     };
 
@@ -121,8 +121,8 @@ export class Main_page extends Component {
         this.setState({ mealThree_box: false });
     };
 
-     //handles clicks for meal Four
-     mealFourClickHandler = (event) => {
+    //handles clicks for meal Four
+    mealFourClickHandler = (event) => {
         this.setState({ mealFour_box: true });
     };
 
@@ -139,40 +139,48 @@ export class Main_page extends Component {
 
         if (this.state.mealOne_box) {
             mealOne = (
-                <div onClick={this.mealOne_boxClickHandler} className='meal_background'>
-                    <div>
-                    <p>testing1</p>
+                <div className='meal_popup'>
+                    <div className='meal_popupElement'>
+                        <img src={TestImage} />
+                        <p>testing1</p>
                     </div>
+                    <div onClick={this.mealOne_boxClickHandler} className='meal_popupBackground' />
                 </div>
             )
         };
 
         if (this.state.mealTwo_box) {
             mealTwo = (
-                <div onClick={this.mealTwo_boxClickHandler} className='meal_background'>
-                    <div>
-                    <p>testing2</p>
+                <div className='meal_popup'>
+                    <div className='meal_popupElement'>
+                        <img src={TestImage} />
+                        <p>testing2</p>
                     </div>
+                    <div onClick={this.mealTwo_boxClickHandler} className='meal_popupBackground' />
                 </div>
             )
         };
 
         if (this.state.mealThree_box) {
             mealThree = (
-                <div onClick={this.mealThree_boxClickHandler} className='meal_background'>
-                    <div>
-                    <p>testing3</p>
+                <div className='meal_popup'>
+                    <div className='meal_popupElement'>
+                        <img src={TestImage} />
+                        <p>testing3</p>
                     </div>
+                    <div onClick={this.mealThree_boxClickHandler} className='meal_popupBackground' />
                 </div>
             )
         };
 
         if (this.state.mealFour_box) {
             mealFour = (
-                <div onClick={this.mealFour_boxClickHandler} className='meal_background'>
-                    <div className='meal'>
-                    <p>testing4</p>
+                <div className='meal_popup'>
+                    <div className='meal_popupElement'>
+                        <img src={TestImage} />
+                        <p>testing4</p>
                     </div>
+                    <div onClick={this.mealFour_boxClickHandler} className='meal_popupBackground' />
                 </div>
             )
         };
@@ -198,7 +206,7 @@ export class Main_page extends Component {
                 {mealTwo}
                 {mealThree}
                 {mealFour}
-                
+
                 <div onClick={this.mealOneClickHandler} className='meal_container'>
                     <img src={TestImage} />
                     <p>Test1</p>
