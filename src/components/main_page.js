@@ -83,12 +83,102 @@ export class Main_page extends Component {
         }
     }
 
+    state = {
+        mealOne_box: false,
+        mealTwo_box: false,
+        mealThree_box: false,
+        mealFour_box: false
+    }
+
     componentDidMount() {
         this.setState({ healthData: JSON.parse(localStorage.getItem('user_data')) })
     }
 
+    //handles clicks for meal one
+    mealOneClickHandler = (event) => {
+        this.setState({ mealOne_box: true });
+    };
+
+    mealOne_boxClickHandler = (event) => {
+        this.setState({ mealOne_box: false });
+    };
+
+     //handles clicks for meal two
+     mealTwoClickHandler = (event) => {
+        this.setState({ mealTwo_box: true });
+    };
+
+    mealTwo_boxClickHandler = (event) => {
+        this.setState({ mealTwo_box: false });
+    };
+
+     //handles clicks for meal three
+     mealThreeClickHandler = (event) => {
+        this.setState({ mealThree_box: true });
+    };
+
+    mealThree_boxClickHandler = (event) => {
+        this.setState({ mealThree_box: false });
+    };
+
+     //handles clicks for meal Four
+     mealFourClickHandler = (event) => {
+        this.setState({ mealFour_box: true });
+    };
+
+    mealFour_boxClickHandler = (event) => {
+        this.setState({ mealFour_box: false });
+    };
 
     render() {
+        //setting meal more information on click
+        let mealOne;
+        let mealTwo;
+        let mealThree;
+        let mealFour;
+
+        if (this.state.mealOne_box) {
+            mealOne = (
+                <div onClick={this.mealOne_boxClickHandler} className='meal_background'>
+                    <div>
+                    <p>testing1</p>
+                    </div>
+                </div>
+            )
+        };
+
+        if (this.state.mealTwo_box) {
+            mealTwo = (
+                <div onClick={this.mealTwo_boxClickHandler} className='meal_background'>
+                    <div>
+                    <p>testing2</p>
+                    </div>
+                </div>
+            )
+        };
+
+        if (this.state.mealThree_box) {
+            mealThree = (
+                <div onClick={this.mealThree_boxClickHandler} className='meal_background'>
+                    <div>
+                    <p>testing3</p>
+                    </div>
+                </div>
+            )
+        };
+
+        if (this.state.mealFour_box) {
+            mealFour = (
+                <div onClick={this.mealFour_boxClickHandler} className='meal_background'>
+                    <div className='meal'>
+                    <p>testing4</p>
+                    </div>
+                </div>
+            )
+        };
+
+
+
         //gets users data and renders it to <p> items
         const healthData = this.state.healthData;
         console.log(healthData);
@@ -104,24 +194,28 @@ export class Main_page extends Component {
                     <p className='food_text'>weight: {healthData.weight}</p>
                 </div>
 
-
-                <div className='meal_container'>
-                <img src={TestImage} />
+                {mealOne}
+                {mealTwo}
+                {mealThree}
+                {mealFour}
+                
+                <div onClick={this.mealOneClickHandler} className='meal_container'>
+                    <img src={TestImage} />
                     <p>Test1</p>
                 </div>
 
-                <div className='meal_container'>
-                <img src={TestImage} />
+                <div onClick={this.mealTwoClickHandler} className='meal_container'>
+                    <img src={TestImage} />
                     <p>Test2</p>
                 </div>
 
-                <div className='meal_container'>
-                <img src={TestImage} />
+                <div onClick={this.mealThreeClickHandler} className='meal_container'>
+                    <img src={TestImage} />
                     <p>Test3</p>
                 </div>
 
-                <div className='meal_container'>
-                <img src={TestImage} />
+                <div onClick={this.mealFourClickHandler} className='meal_container'>
+                    <img src={TestImage} />
                     <p>Test4</p>
                 </div>
 
