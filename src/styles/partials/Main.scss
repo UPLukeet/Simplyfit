@@ -11,11 +11,30 @@
 .statusbar {
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin: none;
   margin-bottom: 2rem;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  height: 5rem;
+  height: 8rem;
+}
+
+.statusbar div {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border-radius: 2px;;
+  align-items: center;
+  margin-left: 10px;
+  background: yellowgreen;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.statusbar div img {
+  margin: auto;
+  height: 90%;
+
 }
 
 .meal_container {
@@ -105,4 +124,14 @@
   height: 12rem;
   object-fit: cover;
   object-position: 0% 0%;
+}
+
+.meal_popupElement svg {
+  position: absolute;
+  display: flex;
+  margin: 6px;
+  width: auto;
+  height: 35px;
+  color: white;
+  right: 0;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { database } from './firebase'
-//import Radio from 'muicss/lib/react/radio'
+import { Link } from 'react-router-dom'
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -11,9 +11,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-
-//import Input from 'muicss/lib/react/input';
-import { Link } from 'react-router-dom'
 
 export class setup_page extends Component {
 

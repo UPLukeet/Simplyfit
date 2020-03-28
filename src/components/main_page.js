@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import TestImage from '../assets/Pancakes.jpg';
-
+import CancelIcon from '@material-ui/icons/Cancel';
+import Gainimg from '../assets/Gain.svg'
+import Recompimg from '../assets/Recomp.svg'
+import Loseimg from '../assets/Lose.svg'
 
 export class Main_page extends Component {
 
@@ -141,6 +144,7 @@ export class Main_page extends Component {
             mealOne = (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
+                        <CancelIcon onClick={this.mealOne_boxClickHandler} />
                         <img src={TestImage} />
                         <p>testing1</p>
                     </div>
@@ -153,6 +157,7 @@ export class Main_page extends Component {
             mealTwo = (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
+                        <CancelIcon onClick={this.mealTwo_boxClickHandler} />
                         <img src={TestImage} />
                         <p>testing2</p>
                     </div>
@@ -165,6 +170,7 @@ export class Main_page extends Component {
             mealThree = (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
+                        <CancelIcon onClick={this.mealThree_boxClickHandler} />
                         <img src={TestImage} />
                         <p>testing3</p>
                     </div>
@@ -177,6 +183,7 @@ export class Main_page extends Component {
             mealFour = (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
+                        <CancelIcon onClick={this.mealFour_boxClickHandler} />
                         <img src={TestImage} />
                         <p>testing4</p>
                     </div>
@@ -186,6 +193,11 @@ export class Main_page extends Component {
         };
 
 
+        /*<p className='food_text'>age: {healthData.age}</p>
+        <p className='food_text'>gender: {healthData.gender}</p>
+        <p className='food_text'>goal: {healthData.goal}</p>
+        <p className='food_text'>height: {healthData.height}</p>
+        <p className='food_text'>weight: {healthData.weight}</p>*/
 
         //gets users data and renders it to <p> items
         const healthData = this.state.healthData;
@@ -194,12 +206,9 @@ export class Main_page extends Component {
             <div className='main_Main'>
                 <div className='App_margin' />
 
+                
                 <div className='statusbar'>
-                    <p className='food_text'>age: {healthData.age}</p>
-                    <p className='food_text'>gender: {healthData.gender}</p>
-                    <p className='food_text'>goal: {healthData.goal}</p>
-                    <p className='food_text'>height: {healthData.height}</p>
-                    <p className='food_text'>weight: {healthData.weight}</p>
+                <div className='Goaldiv'><img src={Gainimg}/></div>
                 </div>
 
                 {mealOne}
