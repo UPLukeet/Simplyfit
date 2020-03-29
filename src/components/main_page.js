@@ -82,7 +82,7 @@ export class Main_page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            healthData: null
+            healthData: (JSON.parse(localStorage.getItem('user_data')))
         }
     }
 
@@ -90,12 +90,42 @@ export class Main_page extends Component {
         mealOne_box: false,
         mealTwo_box: false,
         mealThree_box: false,
-        mealFour_box: false
+        mealFour_box: false,
+        gainImage: false,
+        recompImage: false,
+        loseImage: false
     }
 
     componentDidMount() {
-        this.setState({ healthData: JSON.parse(localStorage.getItem('user_data')) })
+        this.GoalChecker();
+        console.log(this.state.healthData);
     }
+
+    GoalChecker() {
+        if (this.state.healthData !== null) {
+
+            if (this.state.healthData.goal === 'gain') {
+                this.setState({ gainImage: true });
+                this.setState({ recompImage: false });
+                this.setState({ loseImage: false });
+                console.log('gainimg')
+            }
+
+            if (this.state.healthData.goal === 'recomp') {
+                this.setState({ gainImage: false });
+                this.setState({ recompImage: true });
+                this.setState({ loseImage: false});
+                console.log('recompimg')
+            }
+
+            if (this.state.healthData.goal === 'lose') {
+                this.setState({ gainImage: false });
+                this.setState({ recompImage: false});
+                this.setState({ loseImage: true });
+                console.log('loseimg')
+            }
+        }
+    };
 
     //handles clicks for meal one
     mealOneClickHandler = (event) => {
@@ -158,7 +188,7 @@ export class Main_page extends Component {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={this.mealTwo_boxClickHandler} />
-                        <img src={TestImage} />
+                        <img src={this.state.TestImage} />
                         <p>testing2</p>
                     </div>
                     <div onClick={this.mealTwo_boxClickHandler} className='meal_popupBackground' />
@@ -201,14 +231,21 @@ export class Main_page extends Component {
 
         //gets users data and renders it to <p> items
         const healthData = this.state.healthData;
-        console.log(healthData);
         return healthData == null ? "" : (
             <div className='main_Main'>
                 <div className='App_margin' />
 
-                
+
                 <div className='statusbar'>
-                <div className='Goaldiv'><img src={Gainimg}/></div>
+                    <div className='Goaldiv'>
+
+                        {this.state.gainImage ? <img src={Gainimg} /> : null}
+
+                        {this.state.recompImage ? <img src={Recompimg} /> : null}
+
+                        {this.state.loseImage ? <img src={Loseimg} /> : null}
+
+                    </div>
                 </div>
 
                 {mealOne}
