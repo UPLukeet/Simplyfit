@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SideDrawerButton from './SideDrawerButton'
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';

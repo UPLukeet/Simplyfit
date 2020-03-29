@@ -19,7 +19,7 @@ export class App extends Component {
     super(props);
     this.state = {
       user: {},
-      user_data: (localStorage.getItem('user_data')),
+      healthData: (JSON.parse(localStorage.getItem('user_data')))
     }
     this.authListener = this.authListener.bind(this);
   }
@@ -32,6 +32,7 @@ export class App extends Component {
   //onload runs funtion to check for authenication from firebase
   componentDidMount() {
     this.authListener();
+
   }
 
 //checks firebase for authentication

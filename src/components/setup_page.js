@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { database } from './firebase'
-import { Link } from 'react-router-dom'
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -129,7 +128,8 @@ export class setup_page extends Component {
         Goal: '',
         Weight: '',
         Height: '',
-        Age: ''
+        Age: '',
+        weightUnits: ''
     };
 
 
@@ -138,7 +138,7 @@ export class setup_page extends Component {
         this.setState({ imp_Units: false });
         this.setState({ met_Units: true });
         console.log('Met Clicked')
-
+        this.setState({ weightUnits: 'Kg' });
     };
 
     //checks what units are picked and renders out different items depeding on state
@@ -146,6 +146,7 @@ export class setup_page extends Component {
         this.setState({ imp_Units: true });
         this.setState({ met_Units: false });
         console.log('Imp Clicked')
+        this.setState({ weightUnits: 'lbs' });
     };
 
     imperialHeightChangeHandler = (event) => {
@@ -155,6 +156,17 @@ export class setup_page extends Component {
 
     //writes users information to database if all input fields are filled and if not alerts user
     calculate_bmi = () => {
+        if (this.state.weightUnits === 'lbs') {
+            this.setState(
+                { Weight: this.state.Weight / 2.2 },
+                () => this.saveData()
+            );
+        } else {
+            this.saveData();
+        }
+    }
+    saveData = () => {
+
         if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
             database.collection('Health_data').doc(localStorage.getItem('user')).set({
                 gender: this.state.Gender,
@@ -169,6 +181,9 @@ export class setup_page extends Component {
         } else {
             alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
+
+
+
     }
 
 
@@ -204,7 +219,7 @@ export class setup_page extends Component {
         let imperial;
         let meteric;
         let heightUnits
-        let weightUnits
+        let weightUnit = this.state.weightUnits
         if (this.state.imp_Units) {
             imperial = (<FormControl className='material_input'>
                 <InputLabel htmlFor="age-native-simple">Height(ft)</InputLabel>
@@ -231,7 +246,6 @@ export class setup_page extends Component {
                 </Select>
             </FormControl>)
             heightUnits = 'ft';
-            weightUnits = 'lbs';
         };
 
         if (this.state.met_Units) {
@@ -288,16 +302,15 @@ export class setup_page extends Component {
                 </Select>
             </FormControl>)
             heightUnits = 'Cm';
-            weightUnits = 'Kg';
         };
 
         return (
             <div className='setup_main'>
-            <div className='App_margin'/>
-                <h1>Please fill in the fields bellow to start your fitness journey</h1>
+                <div className='App_margin' />
+                <h1>Please fill in the fields below to start your fitness journey</h1>
 
                 <div className='material_input_spacing'>
-                    <FormControl className='material_input' component="fieldset" className='material_input'>
+                    <FormControl component="fieldset" className='material_input'>
                         <FormLabel component="legend">Input the units for Height/Weight:</FormLabel>
                         <RadioGroup aria-label="units">
                             <FormControlLabel value='Meteric(Kg/Cm)' onClick={this.metericClickHandler} control={<Radio />} label='Meteric(Kg/Cm)' />
@@ -330,7 +343,7 @@ export class setup_page extends Component {
                 </div>
 
                 <div className='material_input_spacing'>
-                    <TextField className='material_input' value={this.state.Weight} onChange={this.handleChangeWeight.bind(this)} type='number' label={'Weight(' + weightUnits + ')'} id="standard-basic" />
+                    <TextField className='material_input' value={this.state.Weight} onChange={this.handleChangeWeight.bind(this)} type='number' label={'Weight(' + weightUnit + ')'} id="standard-basic" />
                 </div>
 
                 <div className='material_input_spacing'>
