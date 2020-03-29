@@ -322,9 +322,9 @@ export class setup_page extends Component {
                         <InputLabel htmlFor="age-native-simple">Goal</InputLabel>
                         <Select native name='Gender' value={this.state.Goal} onChange={this.handleChangeGoal.bind(this)}>
                             <option disabled selected hidden aria-label="None" value="" />
-                            <option value="recomp">Recomp</option>
-                            <option value="lose">Lose fat</option>
-                            <option value="gain">Gain muscle</option>
+                            <option value="Recomp">Recomp</option>
+                            <option value="Lose">Lose fat</option>
+                            <option value="Gain">Gain muscle</option>
                         </Select>
                     </FormControl>
                 </div>

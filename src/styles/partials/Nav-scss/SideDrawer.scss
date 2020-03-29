@@ -18,9 +18,17 @@
 }
 
 .sidedraw-top {
-  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112px;
   width: 100%;
   background: #f7be10;
+}
+.sidedraw-top img {
+  margin-top: 1rem;
+  height: 50px;
+  width: auto;
 }
 
 .side-drawer ul {

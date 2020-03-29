@@ -14,27 +14,98 @@
   align-items: center;
   margin: none;
   margin-bottom: 2rem;
+  padding-left: 5px;
+  padding-right: 5px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   height: 8rem;
 }
 
-.statusbar div {
+.testDiv {
   display: flex;
+  flex-direction: column;
   height: 100px;
   width: 100px;
-  border-radius: 2px;;
-  align-items: center;
-  margin-left: 10px;
-  background: yellowgreen;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #6632cd;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
-.statusbar div img {
-  margin: auto;
-  height: 90%;
+.testDiv p {
+  font-size: smaller;
+  color: white;
+  float:left;
+  margin: 0;
+  margin-left: 0.2rem;
+}
 
+.testDiv1 {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #00b7e4;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.testDiv1 p {
+  font-size: smaller;
+  float:left;
+  margin: 0;
+  margin-left: 0.2rem;
+}
+
+.testDiv2 {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #d2691e;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.testDiv2 p {
+  font-size: smaller;
+  color: white;
+  float:left;
+  margin: 0;
+  margin-left: 0.2rem;
+}
+
+.Goaldiv {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background: #7ccb19;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.Goaldiv img {
+  margin: auto;
+  height: 75%;
+}
+
+.Goaldiv p {
+  font-size: smaller;
+  float:left;
+  margin: 0;
+  margin-left: 0.2rem;
 }
 
 .meal_container {
@@ -51,6 +122,9 @@
 
 .meal_container p {
   position: absolute;
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   bottom: 0;
   margin: 0;
   background: white;
@@ -62,30 +136,6 @@
   width: 100%;
 }
 
-.meal_background {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(00, 00, 00, 0.6);
-  z-index: 30;
-}
-
-.meal_background p {
-}
-
-.meal_background div {
-  background: white;
-  border-radius: 15px;
-  height: 35rem;
-  width: 100%;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-}
 
 .meal_popup {
   position: fixed;
@@ -117,6 +167,11 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+
+.meal_popupElement p {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .meal_popupElement img {

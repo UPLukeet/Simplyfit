@@ -4,6 +4,7 @@ import SideDrawerButton from './SideDrawerButton'
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import Logo from '../../assets/SimplyfitLogo.svg';
 
 //side drawer slides out and is main naviagtion on mobile
 const sideDrawer = props => {
@@ -13,7 +14,7 @@ const sideDrawer = props => {
     }
     return (<nav className={drawerClasses}>
         <div className='sidedraw-top'>
-          <SideDrawerButton click={props.sidedrawerClickHandler}/>
+        <img src={Logo} />
         </div>
         <ul>
         <Link onClick={props.sidedrawerClickHandler} to='/'><li><HomeIcon/>Main</li></Link>

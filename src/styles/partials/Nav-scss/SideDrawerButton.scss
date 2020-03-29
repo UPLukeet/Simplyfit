@@ -4,8 +4,8 @@
     width: 100vh;
     display: flex;
     float: right;
-    align-items: flex-start;
-    align-self: start;
+    align-items: flex-end;
+    align-self: flex-end;
     flex-direction: column;
     justify-content: space-around;
     height: 32px;
@@ -16,6 +16,8 @@
     padding: 0;
     margin-top: 0.8rem;
     margin-right: 0.8rem;
+    margin-bottom: 0.8rem;
+    margin-left: 3.5rem;
 
 }
 

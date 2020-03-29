@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import TestImage from '../assets/Pancakes.jpg';
+import PancakeImage from '../assets/Pancakes.jpg';
+import OmeletteImage from '../assets/Omelette.jpg';
+import WrapImage from '../assets/Wrap.jpg';
+import SpagettiImage from '../assets/Spagetti.jpg';
+
 import CancelIcon from '@material-ui/icons/Cancel';
 import Gainimg from '../assets/Gain.svg'
 import Recompimg from '../assets/Recomp.svg'
@@ -104,23 +108,23 @@ export class Main_page extends Component {
     GoalChecker() {
         if (this.state.healthData !== null) {
 
-            if (this.state.healthData.goal === 'gain') {
+            if (this.state.healthData.goal === 'Gain') {
                 this.setState({ gainImage: true });
                 this.setState({ recompImage: false });
                 this.setState({ loseImage: false });
                 console.log('gainimg')
             }
 
-            if (this.state.healthData.goal === 'recomp') {
+            if (this.state.healthData.goal === 'Recomp') {
                 this.setState({ gainImage: false });
                 this.setState({ recompImage: true });
-                this.setState({ loseImage: false});
+                this.setState({ loseImage: false });
                 console.log('recompimg')
             }
 
-            if (this.state.healthData.goal === 'lose') {
+            if (this.state.healthData.goal === 'Lose') {
                 this.setState({ gainImage: false });
-                this.setState({ recompImage: false});
+                this.setState({ recompImage: false });
                 this.setState({ loseImage: true });
                 console.log('loseimg')
             }
@@ -175,7 +179,7 @@ export class Main_page extends Component {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={this.mealOne_boxClickHandler} />
-                        <img src={TestImage} />
+                        <img src={PancakeImage} />
                         <p>testing1</p>
                     </div>
                     <div onClick={this.mealOne_boxClickHandler} className='meal_popupBackground' />
@@ -188,7 +192,7 @@ export class Main_page extends Component {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={this.mealTwo_boxClickHandler} />
-                        <img src={this.state.TestImage} />
+                        <img src={OmeletteImage} />
                         <p>testing2</p>
                     </div>
                     <div onClick={this.mealTwo_boxClickHandler} className='meal_popupBackground' />
@@ -201,7 +205,7 @@ export class Main_page extends Component {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={this.mealThree_boxClickHandler} />
-                        <img src={TestImage} />
+                        <img src={WrapImage} />
                         <p>testing3</p>
                     </div>
                     <div onClick={this.mealThree_boxClickHandler} className='meal_popupBackground' />
@@ -214,7 +218,7 @@ export class Main_page extends Component {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={this.mealFour_boxClickHandler} />
-                        <img src={TestImage} />
+                        <img src={SpagettiImage} />
                         <p>testing4</p>
                     </div>
                     <div onClick={this.mealFour_boxClickHandler} className='meal_popupBackground' />
@@ -238,7 +242,7 @@ export class Main_page extends Component {
 
                 <div className='statusbar'>
                     <div className='Goaldiv'>
-
+                        <p>Goal: {healthData.goal}</p>
                         {this.state.gainImage ? <img src={Gainimg} /> : null}
 
                         {this.state.recompImage ? <img src={Recompimg} /> : null}
@@ -246,6 +250,12 @@ export class Main_page extends Component {
                         {this.state.loseImage ? <img src={Loseimg} /> : null}
 
                     </div>
+
+                    <div className='testDiv'><p>Age: {healthData.age}</p></div>
+
+                    <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
+
+                    <div className='testDiv2'><p>weight: {healthData.weight}Kg</p></div>
                 </div>
 
                 {mealOne}
@@ -254,23 +264,23 @@ export class Main_page extends Component {
                 {mealFour}
 
                 <div onClick={this.mealOneClickHandler} className='meal_container'>
-                    <img src={TestImage} />
-                    <p>Test1</p>
+                    <img src={PancakeImage} />
+                    <p>Meal one: Pancakes</p>
                 </div>
 
                 <div onClick={this.mealTwoClickHandler} className='meal_container'>
-                    <img src={TestImage} />
-                    <p>Test2</p>
+                    <img src={OmeletteImage} />
+                    <p>Meal two: Omelet</p>
                 </div>
 
                 <div onClick={this.mealThreeClickHandler} className='meal_container'>
-                    <img src={TestImage} />
-                    <p>Test3</p>
+                    <img src={WrapImage} />
+                    <p>Meal three: chicken wrap</p>
                 </div>
 
                 <div onClick={this.mealFourClickHandler} className='meal_container'>
-                    <img src={TestImage} />
-                    <p>Test4</p>
+                    <img src={SpagettiImage} />
+                    <p>Meal Four: Spagetti Bolognase</p>
                 </div>
 
             </div>
