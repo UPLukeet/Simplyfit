@@ -5,7 +5,7 @@ import { database } from './components/firebase';
 
 import Main_page from './components/main_page';
 import setup_page from './components/setup_page';
-import { settings_page } from './components/settings_page';
+import settings_page from './components/settings_page';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
@@ -136,19 +136,21 @@ export class App extends Component {
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
-            <GlobalProvider>
+            
               {this.state.user ?
                 (< Switch >
-                  <Route path='/settings_page' component={settings_page} exact />,
-                  <Route path='/setup_page' component={setup_page} exact />,
-                  <Route path='/' component={Main_page} />
+                <GlobalProvider>
+                  <Route path='/settings_page' component={settings_page} />
+                  <Route path='/setup_page' component={setup_page} />
+                  <Route path='/' component={Main_page} exact/>
+                  </GlobalProvider>
                 </Switch>) : (<Login_page />)}
-            </GlobalProvider>
+            
           </div>
         </Router>
       </div >
 
-    );
+    )
   }
 }
 

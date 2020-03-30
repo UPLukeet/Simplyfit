@@ -2,21 +2,19 @@ import React, { createContext, useReducer } from "react";
 import AppReducer from './AppReducer';
 
 // initial state
-const initialState = {
-    healthData:
-        { age: "38", gender: "male", goal: "Lose", height: "180.34", weight: 80 }
+const healthData = JSON.parse(localStorage.getItem('user_data'))
 
-}
 
-export const GlobalContext = createContext(initialState);
+
+export const GlobalContext = createContext(healthData);
 
 // provider component
 export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, healthData);
 
 
     return (<GlobalContext.Provider value={{
-        healthData: state.healthData
+        healthData
     }}>
         {children}
     </GlobalContext.Provider>);

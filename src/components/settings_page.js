@@ -3,27 +3,25 @@ import { Authentication } from './firebase'
 import { Link } from 'react-router-dom';
 
 
-export class settings_page extends Component {
+function settings_page(props) {
 
-    constructor(props) {
-        super(props);
-        this.logout = this.logout.bind(this);
-    }
+
 
     //logs out of appliaction using firebase auth
-    logout() {
+  const  logout = () => {
         Authentication.auth().signOut();
     }
 
-    render() {
 
         return (
             <div>
                 <div className='App_margin'/>
                 <p>Log out by pressing the button bellow</p>
                 
-                <Link to='/'><button onClick={this.logout}>Log out</button></Link>
+                <Link to='/'><button onClick={logout}>Log out</button></Link>
             </div>
         );
-    }
+
 }
+
+export default settings_page
