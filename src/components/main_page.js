@@ -167,12 +167,13 @@ export class Main_page extends Component {
         const healthData = this.state.healthData;
         let weight
 
-        if(healthData.units === 'lbs'){
-            weight = Math.floor(healthData.weight/2.2)
-        }else{
-            weight = healthData.weight
+        if (healthData !== null) {
+            if (healthData.units === 'lbs') {
+                weight = Math.floor(healthData.weight / 2.2)
+            } else {
+                weight = healthData.weight
+            }
         }
-
 
         return healthData == null ? "" : (
             <div className='main_Main'>

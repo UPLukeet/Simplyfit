@@ -136,12 +136,14 @@ export class App extends Component {
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
+            <GlobalProvider>
               {this.state.user ?
                 (< Switch >
                   <Route path='/settings_page' component={settings_page} exact />,
                   <Route path='/setup_page' component={setup_page} exact />,
                   <Route path='/' component={Main_page} />
                 </Switch>) : (<Login_page />)}
+            </GlobalProvider>
           </div>
         </Router>
       </div >
