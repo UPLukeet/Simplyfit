@@ -165,6 +165,15 @@ export class Main_page extends Component {
 
         //gets users data and renders it to <p> items
         const healthData = this.state.healthData;
+        let weight
+
+        if(healthData.units === 'lbs'){
+            weight = Math.floor(healthData.weight/2.2)
+        }else{
+            weight = healthData.weight
+        }
+
+
         return healthData == null ? "" : (
             <div className='main_Main'>
                 <div className='App_margin' />
@@ -185,7 +194,7 @@ export class Main_page extends Component {
 
                     <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
 
-                    <div className='testDiv2'><p>weight: {healthData.weight}Kg</p></div>
+                    <div className='testDiv2'><p>weight: {weight}Kg</p></div>
                 </div>
 
                 {mealOne}

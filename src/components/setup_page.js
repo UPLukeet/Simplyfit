@@ -50,16 +50,6 @@ export class setup_page extends Component {
 
     //writes users information to database if all input fields are filled and if not alerts user
     calculate_bmi = () => {
-        if (this.state.weightUnits === 'lbs') {
-            this.setState(
-                { Weight: this.state.Weight / 2.2 },
-                () => this.saveData()
-            );
-        } else {
-            this.saveData();
-        }
-    }
-    saveData = () => {
 
         if (this.state.Gender !== '' && this.state.Age !== '' && this.state.Height !== '' && this.state.Weight !== '' && this.state.Goal !== '') {
             database.collection('Health_data').doc(localStorage.getItem('user')).set({
@@ -76,9 +66,6 @@ export class setup_page extends Component {
         } else {
             alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
-
-
-
     }
 
 
