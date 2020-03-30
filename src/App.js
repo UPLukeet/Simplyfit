@@ -4,7 +4,7 @@ import { Authentication } from './components/firebase';
 import { database } from './components/firebase';
 
 import Main_page from './components/main_page';
-import { setup_page } from './components/setup_page';
+import setup_page from './components/setup_page';
 import { settings_page } from './components/settings_page';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
