@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Authentication } from './components/firebase';
 import { database } from './components/firebase';
 
-import { Main_page } from './components/main_page';
+import Main_page from './components/main_page';
 import { setup_page } from './components/setup_page';
 import { settings_page } from './components/settings_page';
 import Nav from './components/Navigation/Nav';
@@ -52,7 +52,7 @@ export class App extends Component {
       } else {
         this.setState({ user: null })
         localStorage.removeItem('user');
-        localStorage.removeItem('user_data')
+        //localStorage.removeItem('user_data')
       }
     });
   }

@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
@@ -11,220 +11,155 @@ import Gainimg from '../assets/Gain.svg'
 import Recompimg from '../assets/Recomp.svg'
 import Loseimg from '../assets/Lose.svg'
 
-export class Main_page extends Component {
+function Main_page(props) {
 
+    const [healthData, healthDataSet] = useState((JSON.parse(localStorage.getItem('user_data'))))
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            healthData: (JSON.parse(localStorage.getItem('user_data')))
-        }
-    }
-
-    state = {
-        mealOne_box: false,
-        mealTwo_box: false,
-        mealThree_box: false,
-        mealFour_box: false,
-        gainImage: false,
-        recompImage: false,
-        loseImage: false
-    }
-
-    componentDidMount() {
-        this.GoalChecker();
-        console.log(this.state.healthData);
-    }
-
-    GoalChecker() {
-        if (this.state.healthData !== null) {
-
-            if (this.state.healthData.goal === 'Gain') {
-                this.setState({ gainImage: true });
-                this.setState({ recompImage: false });
-                this.setState({ loseImage: false });
-            }
-
-            if (this.state.healthData.goal === 'Recomp') {
-                this.setState({ gainImage: false });
-                this.setState({ recompImage: true });
-                this.setState({ loseImage: false });
-            }
-
-            if (this.state.healthData.goal === 'Lose') {
-                this.setState({ gainImage: false });
-                this.setState({ recompImage: false });
-                this.setState({ loseImage: true });
-            }
-        }
-    };
+    const [mealOne_box, mealOne_boxSet] = useState(false);
+    const [mealTwo_box, mealTwo_boxSet] = useState(false);
+    const [mealThree_box, mealThree_boxSet] = useState(false);
+    const [mealFour_box, mealFour_boxSet] = useState(false);
+    const [gainImage, gainImageSet] = useState(false);
+    const [recompImage, recompImageSet] = useState(false);
+    const [loseImage, loseImageSet] = useState(false);
 
     //handles clicks for meal one
-    mealOneClickHandler = (event) => {
-        this.setState({ mealOne_box: true });
+    const mealOneClickHandler = (event) => {
+        mealOne_boxSet(!mealOne_box);
     };
 
-    mealOne_boxClickHandler = (event) => {
-        this.setState({ mealOne_box: false });
+    const mealOne_boxClickHandler = (event) => {
+        mealOne_boxSet(!mealOne_box);
     };
 
     //handles clicks for meal two
-    mealTwoClickHandler = (event) => {
-        this.setState({ mealTwo_box: true });
+    const mealTwoClickHandler = (event) => {
+        mealTwo_boxSet(!mealTwo_box);
     };
 
-    mealTwo_boxClickHandler = (event) => {
-        this.setState({ mealTwo_box: false });
+    const mealTwo_boxClickHandler = (event) => {
+        mealTwo_boxSet(!mealTwo_box);
     };
 
     //handles clicks for meal three
-    mealThreeClickHandler = (event) => {
-        this.setState({ mealThree_box: true });
+    const mealThreeClickHandler = (event) => {
+        mealThree_boxSet(!mealThree_box);
     };
 
-    mealThree_boxClickHandler = (event) => {
-        this.setState({ mealThree_box: false });
+    const mealThree_boxClickHandler = (event) => {
+        mealThree_boxSet(!mealThree_box);
     };
 
     //handles clicks for meal Four
-    mealFourClickHandler = (event) => {
-        this.setState({ mealFour_box: true });
+    const mealFourClickHandler = (event) => {
+        mealFour_boxSet(!mealFour_box);
     };
 
-    mealFour_boxClickHandler = (event) => {
-        this.setState({ mealFour_box: false });
+    const mealFour_boxClickHandler = (event) => {
+        mealFour_boxSet(!mealFour_box);
     };
 
-    render() {
 
 
-        //setting meal more information on click
-        let mealOne;
-        let mealTwo;
-        let mealThree;
-        let mealFour;
+    /*<p className='food_text'>age: {healthData.age}</p>
+    <p className='food_text'>gender: {healthData.gender}</p>
+    <p className='food_text'>goal: {healthData.goal}</p>
+    <p className='food_text'>height: {healthData.height}</p>
+    <p className='food_text'>weight: {healthData.weight}</p>*/
 
-        if (this.state.mealOne_box) {
-            mealOne = (
+    //gets users data and renders it to <p> items
+
+
+    return(
+        <div className='main_Main'>
+            <div className='App_margin' />
+
+
+            <div className='statusbar'>
+                <div className='Goaldiv'>
+                    <p>Goal: {healthData.goal}</p>
+                    {healthData.goal === 'Gain' && <img src={Gainimg} />}
+
+                    {healthData.goal === 'Recomp' && <img src={Recompimg} />}
+
+                    {healthData.goal === 'Lose' && <img src={Loseimg} />}
+
+                </div>
+
+                <div className='testDiv'><p>Age: {healthData.age}</p></div>
+
+                <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
+
+                <div className='testDiv2'><p>weight: {healthData.unit === 'lbs' ? Math.round(healthData.weight/2.2) : healthData.weight}Kg</p></div>
+            </div>
+
+            {mealOne_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={this.mealOne_boxClickHandler} />
+                        <CancelIcon onClick={mealOne_boxClickHandler} />
                         <img src={PancakeImage} />
                         <p>testing1</p>
                     </div>
-                    <div onClick={this.mealOne_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
                 </div>
-            )
-        };
+            )}
 
-        if (this.state.mealTwo_box) {
-            mealTwo = (
+            {mealTwo_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={this.mealTwo_boxClickHandler} />
+                        <CancelIcon onClick={mealTwo_boxClickHandler} />
                         <img src={OmeletteImage} />
                         <p>testing2</p>
                     </div>
-                    <div onClick={this.mealTwo_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
                 </div>
-            )
-        };
+            )}
 
-        if (this.state.mealThree_box) {
-            mealThree = (
+            {mealThree_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={this.mealThree_boxClickHandler} />
+                        <CancelIcon onClick={mealThree_boxClickHandler} />
                         <img src={WrapImage} />
                         <p>testing3</p>
                     </div>
-                    <div onClick={this.mealThree_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
                 </div>
-            )
-        };
+            )}
 
-        if (this.state.mealFour_box) {
-            mealFour = (
+            {mealFour_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={this.mealFour_boxClickHandler} />
+                        <CancelIcon onClick={mealFour_boxClickHandler} />
                         <img src={SpagettiImage} />
                         <p>testing4</p>
                     </div>
-                    <div onClick={this.mealFour_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />
                 </div>
-            )
-        };
+            )}
 
 
-        /*<p className='food_text'>age: {healthData.age}</p>
-        <p className='food_text'>gender: {healthData.gender}</p>
-        <p className='food_text'>goal: {healthData.goal}</p>
-        <p className='food_text'>height: {healthData.height}</p>
-        <p className='food_text'>weight: {healthData.weight}</p>*/
-
-        //gets users data and renders it to <p> items
-        const healthData = this.state.healthData;
-        let weight
-
-        if (healthData !== null) {
-            if (healthData.units === 'lbs') {
-                weight = Math.floor(healthData.weight / 2.2)
-            } else {
-                weight = healthData.weight
-            }
-        }
-
-        return healthData == null ? "" : (
-            <div className='main_Main'>
-                <div className='App_margin' />
-
-
-                <div className='statusbar'>
-                    <div className='Goaldiv'>
-                        <p>Goal: {healthData.goal}</p>
-                        {this.state.gainImage ? <img src={Gainimg} /> : null}
-
-                        {this.state.recompImage ? <img src={Recompimg} /> : null}
-
-                        {this.state.loseImage ? <img src={Loseimg} /> : null}
-
-                    </div>
-
-                    <div className='testDiv'><p>Age: {healthData.age}</p></div>
-
-                    <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
-
-                    <div className='testDiv2'><p>weight: {weight}Kg</p></div>
-                </div>
-
-                {mealOne}
-                {mealTwo}
-                {mealThree}
-                {mealFour}
-
-                <div onClick={this.mealOneClickHandler} className='meal_container'>
-                    <img src={PancakeImage} />
-                    <p>Meal one: Pancakes</p>
-                </div>
-
-                <div onClick={this.mealTwoClickHandler} className='meal_container'>
-                    <img src={OmeletteImage} />
-                    <p>Meal two: Omelet</p>
-                </div>
-
-                <div onClick={this.mealThreeClickHandler} className='meal_container'>
-                    <img src={WrapImage} />
-                    <p>Meal three: chicken wrap</p>
-                </div>
-
-                <div onClick={this.mealFourClickHandler} className='meal_container'>
-                    <img src={SpagettiImage} />
-                    <p>Meal Four: Spagetti Bolognase</p>
-                </div>
-
+            <div onClick={mealOneClickHandler} className='meal_container'>
+                <img src={PancakeImage} />
+                <p>Meal one: Pancakes</p>
             </div>
-        );
-    }
+
+            <div onClick={mealTwoClickHandler} className='meal_container'>
+                <img src={OmeletteImage} />
+                <p>Meal two: Omelet</p>
+            </div>
+
+            <div onClick={mealThreeClickHandler} className='meal_container'>
+                <img src={WrapImage} />
+                <p>Meal three: chicken wrap</p>
+            </div>
+
+            <div onClick={mealFourClickHandler} className='meal_container'>
+                <img src={SpagettiImage} />
+                <p>Meal Four: Spagetti Bolognase</p>
+            </div>
+
+        </div>
+    );
 }
 
+export default Main_page
