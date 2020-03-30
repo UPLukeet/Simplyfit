@@ -12,6 +12,8 @@ import Backdrop from './components/Navigation/Backdrop';
 import Login_bar from './components/login_bar';
 import { Login_page } from './components/login_page';
 
+import { GlobalProvider } from './context/GlobalState';
+
 export class App extends Component {
 
   //initiates user state
@@ -19,10 +21,13 @@ export class App extends Component {
     super(props);
     this.state = {
       user: {},
-      healthData: (JSON.parse(localStorage.getItem('user_data')))
+      user_data: (JSON.parse(localStorage.getItem('user_data')))
     }
     this.authListener = this.authListener.bind(this);
   }
+
+
+
 
   //sets state of sidedraw
   state = {
@@ -32,10 +37,9 @@ export class App extends Component {
   //onload runs funtion to check for authenication from firebase
   componentDidMount() {
     this.authListener();
-
   }
 
-//checks firebase for authentication
+  //checks firebase for authentication
   authListener() {
     Authentication.auth().onAuthStateChanged((user) => {
       console.log(user);
@@ -132,17 +136,16 @@ export class App extends Component {
             {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
-
-            {this.state.user ? 
-              (< Switch >
-                <Route path='/settings_page' component={settings_page} exact />,
-                <Route path='/setup_page' component={setup_page} exact />,
-                <Route path='/' component={Main_page} />
-              </Switch>): (<Login_page/>)}
-
+              {this.state.user ?
+                (< Switch >
+                  <Route path='/settings_page' component={settings_page} exact />,
+                  <Route path='/setup_page' component={setup_page} exact />,
+                  <Route path='/' component={Main_page} />
+                </Switch>) : (<Login_page />)}
           </div>
         </Router>
-      </div>
+      </div >
+
     );
   }
 }

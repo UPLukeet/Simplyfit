@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
@@ -16,9 +16,9 @@ const sideDrawer = props => {
         <img src={Logo} />
         </div>
         <ul>
-        <Link onClick={props.sidedrawerClickHandler} to='/'><li><HomeIcon/>Main</li></Link>
-        <Link onClick={props.sidedrawerClickHandler} to='/setup_page'><li><EmojiPeopleIcon/>Setup</li></Link>
-        <Link onClick={props.sidedrawerClickHandler} to='/settings_page'><li><SettingsIcon/>Settings</li></Link>
+        <NavLink onClick={props.sidedrawerClickHandler} to='/' exact activeStyle={{ color: ' #f7be10' }}><li><HomeIcon/>Main</li></NavLink>
+        <NavLink onClick={props.sidedrawerClickHandler} to='/setup_page' exact  activeStyle={{ color: '#f7be10' }}><li><EmojiPeopleIcon/>Setup</li></NavLink>
+        <NavLink onClick={props.sidedrawerClickHandler} to='/settings_page'   activeStyle={{  color: '#f7be10' }}><li><SettingsIcon/>Settings</li></NavLink>
         </ul>
     </nav>);
 

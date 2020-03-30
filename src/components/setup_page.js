@@ -13,112 +13,6 @@ import Select from '@material-ui/core/Select';
 
 export class setup_page extends Component {
 
-    /*var bmr;
-    var bmi;
-    var health;
-    var User_goal;
-    
-    function calculate_bmi() {   
-        //gets values of inputs from html
-        let Weight = document.getElementById('bmi_weight').value;
-        let Height = document.getElementById('bmi_height').value;
-        let Age = document.getElementById('bmi_age').value;
-    
-        let Goal = document.getElementById('goal');
-        let Goal_result = Goal.options[Goal.selectedIndex].value;
-    
-        let Gender = document.getElementById('gender');
-        let Gender_result = Gender.options[Gender.selectedIndex].value;
-    
-        let Units = document.getElementById('units');
-        let Units_result = Units.options[Units.selectedIndex].value;
-    
-        let Height_lbs = document.getElementById('height_lbs');
-        let Height_lbs_result = Height_lbs.options[Height_lbs.selectedIndex].value;
-    
-        //calulates the bmi and bmr of users
-        if (Units_result == 'imp') {
-            Weight = Weight / 2.2;
-            Height = Height = Height_lbs_result;
-        }
-    
-        //calculates male and female bmr
-        let bmr_calc = 88.2 + (13.362 * Weight) + (4.799 * Height) - (5.677 * Age);
-        let bmr_calc_female = 655.1 + (9.563 * Weight) + (1.850 * Height) - (4.676 * Age);
-    
-        //calculates bmi
-        let bmi_calc = Weight / (Height / 100 * Height / 100);
-        bmi = bmi_calc;
-    
-        //writes value for user goal
-        User_goal = Goal_result;
-    
-        if (bmi < 18.5) {
-            health = "You are considered underweight."
-        }
-        if (bmi > 18.5 && bmi < 25) {
-            health = "You are within the healthy range."
-        }
-        if (bmi > 25) {
-            health = "You overweight, high volumes of muscle mass will throw off this result."
-        }
-        if (bmi > 30) {
-            health = "You are obese even with high levels of muscle mass we recommend cutting bodyfat levels."
-        }
-    
-        //checks if male or female changes bmr
-        if (Gender_result == 'female') {
-            bmr = bmr_calc_female;
-        }
-        else {
-            bmr = bmr_calc;
-        }
-    
-        //checks users goal and changes calories acordingly
-        if (Goal_result == 'lose') bmr = bmr + 300;
-        if (Goal_result == 'recomp') bmr = bmr + 600;
-        if (Goal_result == 'gain') bmr = bmr + 800;
-    
-        //if nothing entered show error
-        if (Weight, Height, Age == 0) {
-            alert("Please enter your Height, Weight and Age so we can achieve your goals!")
-        }
-        else {
-            //writes to firestore database
-            database.collection('Health_data').doc('User_data').set({
-                BMI: bmi,
-                BMR: bmr,
-                Goal: User_goal,
-                BMI_Health: health
-            })
-                .then(function () {
-                    console.log("Successfully written");
-               
-                })
-                .catch(function (error) {
-                    console.error("Error writing", error);
-                });
-          
-    
-        }
-    };
-    
-    function Units_Switch() {
-        let Units = document.getElementById('units');
-        let Units_result = Units.options[Units.selectedIndex].value;
-        let Height_lbs = document.getElementById('height_lbs');
-        let Height = document.getElementById('bmi_height');
-    
-        if (Units_result == "imp") {
-            Height_lbs.style.display = "block";
-            Height.style.display = "none"
-        }
-        else {
-            Height_lbs.style.display = "none";
-            Height.style.display = "block"
-        }
-    
-    }*/
 
     state = {
         //sets state of unit switching
@@ -173,7 +67,8 @@ export class setup_page extends Component {
                 age: this.state.Age,
                 height: this.state.Height,
                 weight: this.state.Weight,
-                goal: this.state.Goal
+                goal: this.state.Goal,
+                units: this.state.weightUnits
             }).catch((error) => {
                 alert(error.message)
                 console.log('failed to write', error);

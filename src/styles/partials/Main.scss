@@ -149,9 +149,8 @@
 
 .meal_popupElement {
   position: absolute;
+  margin: auto;
   width: 95%;
-  left: 50%;
-  transform: translateX(-50%);
   background: white;
   border-radius: 15px;
   height: 35rem;
