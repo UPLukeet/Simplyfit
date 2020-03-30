@@ -52,7 +52,7 @@ export class App extends Component {
       } else {
         this.setState({ user: null })
         localStorage.removeItem('user');
-        //localStorage.removeItem('user_data')
+        localStorage.removeItem('user_data')
       }
     });
   }
@@ -144,7 +144,7 @@ export class App extends Component {
                   <Route path='/setup_page' component={setup_page} />
                   <Route path='/' component={Main_page} exact/>
                   </GlobalProvider>
-                </Switch>) : (<Login_page />)}
+                </Switch>) :  (<Login_page />)}
             
           </div>
         </Router>
