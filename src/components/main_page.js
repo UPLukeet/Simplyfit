@@ -90,7 +90,7 @@ function Main_page(props) {
 
                 <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
 
-                <div className='testDiv2'><p>weight: {healthData.unit === 'lbs' ? Math.round(healthData.weight/2.2) : healthData.weight}Kg</p></div>
+                <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight/2.2) : healthData.weight}Kg</p></div>
             </div>
 
             {mealOne_box && (
