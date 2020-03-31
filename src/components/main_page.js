@@ -19,9 +19,6 @@ function Main_page(props) {
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
-    const [gainImage, gainImageSet] = useState(false);
-    const [recompImage, recompImageSet] = useState(false);
-    const [loseImage, loseImageSet] = useState(false);
 
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {

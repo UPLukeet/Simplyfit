@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Authentication } from './firebase';
 import { database } from './firebase';
 import Button from '@material-ui/core/Button';
@@ -7,32 +7,27 @@ import TextField from '@material-ui/core/TextField';
 
 
 
-export class Login_page extends Component {
+function Login_page(props) {
 
     //defines email and password and binds funtions
-    constructor(props) {
-        super(props);
-        this.login = this.login.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.signup = this.signup.bind(this);
-        this.state = {
-            login_email: '',
-            login_password: '',
-            signin_email: '',
-            signin_password: '',
-            signin_password2: ''
-        };
-    }
+
+
+    const [login_email, login_emailSet] = useState('')
+    const [login_password, login_passwordSet] = useState('')
+    const [signup_email, signup_emailSet] = useState('')
+    const [signup_password, signup_passwordSet] = useState('')
+    const [signup_password2, signup_password2Set] = useState('')
+
+
 
     //gets the email and password from form
-    handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
+
+
 
     //checks firebase auth for login info
-    login(e) {
+    const login = (e) => {
         e.preventDefault();
-        Authentication.auth().signInWithEmailAndPassword(this.state.login_email, this.state.login_password).then((u) => {
+        Authentication.auth().signInWithEmailAndPassword(login_email, login_password).then((u) => {
         }).catch((error) => {
             alert(error.message)
             console.log(error);
@@ -41,10 +36,10 @@ export class Login_page extends Component {
 
     //uploads signin data to firebase
 
-    signup(e) {
-        if (this.state.signin_password === this.state.signin_password2) {
+    const signup = (e) => {
+        if (signup_password === signup_password2) {
             e.preventDefault();
-            Authentication.auth().createUserWithEmailAndPassword(this.state.signin_email, this.state.signin_password).then((u) => {
+            Authentication.auth().createUserWithEmailAndPassword(signup_email, signup_password).then((u) => {
                 return database.collection('Health_data').doc(u.user.uid).set({
                     gender: '',
                     age: '',
@@ -60,51 +55,80 @@ export class Login_page extends Component {
                     alert(error.message)
                     console.log(error);
                 })
+                //props.history.push('/setup_page')
         } else {
             alert('Please make sure passwords match.')
         }
+
     }
 
-    render() {
-        return (
-            <div className='login_container'>
-                <div className='App_margin'/>
-                <div className='spacer'/>
-                <form className='form_box'>
-                    <div>
-                        <p>Login:</p>
-                        <div className="form_input">
-                            <TextField label='Email adress' id="standard-basic" value={this.state.email} onChange={this.handleChange} type="email" name="login_email" aria-describedby="emailHelp" />
-                        </div>
-                        <div className="form_input">
-                            <TextField label='Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="login_password" />
-                        </div>
+    const handleChanglogin_email = (event) => {
+
+        login_emailSet(event.target.value)
+    };
+
+    const handleChanglogin_password = (event) => {
+
+        login_passwordSet(event.target.value)
+    };
+
+    const handleChangsignup_email = (event) => {
+
+        signup_emailSet(event.target.value)
+    };
+
+   
+    const handleChangsignup_password = (event) => {
+
+        signup_passwordSet(event.target.value)
+    };
+
+    const handleChangsignup_password2 = (event) => {
+
+        signup_password2Set(event.target.value)
+    };
+
+
+    return (
+        <div className='login_container'>
+            <div className='App_margin' />
+            <div className='spacer' />
+            <form className='form_box'>
+                <div>
+                    <p>Login:</p>
+                    <div className="form_input">
+                        <TextField label='Email adress' id="standard-basic" value={login_email} onChange={ handleChanglogin_email.bind(this)} type="email" name="login_email" aria-describedby="emailHelp" />
                     </div>
-                </form>
-
-                <div className='divider'/>
-
-                <form className='form_box'>
-                    <div>
-                        <p>Sign up:</p>
-                        <div className="form_input">
-                            <TextField label='Email adress' id="standard-basic" value={this.state.email} onChange={this.handleChange} type="email" name="signin_email" aria-describedby="emailHelp" />
-                        </div>
-                        <div className="form_input">
-                            <TextField label='Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="signin_password" />
-                        </div>
-                        <div className="form_input">
-                            <TextField label='Confirm Password' id="standard-basic" value={this.state.password} onChange={this.handleChange} type="password" name="signin_password2" />
-                        </div>
+                    <div className="form_input">
+                        <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
                     </div>
-                </form>
-
-                <div className='signin_buttons'>
-                    <Button onClick={this.login} size="large" color="primary" variant="contained">Login</Button>
-                    <Button onClick={this.signup} size="large" color="primary" variant="contained">Sign up</Button>
                 </div>
+            </form>
 
+            <div className='divider' />
+
+            <form className='form_box'>
+                <div>
+                    <p>Sign up:</p>
+                    <div className="form_input">
+                        <TextField label='Email adress' id="standard-basic" value={signup_email} onChange={handleChangsignup_email.bind(this)} type="email" name="signin_email" aria-describedby="emailHelp" />
+                    </div>
+                    <div className="form_input">
+                        <TextField label='Password' id="standard-basic" value={signup_password} onChange={handleChangsignup_password.bind(this)} type="password" name="signin_password" />
+                    </div>
+                    <div className="form_input">
+                        <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
+                    </div>
+                </div>
+            </form>
+
+            <div className='signin_buttons'>
+                <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
+                <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
             </div>
-        );
-    }
+
+        </div>
+    );
 }
+
+export default Login_page
