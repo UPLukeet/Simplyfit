@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
 import SpagettiImage from '../assets/Spagetti.jpg';
-import { GlobalContext } from '../context/GlobalState';
 
 
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -75,11 +74,11 @@ function Main_page(props) {
             <div className='statusbar'>
                 <div className='Goaldiv'>
                     <p>Goal: {healthData.goal}</p>
-                    {healthData.goal === 'Gain' && <img src={Gainimg} />}
+                    {healthData.goal === 'Gain' && <img alt='' src={Gainimg} />}
 
-                    {healthData.goal === 'Recomp' && <img src={Recompimg} />}
+                    {healthData.goal === 'Recomp' && <img alt='' src={Recompimg} />}
 
-                    {healthData.goal === 'Lose' && <img src={Loseimg} />}
+                    {healthData.goal === 'Lose' && <img alt='' src={Loseimg} />}
 
                 </div>
 
@@ -94,7 +93,7 @@ function Main_page(props) {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealOne_boxClickHandler} />
-                        <img src={PancakeImage} />
+                        <img alt='' src={PancakeImage} />
                         <p>testing1</p>
                     </div>
                     <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
@@ -105,7 +104,7 @@ function Main_page(props) {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealTwo_boxClickHandler} />
-                        <img src={OmeletteImage} />
+                        <img alt='' src={OmeletteImage} />
                         <p>testing2</p>
                     </div>
                     <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
@@ -116,7 +115,7 @@ function Main_page(props) {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealThree_boxClickHandler} />
-                        <img src={WrapImage} />
+                        <img alt='' src={WrapImage} />
                         <p>testing3</p>
                     </div>
                     <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
@@ -127,7 +126,7 @@ function Main_page(props) {
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealFour_boxClickHandler} />
-                        <img src={SpagettiImage} />
+                        <img alt='' src={SpagettiImage} />
                         <p>testing4</p>
                     </div>
                     <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />
@@ -136,22 +135,22 @@ function Main_page(props) {
 
 
             <div onClick={mealOneClickHandler} className='meal_container'>
-                <img src={PancakeImage} />
+                <img alt='' src={PancakeImage} />
                 <p>Meal one: Pancakes</p>
             </div>
 
             <div onClick={mealTwoClickHandler} className='meal_container'>
-                <img src={OmeletteImage} />
+                <img alt='' src={OmeletteImage} />
                 <p>Meal two: Omelet</p>
             </div>
 
             <div onClick={mealThreeClickHandler} className='meal_container'>
-                <img src={WrapImage} />
+                <img alt='' src={WrapImage} />
                 <p>Meal three: chicken wrap</p>
             </div>
 
             <div onClick={mealFourClickHandler} className='meal_container'>
-                <img src={SpagettiImage} />
+                <img alt='' src={SpagettiImage} />
                 <p>Meal Four: Spagetti Bolognase</p>
             </div>
 

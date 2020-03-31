@@ -13,7 +13,7 @@ const sideDrawer = props => {
     }
     return (<nav className={drawerClasses}>
         <div className='sidedraw-top'>
-        <img src={Logo} />
+        <img alt='' src={Logo} />
         </div>
         <ul>
         <NavLink onClick={props.sidedrawerClickHandler} to='/' exact activeStyle={{ color: ' #f7be10' }}><li><HomeIcon/>Main</li></NavLink>

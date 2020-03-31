@@ -9,7 +9,7 @@ import settings_page from './components/settings_page';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
-import Login_bar from './components/login_bar';
+import login_bar from './components/login_bar';
 import Login_page  from './components/login_page';
 
 import { GlobalProvider } from './context/GlobalState';
@@ -134,7 +134,7 @@ export class App extends Component {
         <Router>
         < Switch >
           <div className='App'>
-            {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
+            {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<login_bar />)}
             <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
             {backdrop}
             

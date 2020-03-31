@@ -39,10 +39,6 @@ function Setup_page(props) {
         weightUnitsSet('lbs');
     };
 
-    const imperialHeightChangeHandler = (event) => {
-        HeightSet(event.target.value);
-        console.log(this.state.Height)
-    };
 
     //writes users information to database if all input fields are filled and if not alerts user
     const calculate_bmi = () => {
