@@ -89,6 +89,8 @@ function Main_page(props) {
                 <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight/2.2) : healthData.weight}Kg</p></div>
             </div>
 
+            <div className='divider' />
+
             {mealOne_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
