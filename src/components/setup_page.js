@@ -55,10 +55,11 @@ function Setup_page(props) {
                 alert(error.message)
                 console.log('failed to write', error);
             });
+            props.history.push('/')
         } else {
             alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
-        props.history.push('/')
+        
     }
 
 
