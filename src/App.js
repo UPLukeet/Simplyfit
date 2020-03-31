@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Authentication } from './components/firebase';
 import { database } from './components/firebase';
-import './styles/app.scss'
+import './styles/App.scss'
 
 import Main_page from './components/main_page';
 import setup_page from './components/setup_page';
