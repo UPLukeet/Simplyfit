@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Authentication } from './firebase';
 import { database } from './firebase';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -55,7 +56,7 @@ function Login_page(props) {
                     alert(error.message)
                     console.log(error);
                 })
-                //props.history.push('/setup_page')
+                props.history.push('/setup_page')
         } else {
             alert('Please make sure passwords match.')
         }
