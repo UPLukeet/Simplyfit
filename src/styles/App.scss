@@ -1,29 +1,29 @@
 //general style for whole app
-@import './partials/Main.scss';
+@import './partials/Main';
 
 //Navbar
-@import './partials/Nav-scss/Nav.scss';
+@import './partials/Nav-scss/Nav';
 
 //Navbar_DrawerButton
-@import './partials/Nav-scss/DrawerButton.scss';
+@import './partials/Nav-scss/DrawerButton';
 
 //Navbar_SideDrawer
-@import './partials/Nav-scss/SideDrawer.scss';
+@import './partials/Nav-scss/SideDrawer';
 
 //Site backdrop
-@import './partials/Nav-scss/Backdrops.scss';
+@import './partials/Nav-scss/Backdrops';
 
 //Setup page styles
-@import './partials/setup.scss';
+@import './partials/setup';
 
 //login bar styles
-@import './partials/login_bar.scss';
+@import './partials/login_bar';
 
 //login page styles
-@import './partials/login_page.scss';
+@import './partials/login_page';
 
 //settings page styles
-@import './partials/Settings_page.scss';
+@import './partials/Settings_page';
 
 //material design fonts
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap")
