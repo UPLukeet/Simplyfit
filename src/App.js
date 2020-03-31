@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Authentication } from './components/firebase';
 import { database } from './components/firebase';
+import './styles/App.scss'
 
 import Main_page from './components/main_page';
 import setup_page from './components/setup_page';
@@ -9,7 +10,7 @@ import settings_page from './components/settings_page';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
-import login_bar from './components/login_bar';
+import Login_bar from './components/login_bar';
 import Login_page  from './components/login_page';
 
 import { GlobalProvider } from './context/GlobalState';
@@ -132,26 +133,25 @@ export class App extends Component {
     return (
       <div>
         <Router>
-        < Switch >
-          <div className='App'>
-            {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<login_bar />)}
-            <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
-            {backdrop}
-            
-              {this.state.user ?
-                (
-                <GlobalProvider>
-                  <Route path='/settings_page' component={settings_page} />
-                  <Route path='/setup_page' component={setup_page} />
-                  <Route path='/' component={Main_page} exact/>
-                  </GlobalProvider>
-                ) :  (<Route path='/' component={Login_page} />)}
-            
-          </div>
+          <Switch >
+            <div className='App'>
+              {this.state.user ? (<Nav drawerClickHandler={this.drawerToggleClickHandler} />) : (<Login_bar />)}
+              <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
+              {backdrop}
+              
+                {this.state.user ?
+                  (
+                  <GlobalProvider>
+                    <Route path='/settings_page' component={settings_page} />
+                    <Route path='/setup_page' component={setup_page} />
+                    <Route path='/' component={Main_page} exact/>
+                    </GlobalProvider>
+                  ) :  (<Route path='/' component={Login_page} />)}
+              
+            </div>
           </Switch>
         </Router>
-      </div >
-
+      </div>
     )
   }
 }
