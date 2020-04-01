@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Authentication } from './firebase';
 import { database } from './firebase';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Login_bar from './login_bar'
+import { withRouter, Redirect } from "react-router";
+import { AuthContext } from "../Auth";
 
 
 
@@ -21,14 +24,19 @@ function Login_page(props) {
 
 
     //gets the email and password from form
+    const { currentUser } = useContext(AuthContext);
 
+    if (currentUser) {
+      return <Redirect to="/" />;
+    }
+  
 
 
     //checks firebase auth for login info
     const login = (e) => {
         e.preventDefault();
-        Authentication.auth().signInWithEmailAndPassword(login_email, login_password).then((u) => {
-        }).catch((error) => {
+        Authentication.auth().signInWithEmailAndPassword(login_email, login_password).then((u) =>  
+        {}).catch((error) => {
             alert(error.message)
             console.log(error);
         });
@@ -91,6 +99,7 @@ function Login_page(props) {
 
     return (
         <div className='login_container'>
+            <Login_bar />
             <div className='App_margin' />
             <div className='spacer' />
             <form className='form_box'>
