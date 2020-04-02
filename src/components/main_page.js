@@ -14,7 +14,7 @@ import Loseimg from '../assets/Lose.svg'
 
 function Main_page(props) {
 
-
+    const [loading, setLoading] = useState(true)
     const [healthData, healthDataSet] = useState(null)
     const [BMI, BMIset] = useState(null)
     const [BMR, BMRset] = useState(null)
@@ -38,12 +38,17 @@ function Main_page(props) {
                     .get()
                     .then(doc => {
                         healthDataSet(doc.data())
+                        setLoading(false)
                     }).catch(function (error) {
                         console.error("Error reading health", error);
                     });
         }
 
     }, []);
+
+
+
+
 
     // console.log(healthData)
 
@@ -98,7 +103,7 @@ function Main_page(props) {
         <div className='main_Main'>
             <div className='App_margin' />
 
-            {healthData.goal === '' &&  props.history.push('/setup_page')}
+            {healthData.goal === '' && props.history.push('/setup_page')}
 
             <div className='statusbar'>
                 <div className='Goaldiv'>
