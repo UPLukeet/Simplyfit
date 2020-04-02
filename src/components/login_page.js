@@ -150,6 +150,7 @@ function Login_page(props) {
                 </div>
             )}
 
+
             {Signup && (
                 <div>
                     <form className='form_box'>
