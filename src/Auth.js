@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(user)
             setpending(false)
             localStorage.setItem('user', user.uid);
-            console.log(localStorage.getItem('user'));
         });
     }, []);
 

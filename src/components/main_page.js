@@ -17,23 +17,27 @@ function Main_page(props) {
 
 
     const [healthData, healthDataSet] = useState(null)
+    
 
     useEffect(() => {
-        const userId = Authentication.auth().currentUser.uid;
+       
+        const user = Authentication.auth().currentUser;
+        {user !== null &&
         Authentication.firestore().collection('Health_data')
-            .doc(userId)
+            .doc(user.uid)
             .get()
             .then(doc => {
                 healthDataSet(doc.data())
             }).catch(function (error) {
                 console.error("Error reading health", error);
             });
+        }
     }, []);
 
-    if (healthData !== null) {
-        console.log(healthData)
-    }
     
+        
+ 
+
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
