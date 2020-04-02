@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
 import SpagettiImage from '../assets/Spagetti.jpg';
-
+import { Authentication } from './firebase';
 
 import CancelIcon from '@material-ui/icons/Cancel';
 import Gainimg from '../assets/Gain.svg'
@@ -15,15 +15,31 @@ import { user_data } from '../Auth';
 
 function Main_page(props) {
 
-   const [healthData, healthDataSet] = useState((JSON.parse(localStorage.getItem('user_data'))))
-   
 
+    const [healthData, healthDataSet] = useState(null)
+
+    useEffect(() => {
+        const userId = Authentication.auth().currentUser.uid;
+        Authentication.firestore().collection('Health_data')
+            .doc(userId)
+            .get()
+            .then(doc => {
+                healthDataSet(doc.data())
+            }).catch(function (error) {
+                console.error("Error reading health", error);
+            });
+    }, []);
+
+    if (healthData !== null) {
+        console.log(healthData)
+    }
+    
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
 
-   // console.log(healthData)
+    // console.log(healthData)
 
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {
@@ -92,7 +108,7 @@ function Main_page(props) {
 
                 <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
 
-                <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight/2.2) : healthData.weight}Kg</p></div>
+                <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p></div>
             </div>
 
             <div className='divider' />

@@ -17,25 +17,9 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('user', user.uid);
             console.log(localStorage.getItem('user'));
         });
-
-        getData()
-
     }, []);
 
-    const getData = () => {
-        Authentication.firestore().collection('Health_data')
-            .doc(localStorage.getItem('user'))
-            .get()
-            .then(doc => {
-                const data = doc.data();
-                localStorage.setItem('user_data', JSON.stringify(data));
-                setuserData(data)
-                console.log(data)
-            }).catch(function (error) {
-                console.error("Error reading health", error);
-            });
-        
-    }
+
 
     if(userData !== null) {
         console.log(userData)
