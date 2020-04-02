@@ -6,43 +6,94 @@ import TextField from '@material-ui/core/TextField';
 import Login_bar from './login_bar'
 import { withRouter, Redirect } from "react-router";
 import { AuthContext } from "../Auth";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 
 
 function Login_page(props) {
 
-    //defines email and password and binds funtions
+
+
 
 
     const [login_email, login_emailSet] = useState('')
     const [login_password, login_passwordSet] = useState('')
-    
+    const [signup_email, signup_emailSet] = useState('')
+    const [signup_password, signup_passwordSet] = useState('')
+    const [signup_password2, signup_password2Set] = useState('')
+    const [Login, LoginSet] = useState(true)
+    const [Signup, SignupSet] = useState(false)
 
 
 
-    //gets the email and password from form
     const { currentUser } = useContext(AuthContext);
 
     if (currentUser) {
-      return <Redirect to="/" />;
+        props.history.push('/')
     }
-  
 
 
-    //checks firebase auth for login info
+
     const login = (e) => {
         e.preventDefault();
-        Authentication.auth().signInWithEmailAndPassword(login_email, login_password).then((u) =>  
-        {}).catch((error) => {
+        Authentication.auth().signInWithEmailAndPassword(login_email, login_password).then((u) => { }).catch((error) => {
             alert(error.message)
             console.log(error);
         });
     }
 
-    //uploads signin data to firebase
 
- 
+
+    const signup = (e) => {
+        if (signup_password === signup_password2) {
+            e.preventDefault();
+            Authentication.auth().createUserWithEmailAndPassword(signup_email, signup_password).then((u) => {
+                return database.collection('Health_data').doc(u.user.uid).set({
+                    gender: '',
+                    age: '',
+                    height: '',
+                    weight: '',
+                    goal: ''
+                }).catch((error) => {
+                    alert(error.message)
+                    console.log('failed to write', error);
+                });
+            }).then((u) => { console.log(u) })
+                .catch((error) => {
+                    alert(error.message)
+                    console.log(error);
+                })
+            props.history.push('/setup_page')
+        } else {
+            alert('Please make sure passwords match.')
+        }
+
+    }
+
+
+
+
+
+    const handleChangsignup_email = (event) => {
+
+        signup_emailSet(event.target.value)
+    };
+
+
+    const handleChangsignup_password = (event) => {
+
+        signup_passwordSet(event.target.value)
+    };
+
+    const handleChangsignup_password2 = (event) => {
+
+        signup_password2Set(event.target.value)
+    };
+
+
+
 
     const handleChanglogin_email = (event) => {
 
@@ -54,31 +105,79 @@ function Login_page(props) {
         login_passwordSet(event.target.value)
     };
 
+        //handles switch funtion of unit switching
+        const LoginClickHandler = () => {
+            LoginSet(true);
+            SignupSet(false);
+        };
+    
+        //checks what units are picked and renders out different items depeding on state
+        const SignupClickHandler = () => {
+            LoginSet(false);
+            SignupSet(true);
+        };
+
 
     return (
         <div className='login_container'>
             <Login_bar />
             <div className='App_margin' />
             <div className='spacer' />
-            <form className='form_box'>
+
+            {Login && (
                 <div>
-                    <p>Login:</p>
-                    <div className="form_input">
-                        <TextField label='Email adress' id="standard-basic" value={login_email} onChange={ handleChanglogin_email.bind(this)} type="email" name="login_email" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="form_input">
-                        <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
+                    <form className='form_box'>
+                        <div>
+                            <p>Login:</p>
+                            <div className="form_input">
+                                <TextField label='Email adress' id="standard-basic" value={login_email} onChange={handleChanglogin_email.bind(this)} type="email" name="login_email" aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form_input">
+                                <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
+                            </div>
+                        </div>
+                        <p onClick={SignupClickHandler} className='login_text'>Don't have an account? click here to sign up.</p>
+                    </form>
+
+                   
+                    <div className='divider' />
+
+
+
+                    <div className='signin_buttons'>
+                        <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
                     </div>
                 </div>
-            </form>
+            )}
 
-            <div className='divider' />
+            {Signup && (
+                <div>
+                    <form className='form_box'>
+                        <div>
+                            <p>Sign up:</p>
+                            <div className="form_input">
+                                <TextField label='Email adress' id="standard-basic" value={signup_email} onChange={handleChangsignup_email.bind(this)} type="email" name="signin_email" aria-describedby="emailHelp" />
+                            </div>
+                            <div className="form_input">
+                                <TextField label='Password' id="standard-basic" value={signup_password} onChange={handleChangsignup_password.bind(this)} type="password" name="signin_password" />
+                            </div>
+                            <div className="form_input">
+                                <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
+                            </div>
+                        </div>
+                        <p onClick={LoginClickHandler} className='login_text'>Already have an account? click here to sign in.</p>
+                    </form>
 
-         
+                   
+                    <div className='divider' />
 
-            <div className='signin_buttons'>
-                <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
-            </div>
+
+
+                    <div className='signin_buttons'>
+                        <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
+                    </div>
+                </div>
+            )}
 
         </div>
     );

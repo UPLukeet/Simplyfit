@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, Redirect } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
@@ -9,7 +9,6 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Gainimg from '../assets/Gain.svg'
 import Recompimg from '../assets/Recomp.svg'
 import Loseimg from '../assets/Lose.svg'
-import { user_data } from '../Auth';
 
 
 
@@ -17,31 +16,34 @@ function Main_page(props) {
 
 
     const [healthData, healthDataSet] = useState(null)
-    
-
-    useEffect(() => {
-       
-        const user = Authentication.auth().currentUser;
-        {user !== null &&
-        Authentication.firestore().collection('Health_data')
-            .doc(user.uid)
-            .get()
-            .then(doc => {
-                healthDataSet(doc.data())
-            }).catch(function (error) {
-                console.error("Error reading health", error);
-            });
-        }
-    }, []);
-
-    
-        
- 
+    const [BMI, BMIset] = useState(null)
+    const [BMR, BMRset] = useState(null)
 
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
+
+
+
+
+
+    useEffect(() => {
+
+        const user = Authentication.auth().currentUser;
+        {
+            user !== null &&
+                Authentication.firestore().collection('Health_data')
+                    .doc(user.uid)
+                    .get()
+                    .then(doc => {
+                        healthDataSet(doc.data())
+                    }).catch(function (error) {
+                        console.error("Error reading health", error);
+                    });
+        }
+
+    }, []);
 
     // console.log(healthData)
 
@@ -96,6 +98,7 @@ function Main_page(props) {
         <div className='main_Main'>
             <div className='App_margin' />
 
+            {healthData.goal === '' &&  props.history.push('/setup_page')}
 
             <div className='statusbar'>
                 <div className='Goaldiv'>
@@ -110,12 +113,12 @@ function Main_page(props) {
 
                 <div className='testDiv'><p>Age: {healthData.age}</p></div>
 
-                <div className='testDiv1'><p>Gender: {healthData.gender}</p></div>
+                <div className='testDiv1'><p>BMI: {BMR}</p></div>
 
                 <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p></div>
             </div>
 
-            <div className='divider' />
+            <div className='main_divider' />
 
             {mealOne_box && (
                 <div className='meal_popup'>
