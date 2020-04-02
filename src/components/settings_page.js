@@ -9,6 +9,7 @@ function settings_page(props) {
     //logs out of appliaction using firebase auth
   const  logout = () => {
         Authentication.auth().signOut();
+        localStorage.removeItem('user');
         props.history.push('/')
     }
 

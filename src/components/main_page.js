@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
@@ -9,15 +9,21 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Gainimg from '../assets/Gain.svg'
 import Recompimg from '../assets/Recomp.svg'
 import Loseimg from '../assets/Lose.svg'
+import { user_data } from '../Auth';
+
+
 
 function Main_page(props) {
 
-    const [healthData, healthDataSet] = useState((JSON.parse(localStorage.getItem('user_data'))))
+   const [healthData, healthDataSet] = useState((JSON.parse(localStorage.getItem('user_data'))))
+   
 
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
+
+   // console.log(healthData)
 
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {

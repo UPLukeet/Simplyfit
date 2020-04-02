@@ -17,9 +17,7 @@ function Login_page(props) {
 
     const [login_email, login_emailSet] = useState('')
     const [login_password, login_passwordSet] = useState('')
-    const [signup_email, signup_emailSet] = useState('')
-    const [signup_password, signup_passwordSet] = useState('')
-    const [signup_password2, signup_password2Set] = useState('')
+    
 
 
 
@@ -44,31 +42,7 @@ function Login_page(props) {
 
     //uploads signin data to firebase
 
-    const signup = (e) => {
-        if (signup_password === signup_password2) {
-            e.preventDefault();
-            Authentication.auth().createUserWithEmailAndPassword(signup_email, signup_password).then((u) => {
-                return database.collection('Health_data').doc(u.user.uid).set({
-                    gender: '',
-                    age: '',
-                    height: '',
-                    weight: '',
-                    goal: ''
-                }).catch((error) => {
-                    alert(error.message)
-                    console.log('failed to write', error);
-                });
-            }).then((u) => { console.log(u) })
-                .catch((error) => {
-                    alert(error.message)
-                    console.log(error);
-                })
-                props.history.push('/setup_page')
-        } else {
-            alert('Please make sure passwords match.')
-        }
-
-    }
+ 
 
     const handleChanglogin_email = (event) => {
 
@@ -78,22 +52,6 @@ function Login_page(props) {
     const handleChanglogin_password = (event) => {
 
         login_passwordSet(event.target.value)
-    };
-
-    const handleChangsignup_email = (event) => {
-
-        signup_emailSet(event.target.value)
-    };
-
-   
-    const handleChangsignup_password = (event) => {
-
-        signup_passwordSet(event.target.value)
-    };
-
-    const handleChangsignup_password2 = (event) => {
-
-        signup_password2Set(event.target.value)
     };
 
 
@@ -116,24 +74,10 @@ function Login_page(props) {
 
             <div className='divider' />
 
-            <form className='form_box'>
-                <div>
-                    <p>Sign up:</p>
-                    <div className="form_input">
-                        <TextField label='Email adress' id="standard-basic" value={signup_email} onChange={handleChangsignup_email.bind(this)} type="email" name="signin_email" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="form_input">
-                        <TextField label='Password' id="standard-basic" value={signup_password} onChange={handleChangsignup_password.bind(this)} type="password" name="signin_password" />
-                    </div>
-                    <div className="form_input">
-                        <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
-                    </div>
-                </div>
-            </form>
+         
 
             <div className='signin_buttons'>
                 <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
-                <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
             </div>
 
         </div>

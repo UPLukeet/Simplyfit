@@ -14,6 +14,7 @@ import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
 import Login_bar from './components/login_bar';
 import Login_page from './components/login_page';
+import Signup_page from './components/signup_page';
 
 import { GlobalProvider } from './context/GlobalState';
 
@@ -145,6 +146,7 @@ export class App extends Component {
                 <PrivateRoute path='/setup_page' component={setup_page} />
                 <PrivateRoute path='/' component={Main_page} exact />
                 < Route path='/login_page' component={Login_page} />
+                <Route path='/signup_page' component={Signup_page} />
               </AuthProvider>
             </div>
           </Switch>
