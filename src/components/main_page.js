@@ -130,15 +130,17 @@ function Main_page(props) {
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealOne_boxClickHandler} />
                         <img alt='' src={PancakeImage} />
-                        <p>Put 100g plain flour, 2 large eggs, 300ml milk, 1 tbsp sunflower or vegetable oil and a pinch of salt into a bowl or large jug, then whisk to a smooth batter.
+                        <div className='text_scroll'>
+                            <p>Put 100g plain flour, 2 large eggs, 300ml milk, 1 tbsp sunflower or vegetable oil and a pinch of salt into a bowl or large jug, then whisk to a smooth batter.
 
-Set aside for 30 mins to rest if you have time, or start cooking straight away.
+                            Set aside for 30 mins to rest if you have time, or start cooking straight away.
 
-Set a medium frying pan or crêpe pan over a medium heat and carefully wipe it with some oiled kitchen paper.
+                            Set a medium frying pan or crêpe pan over a medium heat and carefully wipe it with some oiled kitchen paper.
 
-When hot, cook your pancakes for 1 min on each side until golden, keeping them warm in a low oven as you go.
+                            When hot, cook your pancakes for 1 min on each side until golden, keeping them warm in a low oven as you go.
 
 Serve with lemon wedges and caster sugar, or your favourite filling. Once cold, you can layer the pancakes between baking parchment, then wrap in cling film and freeze for up to 2 months.</p>
+                        </div>
                     </div>
                     <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
                 </div>
@@ -149,13 +151,15 @@ Serve with lemon wedges and caster sugar, or your favourite filling. Once cold, 
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealTwo_boxClickHandler} />
                         <img alt='' src={OmeletteImage} />
-                        <p>Season the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming. 
+                        <div className='text_scroll'>
+                            <p>Season the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming.
 
-Pour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula. 
+                            Pour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula.
 
-Tilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set. 
+                            Tilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set.
 
 At this point you can fill the omelette with whatever you like – some grated cheese, sliced ham, fresh herbs, sautéed mushrooms or smoked salmon all work well. Scatter the filling over the top of the omelette and fold gently in half with the spatula. Slide onto a plate to serve.</p>
+                        </div>
                     </div>
                     <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
                 </div>
@@ -166,11 +170,13 @@ At this point you can fill the omelette with whatever you like – some grated c
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealThree_boxClickHandler} />
                         <img alt='' src={WrapImage} />
-                        <p>Heat the oil in a large frying pan over a medium heat. Add the chicken, brown on all sides, then remove. Add the onion, garlic, ginger and a pinch of salt. Cook for 5 mins or until softened.
+                        <div className='text_scroll'>
+                            <p>Heat the oil in a large frying pan over a medium heat. Add the chicken, brown on all sides, then remove. Add the onion, garlic, ginger and a pinch of salt. Cook for 5 mins or until softened.
 
-Increase the heat to high. Return the chicken to the pan with the spices, tomato purée, chilli and lemon juice. Season well and cook for 10 mins or until the chicken is tender.
+                            Increase the heat to high. Return the chicken to the pan with the spices, tomato purée, chilli and lemon juice. Season well and cook for 10 mins or until the chicken is tender.
 
 Divide the chicken, red onion, chutney, herbs and yogurt between the four warm rotis. Roll up and serve with plenty of napkins</p>
+                        </div>
                     </div>
                     <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
                 </div>
@@ -181,15 +187,17 @@ Divide the chicken, red onion, chutney, herbs and yogurt between the four warm r
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealFour_boxClickHandler} />
                         <img alt='' src={SpagettiImage} />
-                        <p>Put a large saucepan on a medium heat and add 1 tbsp olive oil.
+                        <div className='text_scroll'>
+                            <p>Put a large saucepan on a medium heat and add 1 tbsp olive oil.
 
-Add 4 finely chopped bacon rashers and fry for 10 mins until golden and crisp.
+                            Add 4 finely chopped bacon rashers and fry for 10 mins until golden and crisp.
 
-Reduce the heat and add the 2 onions, 2 carrots, 2 celery sticks, 2 garlic cloves and the leaves from 2-3 sprigs rosemary, all finely chopped, then fry for 10 mins. Stir the veg often until it softens.
+                            Reduce the heat and add the 2 onions, 2 carrots, 2 celery sticks, 2 garlic cloves and the leaves from 2-3 sprigs rosemary, all finely chopped, then fry for 10 mins. Stir the veg often until it softens.
 
-Increase the heat to medium-high, add 500g beef mince and cook stirring for 3-4 mins until the meat is browned all over.
+                            Increase the heat to medium-high, add 500g beef mince and cook stirring for 3-4 mins until the meat is browned all over.
 
 Add 2 tins plum tomatoes, the finely chopped leaves from ¾ small pack basil, 1 tsp dried oregano, 2 bay leaves, 2 tbsp tomato purée, 1 beef stock cube, 1 deseeded and finely chopped red chilli (if using), 125ml red wine and 6 halved cherry tomatoes. Stir with a wooden spoon, breaking up the plum tomatoes.</p>
+                        </div>
                     </div>
                     <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />
                 </div>

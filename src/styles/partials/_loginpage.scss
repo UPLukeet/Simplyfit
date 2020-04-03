@@ -20,14 +20,19 @@
   padding-bottom: 5%;
   margin-top: 10%;
   text-align: center;
+  &:active,
+  &:hover{
+      color: #f7be10;
+  }
 }
+
 
 .divider {
     margin-top: 50%;
 }
 
 .signin_buttons {
-    position: absolute;
+    position: fixed;
     width: 100%;
     display: flex;
     text-align: center;
@@ -38,6 +43,6 @@
 .signin_buttons button {
     margin: auto;
     width: 15rem;
-    margin-bottom: 30%;
+    margin-bottom: 20%;
    
 }

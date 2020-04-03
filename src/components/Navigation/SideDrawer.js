@@ -16,9 +16,9 @@ const sideDrawer = props => {
         <img alt='' src={Logo} />
         </div>
         <ul>
-        <NavLink onClick={props.sidedrawerClickHandler} to='/' exact activeStyle={{ color: ' #f7be10' }}><li><HomeIcon/>Main</li></NavLink>
-        <NavLink onClick={props.sidedrawerClickHandler} to='/setup_page' exact  activeStyle={{ color: '#f7be10' }}><li><EmojiPeopleIcon/>Setup</li></NavLink>
-        <NavLink onClick={props.sidedrawerClickHandler} to='/settings_page'   activeStyle={{  color: '#f7be10' }}><li><SettingsIcon/>Settings</li></NavLink>
+        <NavLink className='noSelect' onClick={props.sidedrawerClickHandler} to='/' exact activeClassName='current'><li><HomeIcon className='Nav_icons'/>Main</li></NavLink>
+        <NavLink className='noSelect' onClick={props.sidedrawerClickHandler} to='/setup_page' exact  activeClassName='current'><li><EmojiPeopleIcon className='Nav_icons'/>Setup</li></NavLink>
+        <NavLink className='noSelect' onClick={props.sidedrawerClickHandler} to='/settings_page'   activeClassName='current'><li><SettingsIcon className='Nav_icons'/>Settings</li></NavLink>
         </ul>
     </nav>);
 

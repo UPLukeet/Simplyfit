@@ -39,6 +39,8 @@
   align-items: center;
   margin-top: 1rem;
   padding-inline-start: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .side-drawer li {
@@ -48,6 +50,7 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
+  border-radius: 5px;
 }
 
 .side-drawer svg {
@@ -63,10 +66,28 @@
   color: black;
   font-size: 1.2rem;
   text-decoration: none;
+  svg{
+    &:active,
+    &:hover{
+    color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  li {
+    &:active,
+    &:hover{
+    color: white;
+    background: rgba(247, 190, 16, 0.8);
+    }
+  }
+  
 }
 
-.side-drawer li:hover,
-.side-drawer li:active  {
-  background: rgba(63, 81, 181, 0.8);
-  color: white;
+.current {
+  svg {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  li {
+    color: white;
+    background: rgba(247, 190, 16, 0.8);
+  }
 }
