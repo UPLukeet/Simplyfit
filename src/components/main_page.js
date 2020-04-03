@@ -23,31 +23,36 @@ function Main_page(props) {
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
+    const [scroll, scrollSet] = useState(false);
 
 
 
 
+        useEffect(() => {
 
-    useEffect(() => {
+            const user = Authentication.auth().currentUser;
+            {
+                user !== null &&
+                    Authentication.firestore().collection('Health_data')
+                        .doc(user.uid)
+                        .get()
+                        .then(doc => {
+                            healthDataSet(doc.data())
+                            setLoading(false)
+                        }).catch(function (error) {
+                            console.error("Error reading health", error);
+                        });
+            }
 
-        const user = Authentication.auth().currentUser;
-        {
-            user !== null &&
-                Authentication.firestore().collection('Health_data')
-                    .doc(user.uid)
-                    .get()
-                    .then(doc => {
-                        healthDataSet(doc.data())
-                        setLoading(false)
-                    }).catch(function (error) {
-                        console.error("Error reading health", error);
-                    });
-        }
-
-    }, []);
-
+        }, []);
 
 
+    
+    if(scroll){
+        document.body.style.overflow = 'hidden';
+    }else{
+        document.body.style.overflow = 'unset';
+    }
 
 
     // console.log(healthData)
@@ -55,37 +60,45 @@ function Main_page(props) {
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {
         mealOne_boxSet(!mealOne_box);
+        scrollSet(!scroll)
     };
 
     const mealOne_boxClickHandler = (event) => {
         mealOne_boxSet(!mealOne_box);
+        scrollSet(!scroll)
     };
 
     //handles clicks for meal two
     const mealTwoClickHandler = (event) => {
         mealTwo_boxSet(!mealTwo_box);
+        scrollSet(!scroll)
     };
 
     const mealTwo_boxClickHandler = (event) => {
         mealTwo_boxSet(!mealTwo_box);
+        scrollSet(!scroll)
     };
 
     //handles clicks for meal three
     const mealThreeClickHandler = (event) => {
         mealThree_boxSet(!mealThree_box);
+        scrollSet(!scroll)
     };
 
     const mealThree_boxClickHandler = (event) => {
         mealThree_boxSet(!mealThree_box);
+        scrollSet(!scroll)
     };
 
     //handles clicks for meal Four
     const mealFourClickHandler = (event) => {
         mealFour_boxSet(!mealFour_box);
+        scrollSet(!scroll)
     };
 
     const mealFour_boxClickHandler = (event) => {
         mealFour_boxSet(!mealFour_box);
+        scrollSet(!scroll)
     };
 
 
