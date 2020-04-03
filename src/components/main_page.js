@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Redirect } from 'react';
+import React, { useState, useContext, useEffect, Redirect, Component } from 'react';
 import PancakeImage from '../assets/Pancakes.jpg';
 import OmeletteImage from '../assets/Omelette.jpg';
 import WrapImage from '../assets/Wrap.jpg';
@@ -43,9 +43,11 @@ function Main_page(props) {
                             console.error("Error reading health", error);
                         });
             }
+            return () =>{
+                document.body.style.overflow = 'unset';
+            }
 
         }, []);
-
 
     
     if(scroll){
