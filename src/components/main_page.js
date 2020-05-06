@@ -18,6 +18,7 @@ function Main_page(props) {
     const [healthData, healthDataSet] = useState(null)
     const [BMI, BMIset] = useState(null)
     const [BMR, BMRset] = useState(null)
+    const [Cals, Cals_set] = useState(null)
 
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
@@ -28,31 +29,68 @@ function Main_page(props) {
 
 
 
-        useEffect(() => {
+    useEffect(() => {
 
-            const user = Authentication.auth().currentUser;
-            {
-                user !== null &&
-                    Authentication.firestore().collection('Health_data')
-                        .doc(user.uid)
-                        .get()
-                        .then(doc => {
-                            healthDataSet(doc.data())
-                            setLoading(false)
-                        }).catch(function (error) {
-                            console.error("Error reading health", error);
-                        });
+        const user = Authentication.auth().currentUser;
+        {
+            user !== null &&
+                Authentication.firestore().collection('Health_data')
+                    .doc(user.uid)
+                    .get()
+                    .then(doc => {
+                        healthDataSet(doc.data())
+                        setLoading(false)
+                    }).catch(function (error) {
+                        console.error("Error reading health", error);
+                    });
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+
+    }, []);
+
+    useEffect(() => {
+        if (!loading && healthData !== null) {
+
+            BMIset(Math.round((healthData.weight / ((healthData.height / 100) ^ 2)) * 10) / 10)
+
+            if (healthData.goal === 'Lose') {
+
+                if (healthData.gender === 'female') {
+                    BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
+                } else {
+                    BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
+                }
+
             }
-            return () =>{
-                document.body.style.overflow = 'unset';
+
+            if (healthData.goal === 'Gain') {
+
+                if (healthData.gender === 'female') {
+                    BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
+                } else {
+                    BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
+                }
+
             }
 
-        }, []);
+            if (healthData.goal === 'Recomp') {
+                if (healthData.gender === 'female') {
+                    BMRset(Math.round((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
+                } else {
+                    BMRset(Math.round((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
+                }
 
-    
-    if(scroll){
+            }
+        }
+
+    }, [loading, healthData]);
+
+
+    if (scroll) {
         document.body.style.overflow = 'hidden';
-    }else{
+    } else {
         document.body.style.overflow = 'unset';
     }
 
@@ -131,9 +169,12 @@ function Main_page(props) {
 
                 </div>
 
-                <div className='testDiv'><p>Age: {healthData.age}</p></div>
+                <div className='testDiv'>
+                    <p>Cals: {BMR}</p>
 
-                <div className='testDiv1'><p>BMI: {BMR}</p></div>
+                </div>
+
+                <div className='testDiv1'><p>BMI: {BMI}</p></div>
 
                 <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p></div>
             </div>
