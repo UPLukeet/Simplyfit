@@ -114,7 +114,7 @@ function Main_page(props) {
     //gets users data and renders it to <p> items
 
 
-    return healthData !== null && (
+    return loading === false && (
         <div className='main_Main'>
             <div className='App_margin' />
 
