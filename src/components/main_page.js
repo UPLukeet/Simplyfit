@@ -9,8 +9,11 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import Gainimg from '../assets/Gain.svg'
 import Recompimg from '../assets/Recomp.svg'
 import Loseimg from '../assets/Lose.svg'
-
-
+import Underweight from '../assets/Underweight.svg'
+import Normal from '../assets/Normal.svg'
+import Overweight from '../assets/Overweight.svg'
+import Obese from '../assets/Obese.svg'
+import Extreamly from '../assets/ExtObese.svg'
 
 function Main_page(props) {
 
@@ -60,7 +63,7 @@ function Main_page(props) {
     useEffect(() => {
         if (!loading && healthData !== null) {
 
-            BMIset(Math.round((healthData.weight / ((healthData.height / 100) ^ 2)) * 10) / 10)
+            BMIset(Math.round((healthData.weight / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
 
             if (healthData.goal === 'Lose') {
 
@@ -187,13 +190,26 @@ function Main_page(props) {
                 </div>
 
                 <div className='testDiv'>
-                    <p>Cals: {BMR}</p>
+                    <p>BMI: {BMI}</p>
+
+                    {BMI < 18.5 && [<p>Underweight</p>, <img alt='' src={Underweight} />]}
+
+                    {BMI > 18.5 && BMI < 25 && [<p>Normal</p>, <img alt='' src={Normal} />]}
+
+                    {BMI > 25 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
+
+                    {BMI > 30 && [<p>Obese</p>, <img alt='' src={Obese} />]}
+
+                    {BMI > 35 && [<p>Extreamly Obese</p>, <img alt='' src={Extreamly} />]}
+                </div>
+
+                <div className='testDiv1'>
 
                 </div>
 
-                <div className='testDiv1'><p>BMI: {BMI}</p></div>
-
-                <div className='testDiv2'><p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p></div>
+                <div className='testDiv2'>
+                    <p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p>
+                </div>
             </div>
 
             <div className='main_divider' />
@@ -205,8 +221,10 @@ function Main_page(props) {
                         <img alt='' src={PancakeImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
-                            <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, 100ml of water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
+                            <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
                             <p>High protien and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protien).</p>
+                            <h2>Method:</h2>
+                            <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good nonstick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit ontop.</p>
                         </div>
                     </div>
                     <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
@@ -220,7 +238,9 @@ function Main_page(props) {
                         <img alt='' src={OmeletteImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
-                            <p>{Math.round(((mealTwoCals * 0.4) / 1.55) / 44)} medium eggs, {Math.round((mealTwoCals * 0.2) / 1.45)}g of ham, {Math.round((mealTwoCals * 0.25) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions and spinache etc...) and {Math.round((mealTwoCals * 0.15) / 2.61)}g of low fat mozzarella.</p>
+                            <p>{Math.round(((mealTwoCals * 0.4) / 1.55) / 44)} medium eggs, {Math.round((mealTwoCals * 0.2) / 1.45)}g of ham, {Math.round((mealTwoCals * 0.25) / 1.1)}g of vegtables/greens(peppers, mushrooms, onions and spinache etc...) and {Math.round((mealTwoCals * 0.15) / 2.61)}g of low fat mozzarella.</p>
+                            <h2>Method:</h2>
+                            <p>Beat the eggs together in a bowl with salt, pepper, cumin and garlic powder untill all ingredients are combined. Then mix in the vegtables, ham and mozzarella. before pouring into a preheated nonstick pan with no oil on medium heat.</p>
                         </div>
                     </div>
                     <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
@@ -234,7 +254,9 @@ function Main_page(props) {
                         <img alt='' src={WrapImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
-                            <p>{Math.round(((mealThreeCals * 0.5) / 1.85) / 64)} wraps, {Math.round((mealThreeCals * 0.3) / 1.65)}g chicken breast, {Math.round((mealThreeCals * 0.25) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions, lettuce and spinache etc...) and a drizzle of franks red hot sauce.</p>
+                            <p>{Math.round(((mealThreeCals * 0.5) / 1.85) / 64)} wraps, {Math.round((mealThreeCals * 0.3) / 1.65)}g precooked chicken breast, {Math.round((mealThreeCals * 0.25) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions, lettuce and spinache etc...) and a drizzle of franks red hot sauce.</p>
+                            <h2>Method:</h2>
+                            <p>Fill the wraps with a base layer lettuce and vegtables. Then place the chicken breast ontop and drizzle with franks red hot sauce and pepper before assembling the wrap.</p>
                         </div>
                     </div>
                     <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
@@ -248,7 +270,9 @@ function Main_page(props) {
                         <img alt='' src={SpagettiImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
-                            <p> {Math.round((mealFourCals * 0.45) / 3.55)}g of dry weight pasta, {Math.round((mealFourCals * 0.15) / 0.32)}ml of passata, 1 stock cube, {Math.round((mealFourCals * 0.3) / 1.37)}g of 5% fat lean mince meat and {Math.round((mealFourCals * 0.2) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions and spinache etc...).</p>
+                            <p> {Math.round((mealFourCals * 0.45) / 3.55)}g of dry weight pasta, {Math.round((mealFourCals * 0.15) / 0.32)}ml of passata, 1 stock cube, mixed herbs, {Math.round((mealFourCals * 0.3) / 1.37)}g of 5% fat lean mince meat and {Math.round((mealFourCals * 0.2) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions and spinache etc...).</p>
+                            <h2>Method:</h2>
+                            <p>Cook the pasta in pan full of boiling water till cooked through. Add mince meat to non stick pan with no oil on a high-medium heat, once the mince is almost cooked through add the vegtables of your choice (onion, garlic, peppers and mushrooms are recomended). Once the vegtable are cooked add the passata, stock cube, salt, pepper and mixed herbs. Add the pasta to the sauce and serve.</p>
                         </div>
                     </div>
                     <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />

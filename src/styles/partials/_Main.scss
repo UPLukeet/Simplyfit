@@ -1,4 +1,3 @@
-
 .App_margin {
   padding-top: 56px;
 }
@@ -32,16 +31,25 @@
   background: #6632cd;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+  overflow: hidden;
+
+  img {
+    margin: auto;
+    height: 60%;
+  }
+
+  p {
+    color: white;
+    font-size: smaller;
+    float: left;
+    margin: 0;
+    margin-left: 0.3rem;
+    margin-top: 0.1rem;
+    margin-right: 0.1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
-.testDiv p {
-  font-size: smaller;
-  color: white;
-  float:left;
-  margin: 0;
-  margin-left: 0.2rem;
-}
 
 .testDiv1 {
   display: flex;
@@ -54,15 +62,24 @@
   background: #00b7e4;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+  overflow: hidden;
+
+  img {
+    margin: auto;
+    height: 75%;
+  }
+
+  p {
+    font-size: smaller;
+    float: left;
+    margin: 0;
+    margin-left: 0.3rem;
+    margin-top: 0.1rem;
+    margin-right: 0.1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
-.testDiv1 p {
-  font-size: smaller;
-  float:left;
-  margin: 0;
-  margin-left: 0.2rem;
-}
 
 .testDiv2 {
   display: flex;
@@ -75,16 +92,26 @@
   background: #d2691e;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+  overflow: hidden;
+
+  img {
+    margin: auto;
+    height: 75%;
+  }
+  
+
+  p {
+    font-size: smaller;
+    color: white;
+    float: left;
+    margin: 0;
+    margin-left: 0.3rem;
+    margin-top: 0.1rem;
+    margin-right: 0.1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
-.testDiv2 p {
-  font-size: smaller;
-  color: white;
-  float:left;
-  margin: 0;
-  margin-left: 0.2rem;
-}
 
 .Goaldiv {
   display: flex;
@@ -97,20 +124,24 @@
   background: #7ccb19;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+  overflow: hidden;
+
+  img {
+    margin: auto;
+    height: 75%;
+  }
+
+  p {
+    font-size: smaller;
+    float: left;
+    margin: 0;
+    margin-left: 0.2rem;
+    margin-top: 0.1rem;
+    margin-right: 0.1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
-.Goaldiv img {
-  margin: auto;
-  height: 75%;
-}
-
-.Goaldiv p {
-  font-size: smaller;
-  float:left;
-  margin: 0;
-  margin-left: 0.2rem;
-}
 
 .meal_container {
   position: relative;
@@ -122,22 +153,23 @@
     0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   height: 11rem;
   overflow: hidden;
-}
 
-.meal_container p {
-  position: absolute;
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  bottom: 0;
-  margin: 0;
-  background: white;
-  height: 3rem;
-  width: 100%;
-}
+  p {
+    position: absolute;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    bottom: 0;
+    margin: 0;
+    background: white;
+    height: 3rem;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+  }
 
-.meal_container img {
-  width: 100%;
+  img {
+    width: 100%;
+  }
 }
 
 
@@ -175,9 +207,20 @@
   z-index: 1;
 }
 
-.meal_popupElement p {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.meal_popupElement {
+  p,
+  h2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  p {
+    margin-top: 0;
+  }
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: larger;
+  }
 }
 
 .text_scroll {
@@ -204,7 +247,7 @@
   right: 0;
 }
 
-.main_divider{
+.main_divider {
   margin-top: 10%;
 }
 
