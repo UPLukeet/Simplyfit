@@ -31,6 +31,7 @@ function Main_page(props) {
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
+
     const [scroll, scrollSet] = useState(false);
 
 
@@ -63,36 +64,72 @@ function Main_page(props) {
     useEffect(() => {
         if (!loading && healthData !== null) {
 
-            BMIset(Math.round((healthData.weight / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
 
-            if (healthData.goal === 'Lose') {
+            if (healthData.units === 'Kg') {
+                BMIset(Math.round((healthData.weight / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
 
-                if (healthData.gender === 'female') {
-                    BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
-                } else {
-                    BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
+                if (healthData.goal === 'Lose') {
+
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
+                    } else {
+                        BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
+                    }
+
                 }
 
-            }
+                if (healthData.goal === 'Gain') {
 
-            if (healthData.goal === 'Gain') {
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
+                    } else {
+                        BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
+                    }
 
-                if (healthData.gender === 'female') {
-                    BMRset(Math.round(((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
-                } else {
-                    BMRset(Math.round(((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
                 }
 
-            }
+                if (healthData.goal === 'Recomp') {
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
+                    } else {
+                        BMRset(Math.round((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
+                    }
 
-            if (healthData.goal === 'Recomp') {
-                if (healthData.gender === 'female') {
-                    BMRset(Math.round((655.1 + (9.563 * healthData.weight) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
-                } else {
-                    BMRset(Math.round((88.2 + (13.362 * healthData.weight) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
                 }
+            } else{
 
+                BMIset(Math.round(((healthData.weight/2.2) / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
+
+                if (healthData.goal === 'Lose') {
+    
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
+                    } else {
+                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
+                    }
+    
+                }
+    
+                if (healthData.goal === 'Gain') {
+    
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
+                    } else {
+                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
+                    }
+    
+                }
+    
+                if (healthData.goal === 'Recomp') {
+                    if (healthData.gender === 'female') {
+                        BMRset(Math.round((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
+                    } else {
+                        BMRset(Math.round((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
+                    }
+    
+                }
             }
+
         }
 
     }, [loading, healthData]);
@@ -196,9 +233,9 @@ function Main_page(props) {
 
                     {BMI > 18.5 && BMI < 25 && [<p>Normal</p>, <img alt='' src={Normal} />]}
 
-                    {BMI > 25 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
+                    {BMI > 25 && BMI < 30 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
 
-                    {BMI > 30 && [<p>Obese</p>, <img alt='' src={Obese} />]}
+                    {BMI > 30 && BMI < 35 && [<p>Obese</p>, <img alt='' src={Obese} />]}
 
                     {BMI > 35 && [<p>Extreamly Obese</p>, <img alt='' src={Extreamly} />]}
                 </div>
@@ -208,7 +245,7 @@ function Main_page(props) {
                 </div>
 
                 <div className='testDiv2'>
-                    <p>weight: {healthData.units === 'lbs' ? Math.round(healthData.weight / 2.2) : healthData.weight}Kg</p>
+                    <p>weight: {healthData.weight}{healthData.units}</p>
                 </div>
             </div>
 
