@@ -14,6 +14,7 @@ import Normal from '../assets/Normal.svg'
 import Overweight from '../assets/Overweight.svg'
 import Obese from '../assets/Obese.svg'
 import Extreamly from '../assets/ExtObese.svg'
+import Scale from '../assets/scale.svg'
 
 function Main_page(props) {
 
@@ -233,7 +234,7 @@ function Main_page(props) {
 
                     {BMI > 18.5 && BMI < 25 && [<p>Normal</p>, <img alt='' src={Normal} />]}
 
-                    {BMI > 25 && BMI < 30 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
+                    {BMI >= 25 && BMI < 30 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
 
                     {BMI > 30 && BMI < 35 && [<p>Obese</p>, <img alt='' src={Obese} />]}
 
@@ -246,6 +247,7 @@ function Main_page(props) {
 
                 <div className='testDiv2'>
                     <p>weight: {healthData.weight}{healthData.units}</p>
+                    <img alt='' src={Scale} />
                 </div>
             </div>
 
