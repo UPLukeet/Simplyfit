@@ -19,6 +19,10 @@ function Main_page(props) {
     const [BMI, BMIset] = useState(null)
     const [BMR, BMRset] = useState(null)
     const [Cals, Cals_set] = useState(null)
+    const [mealOneCals, mealOneCals_set] = useState(null)
+    const [mealTwoCals, mealTwoCals_set] = useState(null)
+    const [mealThreeCals, mealThreeCals_set] = useState(null)
+    const [mealFourCals, mealFourCals_set] = useState(null)
 
     const [mealOne_box, mealOne_boxSet] = useState(false);
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
@@ -27,8 +31,10 @@ function Main_page(props) {
     const [scroll, scrollSet] = useState(false);
 
 
+    //ingredients
 
 
+    // pulls user data from firebase
     useEffect(() => {
 
         const user = Authentication.auth().currentUser;
@@ -50,6 +56,7 @@ function Main_page(props) {
 
     }, []);
 
+    //calculates calorie requirments
     useEffect(() => {
         if (!loading && healthData !== null) {
 
@@ -86,6 +93,16 @@ function Main_page(props) {
         }
 
     }, [loading, healthData]);
+
+    //calculates cals for each meal
+    useEffect(() => {
+        if (BMR !== null) {
+            mealOneCals_set(BMR * 0.25)
+            mealTwoCals_set(BMR * 0.25)
+            mealThreeCals_set(BMR * 0.25)
+            mealFourCals_set(BMR * 0.25)
+        }
+    }, [BMR]);
 
 
     if (scroll) {
@@ -187,15 +204,9 @@ function Main_page(props) {
                         <CancelIcon onClick={mealOne_boxClickHandler} />
                         <img alt='' src={PancakeImage} />
                         <div className='text_scroll'>
-                            <p>Put 100g plain flour, 2 large eggs, 300ml milk, 1 tbsp sunflower or vegetable oil and a pinch of salt into a bowl or large jug, then whisk to a smooth batter.
-
-                            Set aside for 30 mins to rest if you have time, or start cooking straight away.
-
-                            Set a medium frying pan or crêpe pan over a medium heat and carefully wipe it with some oiled kitchen paper.
-
-                            When hot, cook your pancakes for 1 min on each side until golden, keeping them warm in a low oven as you go.
-
-Serve with lemon wedges and caster sugar, or your favourite filling. Once cold, you can layer the pancakes between baking parchment, then wrap in cling film and freeze for up to 2 months.</p>
+                            <h2>Ingredients:</h2>
+                            <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, 100ml of water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} of medium eggs.</p>
+                            <p>High protien and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protien).</p>
                         </div>
                     </div>
                     <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
@@ -208,13 +219,8 @@ Serve with lemon wedges and caster sugar, or your favourite filling. Once cold, 
                         <CancelIcon onClick={mealTwo_boxClickHandler} />
                         <img alt='' src={OmeletteImage} />
                         <div className='text_scroll'>
-                            <p>Season the beaten eggs well with salt and pepper. Heat the oil and butter in a non-stick frying pan over a medium-low heat until the butter has melted and is foaming.
-
-                            Pour the eggs into the pan, tilt the pan ever so slightly from one side to another to allow the eggs to swirl and cover the surface of the pan completely. Let the mixture cook for about 20 seconds then scrape a line through the middle with a spatula.
-
-                            Tilt the pan again to allow it to fill back up with the runny egg. Repeat once or twice more until the egg has just set.
-
-At this point you can fill the omelette with whatever you like – some grated cheese, sliced ham, fresh herbs, sautéed mushrooms or smoked salmon all work well. Scatter the filling over the top of the omelette and fold gently in half with the spatula. Slide onto a plate to serve.</p>
+                            <h2>Ingredients:</h2>
+                            <p>{Math.round(((mealTwoCals * 0.4) / 1.55) / 44)} medium eggs, {Math.round((mealTwoCals * 0.2) / 1.45)}g of ham, {Math.round((mealTwoCals * 0.25) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions and spinache etc...) and {Math.round((mealTwoCals * 0.15) / 2.61)}g of low fat mozzarella.</p>
                         </div>
                     </div>
                     <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
@@ -227,11 +233,8 @@ At this point you can fill the omelette with whatever you like – some grated c
                         <CancelIcon onClick={mealThree_boxClickHandler} />
                         <img alt='' src={WrapImage} />
                         <div className='text_scroll'>
-                            <p>Heat the oil in a large frying pan over a medium heat. Add the chicken, brown on all sides, then remove. Add the onion, garlic, ginger and a pinch of salt. Cook for 5 mins or until softened.
-
-                            Increase the heat to high. Return the chicken to the pan with the spices, tomato purée, chilli and lemon juice. Season well and cook for 10 mins or until the chicken is tender.
-
-Divide the chicken, red onion, chutney, herbs and yogurt between the four warm rotis. Roll up and serve with plenty of napkins</p>
+                            <h2>Ingredients:</h2>
+                            <p>{Math.round(((mealThreeCals * 0.5) / 1.85) / 64)} wraps, {Math.round((mealThreeCals * 0.3) / 1.65)}g chicken breast, {Math.round((mealThreeCals * 0.25) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions, lettuce and spinache etc...) and a drizzle of franks red hot sauce.</p>
                         </div>
                     </div>
                     <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
@@ -244,15 +247,8 @@ Divide the chicken, red onion, chutney, herbs and yogurt between the four warm r
                         <CancelIcon onClick={mealFour_boxClickHandler} />
                         <img alt='' src={SpagettiImage} />
                         <div className='text_scroll'>
-                            <p>Put a large saucepan on a medium heat and add 1 tbsp olive oil.
-
-                            Add 4 finely chopped bacon rashers and fry for 10 mins until golden and crisp.
-
-                            Reduce the heat and add the 2 onions, 2 carrots, 2 celery sticks, 2 garlic cloves and the leaves from 2-3 sprigs rosemary, all finely chopped, then fry for 10 mins. Stir the veg often until it softens.
-
-                            Increase the heat to medium-high, add 500g beef mince and cook stirring for 3-4 mins until the meat is browned all over.
-
-Add 2 tins plum tomatoes, the finely chopped leaves from ¾ small pack basil, 1 tsp dried oregano, 2 bay leaves, 2 tbsp tomato purée, 1 beef stock cube, 1 deseeded and finely chopped red chilli (if using), 125ml red wine and 6 halved cherry tomatoes. Stir with a wooden spoon, breaking up the plum tomatoes.</p>
+                            <h2>Ingredients:</h2>
+                            <p> {Math.round((mealFourCals * 0.45) / 3.55)}g of dry weight pasta, {Math.round((mealFourCals * 0.15) / 0.32)}ml of passata, 1 stock cube, {Math.round((mealFourCals * 0.3) / 1.37)}g of 5% fat lean mince meat and {Math.round((mealFourCals * 0.2) / 1.1)}g of vegtables and greens(peppers, mushrooms, onions and spinache etc...).</p>
                         </div>
                     </div>
                     <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />
@@ -262,17 +258,17 @@ Add 2 tins plum tomatoes, the finely chopped leaves from ¾ small pack basil, 1 
 
             <div onClick={mealOneClickHandler} className='meal_container'>
                 <img alt='' src={PancakeImage} />
-                <p>Meal one: Pancakes</p>
+                <p>Meal one: Protien Pancakes</p>
             </div>
 
             <div onClick={mealTwoClickHandler} className='meal_container'>
                 <img alt='' src={OmeletteImage} />
-                <p>Meal two: Omelet</p>
+                <p>Meal two: Ham and cheese Omelet</p>
             </div>
 
             <div onClick={mealThreeClickHandler} className='meal_container'>
                 <img alt='' src={WrapImage} />
-                <p>Meal three: chicken wrap</p>
+                <p>Meal three: Spicy chicken wrap</p>
             </div>
 
             <div onClick={mealFourClickHandler} className='meal_container'>
