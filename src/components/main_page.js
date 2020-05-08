@@ -15,6 +15,9 @@ import Overweight from '../assets/Overweight.svg'
 import Obese from '../assets/Obese.svg'
 import Extreamly from '../assets/ExtObese.svg'
 import Scale from '../assets/scale.svg'
+import Maintain from '../assets/Maintain.svg'
+import Surplus from '../assets/Surplus.svg'
+import Deficit from '../assets/Defecit.svg'
 
 function Main_page(props) {
 
@@ -22,7 +25,6 @@ function Main_page(props) {
     const [healthData, healthDataSet] = useState(null)
     const [BMI, BMIset] = useState(null)
     const [BMR, BMRset] = useState(null)
-    const [Cals, Cals_set] = useState(null)
     const [mealOneCals, mealOneCals_set] = useState(null)
     const [mealTwoCals, mealTwoCals_set] = useState(null)
     const [mealThreeCals, mealThreeCals_set] = useState(null)
@@ -32,6 +34,11 @@ function Main_page(props) {
     const [mealTwo_box, mealTwo_boxSet] = useState(false);
     const [mealThree_box, mealThree_boxSet] = useState(false);
     const [mealFour_box, mealFour_boxSet] = useState(false);
+
+    const [Goal_box, Goal_boxSet] = useState(false);
+    const [BMI_box, BMI_boxSet] = useState(false);
+    const [Cals_box, Cals_boxSet] = useState(false);
+    const [Weight_box, Weight_boxSet] = useState(false);
 
     const [scroll, scrollSet] = useState(false);
 
@@ -97,37 +104,37 @@ function Main_page(props) {
                     }
 
                 }
-            } else{
+            } else {
 
-                BMIset(Math.round(((healthData.weight/2.2) / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
+                BMIset(Math.round(((healthData.weight / 2.2) / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
 
                 if (healthData.goal === 'Lose') {
-    
+
                     if (healthData.gender === 'female') {
-                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
+                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight / 2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 0.8))
                     } else {
-                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
+                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight / 2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 0.8))
                     }
-    
+
                 }
-    
+
                 if (healthData.goal === 'Gain') {
-    
+
                     if (healthData.gender === 'female') {
-                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
+                        BMRset(Math.round(((655.1 + (9.563 * (healthData.weight / 2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37) * 1.2))
                     } else {
-                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
+                        BMRset(Math.round(((88.2 + (13.362 * (healthData.weight / 2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37) * 1.2))
                     }
-    
+
                 }
-    
+
                 if (healthData.goal === 'Recomp') {
                     if (healthData.gender === 'female') {
-                        BMRset(Math.round((655.1 + (9.563 * (healthData.weight/2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
+                        BMRset(Math.round((655.1 + (9.563 * (healthData.weight / 2.2)) + (1.850 * healthData.height) - (4.676 * healthData.age)) * 1.37))
                     } else {
-                        BMRset(Math.round((88.2 + (13.362 * (healthData.weight/2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
+                        BMRset(Math.round((88.2 + (13.362 * (healthData.weight / 2.2)) + (4.799 * healthData.height) - (5.677 * healthData.age)) * 1.37))
                     }
-    
+
                 }
             }
 
@@ -161,18 +168,8 @@ function Main_page(props) {
         scrollSet(!scroll)
     };
 
-    const mealOne_boxClickHandler = (event) => {
-        mealOne_boxSet(!mealOne_box);
-        scrollSet(!scroll)
-    };
-
     //handles clicks for meal two
     const mealTwoClickHandler = (event) => {
-        mealTwo_boxSet(!mealTwo_box);
-        scrollSet(!scroll)
-    };
-
-    const mealTwo_boxClickHandler = (event) => {
         mealTwo_boxSet(!mealTwo_box);
         scrollSet(!scroll)
     };
@@ -183,31 +180,39 @@ function Main_page(props) {
         scrollSet(!scroll)
     };
 
-    const mealThree_boxClickHandler = (event) => {
-        mealThree_boxSet(!mealThree_box);
-        scrollSet(!scroll)
-    };
-
     //handles clicks for meal Four
     const mealFourClickHandler = (event) => {
         mealFour_boxSet(!mealFour_box);
         scrollSet(!scroll)
     };
 
-    const mealFour_boxClickHandler = (event) => {
-        mealFour_boxSet(!mealFour_box);
+    //handles clicks for Goal box
+    const GoalClickHandler = (event) => {
+        Goal_boxSet(!Goal_box);
         scrollSet(!scroll)
     };
 
 
+    //handles clicks for BMI box
+    const BMIClickHandler = (event) => {
+        BMI_boxSet(!BMI_box);
+        scrollSet(!scroll)
+    };
 
-    /*<p className='food_text'>age: {healthData.age}</p>
-    <p className='food_text'>gender: {healthData.gender}</p>
-    <p className='food_text'>goal: {healthData.goal}</p>
-    <p className='food_text'>height: {healthData.height}</p>
-    <p className='food_text'>weight: {healthData.weight}</p>*/
 
-    //gets users data and renders it to <p> items
+    //handles clicks for Cals box
+    const CalsClickHandler = (event) => {
+        Cals_boxSet(!Cals_box);
+        scrollSet(!scroll)
+    };
+
+
+    //handles clicks for Weigth box
+    const WeightClickHandler = (event) => {
+        Weight_boxSet(!Weight_box);
+        scrollSet(!scroll)
+    };
+
 
 
     return loading === false && (
@@ -217,7 +222,7 @@ function Main_page(props) {
             {healthData.goal === '' && props.history.push('/setup_page')}
 
             <div className='statusbar'>
-                <div className='Goaldiv'>
+                <div className='Goaldiv' onClick={GoalClickHandler}>
                     <p>Goal: {healthData.goal}</p>
                     {healthData.goal === 'Gain' && <img alt='' src={Gainimg} />}
 
@@ -227,25 +232,29 @@ function Main_page(props) {
 
                 </div>
 
-                <div className='testDiv'>
+                <div className='BMIDiv' onClick={BMIClickHandler}>
                     <p>BMI: {BMI}</p>
 
                     {BMI < 18.5 && [<p>Underweight</p>, <img alt='' src={Underweight} />]}
 
                     {BMI > 18.5 && BMI < 25 && [<p>Normal</p>, <img alt='' src={Normal} />]}
 
-                    {BMI >= 25 && BMI < 30 && [<p>Overweight</p>, <img alt='' src={Overweight} />]}
+                    {BMI >= 25 && BMI < 30 && [<p>Over&shy;weight</p>, <img alt='' src={Overweight} />]}
 
                     {BMI > 30 && BMI < 35 && [<p>Obese</p>, <img alt='' src={Obese} />]}
 
                     {BMI > 35 && [<p>Extreamly Obese</p>, <img alt='' src={Extreamly} />]}
                 </div>
 
-                <div className='testDiv1'>
+                <div className='CalsDiv' onClick={CalsClickHandler}>
+                    {healthData.goal === 'Gain' && [<p>Surplus: {Math.round(BMR - (BMR / 1.2))}Cals</p>, <img alt='' src={Surplus} />]}
 
+                    {healthData.goal === 'Recomp' && [<p>main&shy;tenance Cals</p>, <img alt='' src={Maintain} />]}
+
+                    {healthData.goal === 'Lose' && [<p>Deficit: {Math.round((BMR / 0.8) - BMR)}Cals</p>, <img alt='' src={Deficit} />]}
                 </div>
 
-                <div className='testDiv2'>
+                <div className='WeightDiv' onClick={WeightClickHandler}>
                     <p>weight: {healthData.weight}{healthData.units}</p>
                     <img alt='' src={Scale} />
                 </div>
@@ -256,7 +265,7 @@ function Main_page(props) {
             {mealOne_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={mealOne_boxClickHandler} />
+                        <CancelIcon onClick={mealOneClickHandler} />
                         <img alt='' src={PancakeImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
@@ -266,14 +275,14 @@ function Main_page(props) {
                             <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good nonstick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit ontop.</p>
                         </div>
                     </div>
-                    <div onClick={mealOne_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealOneClickHandler} className='meal_popupBackground' />
                 </div>
             )}
 
             {mealTwo_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={mealTwo_boxClickHandler} />
+                        <CancelIcon onClick={mealTwoClickHandler} />
                         <img alt='' src={OmeletteImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
@@ -282,14 +291,14 @@ function Main_page(props) {
                             <p>Beat the eggs together in a bowl with salt, pepper, cumin and garlic powder untill all ingredients are combined. Then mix in the vegtables, ham and mozzarella. before pouring into a preheated nonstick pan with no oil on medium heat.</p>
                         </div>
                     </div>
-                    <div onClick={mealTwo_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealTwoClickHandler} className='meal_popupBackground' />
                 </div>
             )}
 
             {mealThree_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={mealThree_boxClickHandler} />
+                        <CancelIcon onClick={mealThreeClickHandler} />
                         <img alt='' src={WrapImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
@@ -298,14 +307,14 @@ function Main_page(props) {
                             <p>Fill the wraps with a base layer lettuce and vegtables. Then place the chicken breast ontop and drizzle with franks red hot sauce and pepper before assembling the wrap.</p>
                         </div>
                     </div>
-                    <div onClick={mealThree_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealThreeClickHandler} className='meal_popupBackground' />
                 </div>
             )}
 
             {mealFour_box && (
                 <div className='meal_popup'>
                     <div className='meal_popupElement'>
-                        <CancelIcon onClick={mealFour_boxClickHandler} />
+                        <CancelIcon onClick={mealFourClickHandler} />
                         <img alt='' src={SpagettiImage} />
                         <div className='text_scroll'>
                             <h2>Ingredients:</h2>
@@ -314,10 +323,81 @@ function Main_page(props) {
                             <p>Cook the pasta in pan full of boiling water till cooked through. Add mince meat to non stick pan with no oil on a high-medium heat, once the mince is almost cooked through add the vegtables of your choice (onion, garlic, peppers and mushrooms are recomended). Once the vegtable are cooked add the passata, stock cube, salt, pepper and mixed herbs. Add the pasta to the sauce and serve.</p>
                         </div>
                     </div>
-                    <div onClick={mealFour_boxClickHandler} className='meal_popupBackground' />
+                    <div onClick={mealFourClickHandler} className='meal_popupBackground' />
                 </div>
             )}
 
+            {Goal_box && (
+                <div className='meal_popup'>
+                    <div className='status_popupElement'>
+                        <CancelIcon onClick={GoalClickHandler} />
+                        <div className='Goal_colour'>
+                            {healthData.goal === 'Gain' && <img alt='' src={Gainimg} />}
+                            {healthData.goal === 'Recomp' && <img alt='' src={Recompimg} />}
+                            {healthData.goal === 'Lose' && <img alt='' src={Loseimg} />}
+                        </div>.
+                        <div className='text_scroll'>
+                            <h2>Goal: {healthData.goal}</h2>
+                        </div>
+                    </div>
+                    <div onClick={GoalClickHandler} className='meal_popupBackground' />
+                </div>
+            )}
+
+            {BMI_box && (
+                <div className='meal_popup'>
+                    <div className='status_popupElement'>
+                        <CancelIcon onClick={BMIClickHandler} />
+                        <div className='BMI_colour'>
+                            {BMI < 18.5 && <img alt='' src={Underweight} />}
+
+                            {BMI > 18.5 && BMI < 25 && <img alt='' src={Normal} />}
+
+                            {BMI >= 25 && BMI < 30 && <img alt='' src={Overweight} />}
+
+                            {BMI > 30 && BMI < 35 && <img alt='' src={Obese} />}
+
+                            {BMI > 35 && <img alt='' src={Extreamly} />}
+                        </div>
+                        <div className='text_scroll'>
+                            <h2>BMI: {BMI}</h2>
+                        </div>
+                    </div>
+                    <div onClick={BMIClickHandler} className='meal_popupBackground' />
+                </div>
+            )}
+
+            {Cals_box && (
+                <div className='meal_popup'>
+                    <div className='status_popupElement'>
+                        <CancelIcon onClick={CalsClickHandler} />
+                        <div className='Cals_colour'>
+                            {healthData.goal === 'Gain' && <img alt='' src={Surplus} />}
+                            {healthData.goal === 'Recomp' && <img alt='' src={Maintain} />}
+                            {healthData.goal === 'Lose' && <img alt='' src={Deficit} />}
+                        </div>
+                        <div className='text_scroll'>
+                            <h2>Calories:</h2>
+                        </div>
+                    </div>
+                    <div onClick={CalsClickHandler} className='meal_popupBackground' />
+                </div>
+            )}
+
+            {Weight_box && (
+                <div className='meal_popup'>
+                    <div className='status_popupElement'>
+                        <CancelIcon onClick={WeightClickHandler} />
+                        <div className='Weight_colour'>
+                            <img alt='' src={Scale} />
+                        </div>
+                        <div className='text_scroll'>
+                            <h2>Weight: {healthData.weight}{healthData.units}</h2>
+                        </div>
+                    </div>
+                    <div onClick={WeightClickHandler} className='meal_popupBackground' />
+                </div>
+            )}
 
             <div onClick={mealOneClickHandler} className='meal_container'>
                 <img alt='' src={PancakeImage} />
