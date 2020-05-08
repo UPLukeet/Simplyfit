@@ -54,25 +54,17 @@ function Main_page(props) {
 
     const [scroll, scrollSet] = useState(false);
 
-
-    //ingredients
-
-
     // pulls user data from firebase
     useEffect(() => {
 
         const user = Authentication.auth().currentUser;
         {
             user !== null &&
-                Authentication.firestore().collection('Health_data')
-                    .doc(user.uid)
-                    .get()
-                    .then(doc => {
+                database.collection('Health_data').doc(user.uid)
+                    .onSnapshot(function(doc) {
                         healthDataSet(doc.data())
                         setLoading(false)
-                    }).catch(function (error) {
-                        console.error("Error reading health", error);
-                    });
+                    })
         }
         return () => {
             document.body.style.overflow = 'unset';
@@ -170,9 +162,6 @@ function Main_page(props) {
     } else {
         document.body.style.overflow = 'unset';
     }
-
-
-    // console.log(healthData)
 
     //updates goal
     const handleChangeGoal = (event) => {
