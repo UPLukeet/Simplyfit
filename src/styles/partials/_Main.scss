@@ -278,12 +278,7 @@
     height: 90%;
     margin: auto;
   }
-  .imagebox{
-    display: flex;
-    width: 100%;
-    height: 30%;
-    object-position: 0% 0%;
-  }
+
   .Goal_colour{
     background: #7ccb19;
     display: flex;
@@ -334,4 +329,18 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.material_main_spacing{
+  padding-bottom: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mainButtons{
+  display: flex;
+  float: right;
+  margin-top: 1rem;
+  padding-bottom: 1rem;;
+  padding-right: 1rem;
 }
