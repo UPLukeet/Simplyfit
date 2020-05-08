@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { database } from './firebase'
 
 import Radio from '@material-ui/core/Radio';
@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import CancelIcon from '@material-ui/icons/Cancel';
+import HelpIcon from '@material-ui/icons/Help';
 
 function Setup_page(props) {
 
@@ -22,6 +24,17 @@ function Setup_page(props) {
     const [Height, HeightSet] = useState('')
     const [Age, AgeSet] = useState('')
     const [weightUnits, weightUnitsSet] = useState('')
+    const [Goal_box, Goal_boxSet] = useState(false);
+    const [scroll, scrollSet] = useState(false);
+
+
+    useEffect(() => {
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+
+    }, []);
 
     //handles switch funtion of unit switching
     const metericClickHandler = () => {
@@ -39,6 +52,11 @@ function Setup_page(props) {
         weightUnitsSet('lbs');
     };
 
+    if (scroll) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'unset';
+    }
 
     //writes users information to database if all input fields are filled and if not alerts user
     const calculate_bmi = () => {
@@ -59,8 +77,14 @@ function Setup_page(props) {
         } else {
             alert('Please fill in all fields so we can get you started on your fitness journey!')
         }
-        
+
     }
+
+
+    const GoalClickHandler = (event) => {
+        Goal_boxSet(!Goal_box);
+        scrollSet(!scroll)
+    };
 
 
     //gets input from fiels
@@ -99,7 +123,7 @@ function Setup_page(props) {
                 <FormControl component="fieldset" className='material_input'>
                     <FormLabel component="legend">Input the units for Height/Weight:</FormLabel>
                     <RadioGroup aria-label="units">
-                        <FormControlLabel value='Meteric(Kg/Cm)' onClick={metericClickHandler} control={<Radio />} label='Meteric(Kg/Cm)' />
+                        <FormControlLabel value='Meteric(Kg/Cm)' onClick={metericClickHandler} control={<Radio />} label='Metric(Kg/Cm)' />
                         <FormControlLabel value='Imperial(lbs/ft)' onClick={imperialClickHandler} control={<Radio />} label='Imperial(lbs/ft)' />
                     </RadioGroup>
                 </FormControl>
@@ -116,7 +140,7 @@ function Setup_page(props) {
                 </FormControl>
             </div >
 
-            <div className='material_input_spacing'>
+            <div className='material_goal_input_spacing'>
                 <FormControl className='material_input'>
                     <InputLabel htmlFor="age-native-simple">Goal</InputLabel>
                     <Select native name='Gender' value={Goal} onChange={handleChangeGoal.bind(this)}>
@@ -126,11 +150,36 @@ function Setup_page(props) {
                         <option value="Gain">Gain muscle</option>
                     </Select>
                 </FormControl>
+               <HelpIcon id='helpicon' onClick={GoalClickHandler}/>
             </div>
 
             <div className='material_input_spacing'>
                 <TextField className='material_input' value={Weight} onChange={handleChangeWeight.bind(this)} type='number' label={'Weight(' + weightUnits + ')'} id="standard-basic" />
             </div>
+
+
+
+            {Goal_box && (
+                <div className='meal_popup'>
+                    <div className='status_popupElement'>
+                        <CancelIcon onClick={GoalClickHandler} />
+                        <div className='Goal_colour'>
+                            <h1>Goals</h1>
+                        </div>
+                        <div className='text_scroll'>
+                            <h2>Gain:</h2>
+                            <p>Gain as much muscle mass as possible, eating in a calorie surplus and likely gaining fat as well.</p>
+                            <h2>Recomp</h2>
+                            <p>Staying at the same body weight while losing fast and gaining muscle mass.</p>
+                            <h2>Lose</h2>
+                            <p>losing body fat to get significantly leaner, while trying to maintain as much lean tissue as possible.</p>
+                        </div>
+                    </div>
+                    <div onClick={GoalClickHandler} className='meal_popupBackground' />
+                </div>
+            )}
+
+
 
             <div className='material_input_spacing'>
 
