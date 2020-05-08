@@ -177,6 +177,8 @@ function Main_page(props) {
                 alert(error.message)
                 console.log('failed to write', error);
             });
+            Goal_boxSet(!Goal_box);
+            scrollSet(!scroll)
         } else {
             alert('A goal must be selected')
         }
@@ -196,6 +198,8 @@ function Main_page(props) {
                 alert(error.message)
                 console.log('failed to write', error);
             });
+            Weight_boxSet(!Weight_box);
+            scrollSet(!scroll)
         } else {
             alert('A weight must be in put')
         }
