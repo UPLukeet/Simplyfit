@@ -61,7 +61,7 @@ function Main_page(props) {
         {
             user !== null &&
                 database.collection('Health_data').doc(user.uid)
-                    .onSnapshot(function(doc) {
+                    .onSnapshot(function (doc) {
                         healthDataSet(doc.data())
                         setLoading(false)
                     })
@@ -206,7 +206,7 @@ function Main_page(props) {
     }
 
 
- 
+
 
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {
@@ -309,20 +309,20 @@ function Main_page(props) {
             <div className='main_divider' />
 
             {mealOne_box && (
-                <div className='meal_popup'>
-                    <div className='meal_popupElement'>
-                        <CancelIcon onClick={mealOneClickHandler} />
-                        <img alt='' src={PancakeImage} />
-                        <div className='text_scroll'>
-                            <h2>Ingredients:</h2>
-                            <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
-                            <p>High protein and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protein).</p>
-                            <h2>Method:</h2>
-                            <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good non-stick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit on-top.</p>
+                    <div className='meal_popup'>
+                        <div className='meal_popupElement'>
+                            <CancelIcon onClick={mealOneClickHandler} />
+                            <img alt='' src={PancakeImage} />
+                            <div className='text_scroll'>
+                                <h2>Ingredients:</h2>
+                                <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
+                                <p>High protein and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protein).</p>
+                                <h2>Method:</h2>
+                                <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good non-stick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit on-top.</p>
+                            </div>
                         </div>
+                        <div onClick={mealOneClickHandler} className='meal_popupBackground' />
                     </div>
-                    <div onClick={mealOneClickHandler} className='meal_popupBackground' />
-                </div>
             )}
 
             {mealTwo_box && (

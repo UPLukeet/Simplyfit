@@ -1,7 +1,10 @@
-
 .main_settings {
-text-align: center;
-}
-.main_settings{
+    text-align: center;
     margin-top: 0.5rem;
+    p {
+        font-family: "Open Sans", sans-serif;
+    }
+    button {
+        font-family: "Open Sans", sans-serif;
+    }
 }

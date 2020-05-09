@@ -20,95 +20,12 @@ import { GlobalProvider } from './context/GlobalState';
 
 export class App extends Component {
 
-  //initiates user state
-  /* constructor(props) {
-     super(props);
-     this.state = {
-       user: {},
-       user_data: (JSON.parse(localStorage.getItem('user_data')))
-     }
-     this.authListener = this.authListener.bind(this);
-   }*/
-
-
-
 
   //sets state of sidedraw
   state = {
     sideDrawerOpen: false,
   };
 
-  //onload runs funtion to check for authenication from firebase
-  /* componentDidMount() {
-     this.authListener();
-   }
- 
-   //checks firebase for authentication
-   authListener() {
-     Authentication.auth().onAuthStateChanged((user) => {
-       console.log(user);
-       if (user) {
-         this.setState({ user });
-         localStorage.setItem('user', user.uid);
-         this.pulldata_Health();
-         this.pulldata_Meals();
-         this.pulldata_Ingredients();
-       } else {
-         this.setState({ user: null })
-         localStorage.removeItem('user');
-         localStorage.removeItem('user_data')
-       }
-     });
-   }
- 
-   //connects to database and stores data to local storage
-   pulldata_Health() {
-     database.collection('Health_data')
-       .doc(localStorage.getItem('user'))
-       .get()
-       .then(doc => {
-         const data = doc.data();
-         localStorage.setItem('user_data', JSON.stringify(data));
-         console.log(JSON.parse(localStorage.getItem('user_data')))
-       }).catch(function (error) {
-         console.error("Error reading health", error);
-       });
- 
-   }
- 
-   pulldata_Meals() {
-     database.collection('Meals')
-       .doc()
-       .get()
-       .then(doc => {
-         const data = doc.data();
-         this.meals = data;
-         //console.log(data);
-       })
-       .then(function () {
-         //console.log('pulled meal data')
-       })
-       .catch(function (error) {
-         console.error("Error reading meals", error);
-       });
-   }
- 
-   pulldata_Ingredients() {
-     database.collection('Ingredients')
-       .doc()
-       .get()
-       .then(doc => {
-         const data = doc.data();
-         this.ingredients = data;
-         //console.log(this.ingredients);
-       })
-       .then(function () {
-         //console.log('pulled ingredient data')
-       })
-       .catch(function (error) {
-         console.error("Error reading ingredients", error);
-       });
-   }*/
 
   //sets state of side draw to oposite on click
   drawerToggleClickHandler = () => {
