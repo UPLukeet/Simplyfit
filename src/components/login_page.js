@@ -105,17 +105,17 @@ function Login_page(props) {
         login_passwordSet(event.target.value)
     };
 
-        //handles switch funtion of unit switching
-        const LoginClickHandler = () => {
-            LoginSet(true);
-            SignupSet(false);
-        };
-    
-        //checks what units are picked and renders out different items depeding on state
-        const SignupClickHandler = () => {
-            LoginSet(false);
-            SignupSet(true);
-        };
+    //handles switch funtion of unit switching
+    const LoginClickHandler = () => {
+        LoginSet(true);
+        SignupSet(false);
+    };
+
+    //checks what units are picked and renders out different items depeding on state
+    const SignupClickHandler = () => {
+        LoginSet(false);
+        SignupSet(true);
+    };
 
 
     return (
@@ -136,16 +136,15 @@ function Login_page(props) {
                                 <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
                             </div>
                         </div>
-                        <p onClick={SignupClickHandler} className='login_text'>Don't have an account? click here to sign up.</p>
                     </form>
-
-                   
-                    <div className='divider' />
-
-
 
                     <div className='signin_buttons'>
                         <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
+                    </div>
+                    <p className='login_text'>Don't have an account?</p>
+                    <div className='divider' />
+                    <div className='signin_buttons_secondary'>
+                        <Button onClick={SignupClickHandler} size="large" variant="contained">Create an account</Button>
                     </div>
                 </div>
             )}
@@ -166,16 +165,15 @@ function Login_page(props) {
                                 <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
                             </div>
                         </div>
-                        <p onClick={LoginClickHandler} className='login_text'>Already have an account? click here to sign in.</p>
                     </form>
-
-                   
-                    <div className='divider' />
-
-
 
                     <div className='signin_buttons'>
                         <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
+                    </div>
+                    <p className='login_text'>Already have an account?</p>
+                    <div className='divider' />
+                    <div className='signin_buttons_secondary'>
+                        <Button onClick={LoginClickHandler} size="large" variant="contained">Sign in</Button>
                     </div>
                 </div>
             )}

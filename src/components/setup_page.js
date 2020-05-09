@@ -123,7 +123,7 @@ function Setup_page(props) {
                 <FormControl component="fieldset" className='material_input'>
                     <FormLabel component="legend">Input the units for Height/Weight:</FormLabel>
                     <RadioGroup aria-label="units">
-                        <FormControlLabel value='Meteric(Kg/Cm)' onClick={metericClickHandler} control={<Radio />} label='Metric(Kg/Cm)' />
+                        <FormControlLabel value='Metric(Kg/Cm)' onClick={metericClickHandler} control={<Radio />} label='Metric(Kg/Cm)' />
                         <FormControlLabel value='Imperial(lbs/ft)' onClick={imperialClickHandler} control={<Radio />} label='Imperial(lbs/ft)' />
                     </RadioGroup>
                 </FormControl>
