@@ -46,10 +46,9 @@
     margin-left: 0.3rem;
     margin-top: 0.1rem;
     margin-right: 0.1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 }
-
 
 .CalsDiv {
   display: flex;
@@ -77,10 +76,9 @@
     margin-left: 0.3rem;
     margin-top: 0.1rem;
     margin-right: 0.1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 }
-
 
 .WeightDiv {
   display: flex;
@@ -99,7 +97,6 @@
     margin: auto;
     height: 50%;
   }
-  
 
   p {
     font-size: smaller;
@@ -109,10 +106,9 @@
     margin-left: 0.3rem;
     margin-top: 0.1rem;
     margin-right: 0.1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 }
-
 
 .Goaldiv {
   display: flex;
@@ -139,10 +135,9 @@
     margin-left: 0.2rem;
     margin-top: 0.1rem;
     margin-right: 0.1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 }
-
 
 .meal_container {
   position: relative;
@@ -165,14 +160,13 @@
     background: white;
     height: 3rem;
     width: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
 
   img {
     width: 100%;
   }
 }
-
 
 .meal_popup {
   position: fixed;
@@ -182,8 +176,14 @@
   width: 100%;
   height: 100%;
   z-index: 30;
+  transition: opacity .25s ease-in-out;
+  opacity: 1;
 }
 
+.meal_popup.hidden{
+  visibility: hidden;
+  opacity: 0;
+}
 
 .meal_popupBackground {
   position: relative;
@@ -194,7 +194,7 @@
 }
 
 .meal_popupElement {
-  position: absolute;
+  position: fixed;
   margin: auto;
   margin-top: 6%;
   width: 95%;
@@ -212,7 +212,7 @@
   h2 {
     padding-left: 1rem;
     padding-right: 1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
   p {
     margin-top: 0;
@@ -236,7 +236,9 @@
     object-fit: cover;
     object-position: 0% 0%;
   }
+
 }
+
 
 .status_popupElement {
   position: absolute;
@@ -256,7 +258,7 @@
   h2 {
     padding-left: 1rem;
     padding-right: 1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
   p {
     margin-top: 0;
@@ -279,42 +281,43 @@
     margin: auto;
   }
 
-  .Goal_colour{
+  .Goal_colour {
     background: #7ccb19;
     display: flex;
     width: 100%;
     height: 30%;
     object-position: 0% 0%;
-    h1{
+    h1 {
       display: flex;
       margin: auto;
-      font-family: 'Open Sans', sans-serif;
+      font-family: "Open Sans", sans-serif;
       font-size: 50px;
     }
   }
-  .BMI_colour{
+  .BMI_colour {
     background: #6632cd;
     display: flex;
     width: 100%;
     height: 30%;
     object-position: 0% 0%;
   }
-  .Cals_colour{
+  .Cals_colour {
     background: #00b7e4;
     display: flex;
     width: 100%;
     height: 30%;
     object-position: 0% 0%;
   }
-  .Weight_colour{
+  .Weight_colour {
     background: #d2691e;
     display: flex;
     width: 100%;
     height: 30%;
     object-position: 0% 0%;
   }
-
 }
+
+
 
 .text_scroll {
   display: flex;
@@ -337,20 +340,20 @@
   user-select: none;
 }
 
-.material_main_spacing{
+.material_main_spacing {
   padding-bottom: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  width: 90%
+  width: 90%;
 }
 
-.mainButtons{
+.mainButtons {
   display: flex;
   float: right;
   margin-top: 1rem;
-  padding-bottom: 1rem;;
+  padding-bottom: 1rem;
   padding-right: 1rem;
-  button{
+  button {
     font-family: "Open Sans", sans-serif;
   }
 }

@@ -53,6 +53,7 @@ function Main_page(props) {
     const [Weight, WeightSet] = useState(null)
 
     const [scroll, scrollSet] = useState(false);
+    const [box_transition, setbox_transition] = useState(false);
 
     // pulls user data from firebase
     useEffect(() => {
@@ -68,7 +69,9 @@ function Main_page(props) {
         }
         return () => {
             document.body.style.overflow = 'unset';
+
         }
+
 
     }, []);
 
@@ -212,30 +215,35 @@ function Main_page(props) {
     const mealOneClickHandler = (event) => {
         mealOne_boxSet(!mealOne_box);
         scrollSet(!scroll)
-    };
+        setbox_transition(!box_transition)
+    }
 
     //handles clicks for meal two
     const mealTwoClickHandler = (event) => {
         mealTwo_boxSet(!mealTwo_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
     //handles clicks for meal three
     const mealThreeClickHandler = (event) => {
         mealThree_boxSet(!mealThree_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
     //handles clicks for meal Four
     const mealFourClickHandler = (event) => {
         mealFour_boxSet(!mealFour_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
     //handles clicks for Goal box
     const GoalClickHandler = (event) => {
         Goal_boxSet(!Goal_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
 
@@ -243,6 +251,7 @@ function Main_page(props) {
     const BMIClickHandler = (event) => {
         BMI_boxSet(!BMI_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
 
@@ -250,6 +259,7 @@ function Main_page(props) {
     const CalsClickHandler = (event) => {
         Cals_boxSet(!Cals_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
 
@@ -257,6 +267,7 @@ function Main_page(props) {
     const WeightClickHandler = (event) => {
         Weight_boxSet(!Weight_box);
         scrollSet(!scroll)
+        setbox_transition(!box_transition)
     };
 
 
@@ -308,25 +319,24 @@ function Main_page(props) {
 
             <div className='main_divider' />
 
-            {mealOne_box && (
-                    <div className='meal_popup'>
-                        <div className='meal_popupElement'>
-                            <CancelIcon onClick={mealOneClickHandler} />
-                            <img alt='' src={PancakeImage} />
-                            <div className='text_scroll'>
-                                <h2>Ingredients:</h2>
-                                <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
-                                <p>High protein and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protein).</p>
-                                <h2>Method:</h2>
-                                <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good non-stick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit on-top.</p>
-                            </div>
-                        </div>
-                        <div onClick={mealOneClickHandler} className='meal_popupBackground' />
-                    </div>
-            )}
 
-            {mealTwo_box && (
-                <div className='meal_popup'>
+                <div className= {mealOne_box ? 'meal_popup': 'meal_popup hidden'}>
+                    <div className='meal_popupElement'>
+                        <CancelIcon onClick={mealOneClickHandler} />
+                        <img alt='' src={PancakeImage} />
+                        <div className='text_scroll'>
+                            <h2>Ingredients:</h2>
+                            <p>{Math.round((mealOneCals * 0.45) / 3.64)}g of flour, 1.5 teaspoons of baking powder, {Math.round((mealOneCals * 0.2) / 3.68)}g of cocoa powder, water, calorie free sweetener,  {Math.round((mealOneCals * 0.05) / 0.67)}g of mixed berries  and {Math.round(((mealOneCals * 0.3) / 1.55) / 44)} medium eggs.</p>
+                            <p>High protein and low calorie dense option: use  {Math.round((mealOneCals * 0.55) / 3.64)}g of flour and {Math.round((mealOneCals * 0.2) / 0.45)}ml of egg white instead(this is less calorie dense so you get more food for the same amount of calories along with it being much higher in protein).</p>
+                            <h2>Method:</h2>
+                            <p>Combine the flour, egg, baking powder, cocoa together in a bowl to make a thick batter(add sweetener to taste). Then add as much water required to give the batter a pourable consistency. Pre heat a good non-stick pan on medium heat with no oil, once up to heat pour in your batter and flip once ready. Once all pancakes are made serve with fruit on-top.</p>
+                        </div>
+                    </div>
+                    <div onClick={mealOneClickHandler} className='meal_popupBackground' />
+                </div>
+
+
+                <div className= {mealTwo_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealTwoClickHandler} />
                         <img alt='' src={OmeletteImage} />
@@ -339,10 +349,9 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealTwoClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {mealThree_box && (
-                <div className='meal_popup'>
+    
+                <div className= {mealThree_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealThreeClickHandler} />
                         <img alt='' src={WrapImage} />
@@ -355,10 +364,8 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealThreeClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {mealFour_box && (
-                <div className='meal_popup'>
+                <div className= {mealFour_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealFourClickHandler} />
                         <img alt='' src={SpagettiImage} />
@@ -371,10 +378,9 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealFourClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {Goal_box && (
-                <div className='meal_popup'>
+
+                <div className={Goal_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={GoalClickHandler} />
                         <div className='Goal_colour'>
@@ -408,10 +414,8 @@ function Main_page(props) {
                     </div>
                     <div onClick={GoalClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {BMI_box && (
-                <div className='meal_popup'>
+                <div className={BMI_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={BMIClickHandler} />
                         <div className='BMI_colour'>
@@ -441,10 +445,8 @@ function Main_page(props) {
                     </div>
                     <div onClick={BMIClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {Cals_box && (
-                <div className='meal_popup'>
+                <div className={Cals_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={CalsClickHandler} />
                         <div className='Cals_colour'>
@@ -470,10 +472,8 @@ function Main_page(props) {
                     </div>
                     <div onClick={CalsClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
-            {Weight_box && (
-                <div className='meal_popup'>
+                <div className={Weight_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={WeightClickHandler} />
                         <div className='Weight_colour'>
@@ -491,7 +491,6 @@ function Main_page(props) {
                     </div>
                     <div onClick={WeightClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
             <div onClick={mealOneClickHandler} className='meal_container'>
                 <img alt='' src={PancakeImage} />

@@ -158,9 +158,7 @@ function Setup_page(props) {
             </div>
 
 
-
-            {Goal_box && (
-                <div className='meal_popup'>
+                <div className={Goal_box ? 'meal_popup': 'meal_popup hidden'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={GoalClickHandler} />
                         <div className='Goal_colour'>
@@ -177,7 +175,6 @@ function Setup_page(props) {
                     </div>
                     <div onClick={GoalClickHandler} className='meal_popupBackground' />
                 </div>
-            )}
 
 
 
