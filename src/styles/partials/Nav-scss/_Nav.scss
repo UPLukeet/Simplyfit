@@ -3,7 +3,7 @@
 .toolbar {
     position: fixed;
     top: 0;
-    width:100%;
+    width: 100%;
     background: #f7be10;
     height: 56px;
     z-index: 50;
@@ -18,15 +18,16 @@
 
 .toolbar_logo {
     margin-left: 1rem;
+    li {
+        font-family: "Open Sans", sans-serif;
+    }
 }
 
-
-
 .toolbar_logo li {
-     color: black;
-     text-decoration: none;
-     font-size: 1.5rem;
-     list-style-type: none;
+    color: black;
+    text-decoration: none;
+    font-size: 1.5rem;
+    list-style-type: none;
 }
 
 .spacer {
@@ -37,17 +38,14 @@
     visibility: hidden;
 }
 
-
-@media only screen and (min-width: 640px)  {
-
-    .nav-drawer-button{
-       visibility: hidden;
+@media only screen and (min-width: 640px) {
+    .nav-drawer-button {
+        visibility: hidden;
     }
 
     .toolbar_nav-items {
         visibility: visible;
     }
-
 
     .toolbar_nav-items ul {
         list-style: none;
@@ -55,20 +53,19 @@
         padding: 0;
         display: flex;
     }
-    
+
     .toolbar_nav-items li {
         padding: 0 0.5rem;
         background-size: 40px;
     }
-    
+
     .toolbar_nav-items a {
         color: white;
         text-decoration: none;
     }
-    
+
     .toolbar_nav-items a:hover,
-    .toolbar_nav-items a:active{
+    .toolbar_nav-items a:active {
         color: orange;
     }
-
 }

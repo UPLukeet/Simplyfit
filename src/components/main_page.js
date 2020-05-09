@@ -387,7 +387,7 @@ function Main_page(props) {
                             <div className='material_main_spacing'>
                                 <FormControl className='material_input'>
                                     <InputLabel htmlFor="age-native-simple">Goals</InputLabel>
-                                    <Select native name='Gender' value={Goal} onChange={handleChangeGoal.bind(this)}>
+                                    <Select native name='Goal' value={Goal} onChange={handleChangeGoal.bind(this)}>
                                         <option disabled selected hidden aria-label="None" value="" />
                                         <option value="Recomp">Recomp</option>
                                         <option value="Lose">Lose fat</option>

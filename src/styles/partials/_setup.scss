@@ -10,16 +10,37 @@
 
 .setup_main h1 {
     font-size: 1.2rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .material_input {
     width: 100%;
+    input {
+        font-family: "Open Sans", sans-serif;
+    }
+    select{
+        font-family: "Open Sans", sans-serif;
+        option{
+            font-family: "Open Sans", sans-serif;
+        }
+    }
 }
 
 .material_input_spacing {
     margin-top: 1rem;
     width: 100%;
+    select{
+        font-family: "Open Sans", sans-serif;
+        option{
+            font-family: "Open Sans", sans-serif;
+        }
+    }
+    legend{
+        font-family: "Open Sans", sans-serif
+    }
+    span{
+        font-family: "Open Sans", sans-serif
+    }
 }
 
 .material_goal_input_spacing {
@@ -36,6 +57,9 @@
         margin-left: 0.5rem;
         padding-top: 1rem;
     }
+    input {
+        font-family: "Open Sans", sans-serif;
+    }
 }
 
 .moreInfo {
@@ -44,9 +68,10 @@
 
 .setup_button {
     margin-top: 25%;
-}
-
-.setup_button button {
-    width: 15rem;
-    margin-bottom: 5%;
+    button {
+        width: 15rem;
+        margin-bottom: 5%;
+        font-family: "Open Sans", sans-serif;
+    }
+    
 }
