@@ -54,6 +54,7 @@ function Main_page(props) {
 
     const [scroll, scrollSet] = useState(false);
     const [box_transition, setbox_transition] = useState(false);
+    const [loading_animation, setloading_animation] = useState(false);
 
     // pulls user data from firebase
     useEffect(() => {
@@ -78,7 +79,6 @@ function Main_page(props) {
     //calculates calorie requirments
     useEffect(() => {
         if (!loading && healthData !== null) {
-
 
             if (healthData.units === 'kg') {
                 BMIset(Math.round((healthData.weight / ((healthData.height / 100) * (healthData.height / 100))) * 10) / 10)
@@ -146,6 +146,8 @@ function Main_page(props) {
             }
 
         }
+
+        setloading_animation(!loading_animation);
 
     }, [loading, healthData]);
 
@@ -353,7 +355,7 @@ function Main_page(props) {
 
 
     return loading === false && (
-        <div className='main_Main'>
+        <div className={loading_animation ? 'main_Main fade' : 'main_Main'}>
             <div className='App_margin' />
 
             {healthData.goal === '' && props.history.push('/setup_page')}
