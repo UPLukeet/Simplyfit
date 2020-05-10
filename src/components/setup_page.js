@@ -26,6 +26,7 @@ function Setup_page(props) {
     const [weightUnits, weightUnitsSet] = useState('')
     const [Goal_box, Goal_boxSet] = useState(false);
     const [scroll, scrollSet] = useState(false);
+    const [box_transition, setbox_transition] = useState(false);
 
 
     useEffect(() => {
@@ -81,11 +82,22 @@ function Setup_page(props) {
     }
 
 
-    const GoalClickHandler = (event) => {
-        Goal_boxSet(!Goal_box);
-        scrollSet(!scroll)
-    };
-
+     //handles clicks for Goal box
+     const GoalClickHandler = (event) => {
+        if (Goal_box === false) {
+            Goal_boxSet(!Goal_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                Goal_boxSet(!Goal_box);
+            }, 180);
+        };
+    }
 
     //gets input from fiels
     const handleChangeGender = (event) => {
@@ -150,15 +162,15 @@ function Setup_page(props) {
                         <option value="Gain">Gain muscle</option>
                     </Select>
                 </FormControl>
-               <HelpIcon id='helpicon' onClick={GoalClickHandler}/>
+                <HelpIcon id='helpicon' onClick={GoalClickHandler} />
             </div>
 
             <div className='material_input_spacing'>
                 <TextField className='material_input' value={Weight} onChange={handleChangeWeight.bind(this)} type='number' label={'Weight(' + weightUnits + ')'} id="standard-basic" />
             </div>
 
-
-                <div className={Goal_box ? 'meal_popup': 'meal_popup hidden'}>
+            {Goal_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={GoalClickHandler} />
                         <div className='Goal_colour'>
@@ -175,7 +187,7 @@ function Setup_page(props) {
                     </div>
                     <div onClick={GoalClickHandler} className='meal_popupBackground' />
                 </div>
-
+            )}
 
 
             <div className='material_input_spacing'>
