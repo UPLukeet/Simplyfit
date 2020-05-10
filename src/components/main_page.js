@@ -271,7 +271,7 @@ function Main_page(props) {
     //handles clicks for meal Four
     const mealFourClickHandler = (event) => {
         if (mealFour_box === false) {
-            mealOne_boxSet(!mealFour_box);
+            mealFour_boxSet(!mealFour_box);
             scrollSet(!scroll)
             setTimeout(() => {
                 setbox_transition(!box_transition);
