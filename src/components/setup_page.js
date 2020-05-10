@@ -41,7 +41,7 @@ function Setup_page(props) {
         imp_UnitsSet(false);
         met_UnitsSet(true);
         console.log('Met Clicked')
-        weightUnitsSet('Kg');
+        weightUnitsSet('kg');
     };
 
     //checks what units are picked and renders out different items depeding on state
@@ -117,7 +117,7 @@ function Setup_page(props) {
     return (
         <div className='setup_main'>
             <div className='App_margin' />
-            <h1>Please fill in the fields below to start your fitness journey</h1>
+            <h1>Fill in the fields below to start your fitness journey.</h1>
 
             <div className='material_input_spacing'>
                 <FormControl component="fieldset" className='material_input'>
@@ -166,10 +166,10 @@ function Setup_page(props) {
                         </div>
                         <div className='text_scroll'>
                             <h2>Gain:</h2>
-                            <p>Gain as much muscle mass as possible, eating in a calorie surplus and likely gaining fat as well.</p>
-                            <h2>Recomp</h2>
+                            <p>Gain as much muscle mass as possible, eating in a calorie surplus(likely to gain fat as well).</p>
+                            <h2>Recomp:</h2>
                             <p>Staying at the same body weight while losing fast and gaining muscle mass.</p>
-                            <h2>Lose</h2>
+                            <h2>Lose:</h2>
                             <p>losing body fat to get significantly leaner, while trying to maintain as much lean tissue as possible.</p>
                         </div>
                     </div>
@@ -207,7 +207,7 @@ function Setup_page(props) {
                 )}
 
                 {met_Units && (<FormControl className='material_input'>
-                    <InputLabel htmlFor="age-native-simple">Height(Cm)</InputLabel>
+                    <InputLabel htmlFor="age-native-simple">Height(cm)</InputLabel>
                     <Select native name='Height' value={Height} onChange={handleChangeHeight.bind(this)}>
                         <option disabled selected hidden aria-label="None" value="" />
                         <option value="150">150</option>
