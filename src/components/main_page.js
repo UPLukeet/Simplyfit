@@ -379,7 +379,7 @@ function Main_page(props) {
                     <div className='BMIDiv' onClick={BMIClickHandler}>
                         <p>BMI: {BMI}</p>
 
-                        {BMI < 18.5 && [<p>Underweight</p>, <img alt='' src={Underweight} />]}
+                        {BMI < 18.5 && [<p>Under&shy;weight</p>, <img alt='' src={Underweight} />]}
 
                         {BMI > 18.5 && BMI < 25 && [<p>Normal</p>, <img alt='' src={Normal} />]}
 

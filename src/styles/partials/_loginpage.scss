@@ -8,6 +8,12 @@
     p {
         font-family: "Open Sans", sans-serif;
     }
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.form_box.fade{
+    opacity: 1;
 }
 
 .form_box div {

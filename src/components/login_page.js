@@ -26,7 +26,7 @@ function Login_page(props) {
     const [Login, LoginSet] = useState(true)
     const [Signup, SignupSet] = useState(false)
     const [loading_animation, setloading_animation] = useState(false);
-
+    const [box_transition, setbox_transition] = useState(true);
 
 
     useEffect(() => {
@@ -47,6 +47,7 @@ function Login_page(props) {
     if (currentUser) {
         props.history.push('/')
     }
+
 
 
 
@@ -121,16 +122,18 @@ function Login_page(props) {
 
     //handles switch funtion of unit switching
     const LoginClickHandler = () => {
-        LoginSet(true);
-        SignupSet(false);
+        if(box_transition === false){
+                LoginSet(!Login);
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 50);
+        }else{
+            setbox_transition(!box_transition);
+            setTimeout(() => {
+                LoginSet(!Login);
+            }, 400);
+        }
     };
-
-    //checks what units are picked and renders out different items depeding on state
-    const SignupClickHandler = () => {
-        LoginSet(false);
-        SignupSet(true);
-    };
-
 
     return (
         <div className='login_container'>
@@ -140,8 +143,8 @@ function Login_page(props) {
                 <div className='spacer' />
 
                 {Login && (
-                    <div>
-                        <form className='form_box'>
+                    <div  className={box_transition ? 'form_box fade':'form_box'}>
+                        <form>
                             <div>
                                 <p>Login:</p>
                                 <div className="form_input">
@@ -159,15 +162,15 @@ function Login_page(props) {
                         <p className='login_text'>Don't have an account?</p>
                         <div className='divider' />
                         <div className='signin_buttons_secondary'>
-                            <Button onClick={SignupClickHandler} size="large" variant="contained">Create an account</Button>
+                            <Button onClick={LoginClickHandler} size="large" variant="contained">Create an account</Button>
                         </div>
                     </div>
                 )}
 
 
-                {Signup && (
-                    <div>
-                        <form className='form_box'>
+                {!Login && (
+                    <div  className={!box_transition ? 'form_box fade':'form_box'}>
+                        <form>
                             <div>
                                 <p>Sign up:</p>
                                 <div className="form_input">
