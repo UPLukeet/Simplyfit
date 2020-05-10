@@ -173,10 +173,6 @@ function Main_page(props) {
         document.body.style.overflow = 'unset';
     }
 
-const loading_trans = () =>{
-
-
-}
 
     //updates goal
     const handleChangeGoal = (event) => {
@@ -192,8 +188,7 @@ const loading_trans = () =>{
                 alert(error.message)
                 console.log('failed to write', error);
             });
-            Goal_boxSet(!Goal_box);
-            scrollSet(!scroll)
+            GoalClickHandler()
         } else {
             alert('A goal must be selected.')
         }
@@ -213,8 +208,7 @@ const loading_trans = () =>{
                 alert(error.message)
                 console.log('failed to write', error);
             });
-            Weight_boxSet(!Weight_box);
-            scrollSet(!scroll)
+            WeightClickHandler()
         } else {
             alert('A weight must be input.')
         }
