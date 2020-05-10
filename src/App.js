@@ -6,7 +6,7 @@ import PrivateRoute from './PrivateRoute';
 
 import Main_page from './components/main_page';
 import setup_page from './components/setup_page';
-import settings_page from './components/settings_page';
+import Settings_page from './components/settings_page';
 import Nav from './components/Navigation/Nav';
 import SideDrawer from './components/Navigation/SideDrawer';
 import Backdrop from './components/Navigation/Backdrop';
@@ -53,7 +53,7 @@ export class App extends Component {
                 <Nav drawerClickHandler={this.drawerToggleClickHandler} />
                 <SideDrawer sidedrawerClickHandler={this.sidedrawerToggleClickHandler} show={this.state.sideDrawerOpen} />
                 {backdrop}
-                <PrivateRoute path='/settings_page' component={settings_page} />
+                <PrivateRoute path='/settings_page' component={Settings_page} />
                 <PrivateRoute path='/setup_page' component={setup_page} />
                 <PrivateRoute path='/' component={Main_page} exact />
                 < Route path='/login_page' component={Login_page} />

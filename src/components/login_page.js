@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Authentication } from './firebase';
 import { database } from './firebase';
 import Button from '@material-ui/core/Button';
@@ -25,8 +25,22 @@ function Login_page(props) {
     const [signup_password2, signup_password2Set] = useState('')
     const [Login, LoginSet] = useState(true)
     const [Signup, SignupSet] = useState(false)
+    const [loading_animation, setloading_animation] = useState(false);
 
 
+
+    useEffect(() => {
+        if (loading_animation === false) {
+            setTimeout(() => {
+                setloading_animation(!loading_animation);
+                console.log('play animation')
+            }, 100);
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        }
+
+    }, []);
 
     const { currentUser } = useContext(AuthContext);
 
@@ -121,63 +135,64 @@ function Login_page(props) {
     return (
         <div className='login_container'>
             <Login_bar />
-            <div className='App_margin' />
-            <div className='spacer' />
+            <div className={loading_animation ? 'loading_transition fade' : 'loading_transition'}>
+                <div className='App_margin' />
+                <div className='spacer' />
 
-            {Login && (
-                <div>
-                    <form className='form_box'>
-                        <div>
-                            <p>Login:</p>
-                            <div className="form_input">
-                                <TextField label='Email adress' id="standard-basic" value={login_email} onChange={handleChanglogin_email.bind(this)} type="email" name="login_email" aria-describedby="emailHelp" />
+                {Login && (
+                    <div>
+                        <form className='form_box'>
+                            <div>
+                                <p>Login:</p>
+                                <div className="form_input">
+                                    <TextField label='Email adress' id="standard-basic" value={login_email} onChange={handleChanglogin_email.bind(this)} type="email" name="login_email" aria-describedby="emailHelp" />
+                                </div>
+                                <div className="form_input">
+                                    <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
+                                </div>
                             </div>
-                            <div className="form_input">
-                                <TextField label='Password' id="standard-basic" value={login_password} onChange={handleChanglogin_password.bind(this)} type="password" name="login_password" />
-                            </div>
+                        </form>
+
+                        <div className='signin_buttons'>
+                            <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
                         </div>
-                    </form>
-
-                    <div className='signin_buttons'>
-                        <Button onClick={login} size="large" color="primary" variant="contained">Login</Button>
-                    </div>
-                    <p className='login_text'>Don't have an account?</p>
-                    <div className='divider' />
-                    <div className='signin_buttons_secondary'>
-                        <Button onClick={SignupClickHandler} size="large" variant="contained">Create an account</Button>
-                    </div>
-                </div>
-            )}
-
-
-            {Signup && (
-                <div>
-                    <form className='form_box'>
-                        <div>
-                            <p>Sign up:</p>
-                            <div className="form_input">
-                                <TextField label='Email adress' id="standard-basic" value={signup_email} onChange={handleChangsignup_email.bind(this)} type="email" name="signin_email" aria-describedby="emailHelp" />
-                            </div>
-                            <div className="form_input">
-                                <TextField label='Password' id="standard-basic" value={signup_password} onChange={handleChangsignup_password.bind(this)} type="password" name="signin_password" />
-                            </div>
-                            <div className="form_input">
-                                <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
-                            </div>
+                        <p className='login_text'>Don't have an account?</p>
+                        <div className='divider' />
+                        <div className='signin_buttons_secondary'>
+                            <Button onClick={SignupClickHandler} size="large" variant="contained">Create an account</Button>
                         </div>
-                    </form>
-
-                    <div className='signin_buttons'>
-                        <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
                     </div>
-                    <p className='login_text'>Already have an account?</p>
-                    <div className='divider' />
-                    <div className='signin_buttons_secondary'>
-                        <Button onClick={LoginClickHandler} size="large" variant="contained">Sign in</Button>
-                    </div>
-                </div>
-            )}
+                )}
 
+
+                {Signup && (
+                    <div>
+                        <form className='form_box'>
+                            <div>
+                                <p>Sign up:</p>
+                                <div className="form_input">
+                                    <TextField label='Email adress' id="standard-basic" value={signup_email} onChange={handleChangsignup_email.bind(this)} type="email" name="signin_email" aria-describedby="emailHelp" />
+                                </div>
+                                <div className="form_input">
+                                    <TextField label='Password' id="standard-basic" value={signup_password} onChange={handleChangsignup_password.bind(this)} type="password" name="signin_password" />
+                                </div>
+                                <div className="form_input">
+                                    <TextField label='Confirm Password' id="standard-basic" value={signup_password2} onChange={handleChangsignup_password2.bind(this)} type="password" name="signin_password2" />
+                                </div>
+                            </div>
+                        </form>
+
+                        <div className='signin_buttons'>
+                            <Button onClick={signup} size="large" color="primary" variant="contained">Sign up</Button>
+                        </div>
+                        <p className='login_text'>Already have an account?</p>
+                        <div className='divider' />
+                        <div className='signin_buttons_secondary'>
+                            <Button onClick={LoginClickHandler} size="large" variant="contained">Sign in</Button>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

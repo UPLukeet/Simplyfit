@@ -2,17 +2,21 @@
   padding-top: 56px;
 }
 
+.loading_transition{
+  transition: opacity .4s ease-in-out;
+  opacity: 0;
+}
+.loading_transition.fade{
+  opacity: 1;
+}
+
 .main_Main {
   height: 100%;
   width: 100%;
   padding-top: 0.1rem;
-  transition: opacity .25s ease-in-out;
-  opacity: 0;
 }
 
-.main_Main.fade{
-  opacity: 1;
-}
+
 
 .statusbar {
   display: flex;
