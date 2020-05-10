@@ -213,61 +213,141 @@ function Main_page(props) {
 
     //handles clicks for meal one
     const mealOneClickHandler = (event) => {
-        mealOne_boxSet(!mealOne_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (mealOne_box === false) {
+            mealOne_boxSet(!mealOne_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                mealOne_boxSet(!mealOne_box);
+            }, 180);
+        }
     }
 
     //handles clicks for meal two
     const mealTwoClickHandler = (event) => {
-        mealTwo_boxSet(!mealTwo_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (mealTwo_box === false) {
+            mealTwo_boxSet(!mealTwo_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                mealTwo_boxSet(!mealTwo_box);
+            }, 180);
+        }
     };
 
     //handles clicks for meal three
     const mealThreeClickHandler = (event) => {
-        mealThree_boxSet(!mealThree_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (mealThree_box === false) {
+            mealThree_boxSet(!mealThree_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                mealThree_boxSet(!mealThree_box);
+            }, 180);
+        }
     };
 
     //handles clicks for meal Four
     const mealFourClickHandler = (event) => {
-        mealFour_boxSet(!mealFour_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (mealFour_box === false) {
+            mealOne_boxSet(!mealFour_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                mealFour_boxSet(!mealFour_box);
+            }, 180);
+        }
     };
 
     //handles clicks for Goal box
     const GoalClickHandler = (event) => {
-        Goal_boxSet(!Goal_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
-    };
+        if (Goal_box === false) {
+            Goal_boxSet(!Goal_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                Goal_boxSet(!Goal_box);
+            }, 180);
+        };
+    }
 
 
     //handles clicks for BMI box
     const BMIClickHandler = (event) => {
-        BMI_boxSet(!BMI_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (BMI_box === false) {
+            BMI_boxSet(!BMI_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                BMI_boxSet(!BMI_box);
+            }, 180);
+        }
     };
 
 
     //handles clicks for Cals box
     const CalsClickHandler = (event) => {
-        Cals_boxSet(!Cals_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (Cals_box === false) {
+            Cals_boxSet(!Cals_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                Cals_boxSet(!Cals_box);
+            }, 180);
+        }
     };
 
 
     //handles clicks for Weigth box
     const WeightClickHandler = (event) => {
-        Weight_boxSet(!Weight_box);
-        scrollSet(!scroll)
-        setbox_transition(!box_transition)
+        if (Weight_box === false) {
+            Weight_boxSet(!Weight_box);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                setbox_transition(!box_transition);
+            }, 0.1);
+        } else {
+            setbox_transition(!box_transition);
+            scrollSet(!scroll)
+            setTimeout(() => {
+                Weight_boxSet(!Weight_box);
+            }, 180);
+        }
     };
 
 
@@ -319,8 +399,8 @@ function Main_page(props) {
 
             <div className='main_divider' />
 
-
-                <div className= {mealOne_box ? 'meal_popup': 'meal_popup hidden'}>
+            {mealOne_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealOneClickHandler} />
                         <img alt='' src={PancakeImage} />
@@ -334,9 +414,10 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealOneClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-
-                <div className= {mealTwo_box ? 'meal_popup': 'meal_popup hidden'}>
+            {mealTwo_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealTwoClickHandler} />
                         <img alt='' src={OmeletteImage} />
@@ -349,9 +430,10 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealTwoClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-    
-                <div className= {mealThree_box ? 'meal_popup': 'meal_popup hidden'}>
+            {mealThree_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealThreeClickHandler} />
                         <img alt='' src={WrapImage} />
@@ -364,8 +446,10 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealThreeClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-                <div className= {mealFour_box ? 'meal_popup': 'meal_popup hidden'}>
+            {mealFour_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='meal_popupElement'>
                         <CancelIcon onClick={mealFourClickHandler} />
                         <img alt='' src={SpagettiImage} />
@@ -378,9 +462,11 @@ function Main_page(props) {
                     </div>
                     <div onClick={mealFourClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
 
-                <div className={Goal_box ? 'meal_popup': 'meal_popup hidden'}>
+            {Goal_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={GoalClickHandler} />
                         <div className='Goal_colour'>
@@ -414,8 +500,11 @@ function Main_page(props) {
                     </div>
                     <div onClick={GoalClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-                <div className={BMI_box ? 'meal_popup': 'meal_popup hidden'}>
+
+            {BMI_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={BMIClickHandler} />
                         <div className='BMI_colour'>
@@ -445,8 +534,10 @@ function Main_page(props) {
                     </div>
                     <div onClick={BMIClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-                <div className={Cals_box ? 'meal_popup': 'meal_popup hidden'}>
+            {Cals_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={CalsClickHandler} />
                         <div className='Cals_colour'>
@@ -472,8 +563,11 @@ function Main_page(props) {
                     </div>
                     <div onClick={CalsClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
-                <div className={Weight_box ? 'meal_popup': 'meal_popup hidden'}>
+
+            {Weight_box && (
+                <div className={box_transition ? 'meal_popup fade' : 'meal_popup'}>
                     <div className='status_popupElement'>
                         <CancelIcon onClick={WeightClickHandler} />
                         <div className='Weight_colour'>
@@ -491,6 +585,7 @@ function Main_page(props) {
                     </div>
                     <div onClick={WeightClickHandler} className='meal_popupBackground' />
                 </div>
+            )}
 
             <div onClick={mealOneClickHandler} className='meal_container'>
                 <img alt='' src={PancakeImage} />

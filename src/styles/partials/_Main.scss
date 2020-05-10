@@ -177,12 +177,11 @@
   height: 100%;
   z-index: 30;
   transition: opacity .25s ease-in-out;
-  opacity: 1;
+  opacity: 0;
 }
 
-.meal_popup.hidden{
-  visibility: hidden;
-  opacity: 0;
+.meal_popup.fade{
+  opacity: 1;
 }
 
 .meal_popupBackground {
