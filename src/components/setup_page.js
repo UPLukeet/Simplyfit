@@ -62,7 +62,7 @@ function Setup_page(props) {
     const calculate_bmi = () => {
 
         if (Gender !== '' && Age !== '' && Height !== '' && Weight !== '' && Goal !== '' && weightUnits !== '') {
-            database.collection('Health_data').doc(localStorage.getItem('user')).set({
+            database.collection('Health_data').doc(localStorage.getItem('user')).update({
                 gender: Gender,
                 age: Age,
                 height: Height,
