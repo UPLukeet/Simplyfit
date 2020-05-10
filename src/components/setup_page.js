@@ -31,7 +31,7 @@ function Setup_page(props) {
 
 
     useEffect(() => {
-        if(loading_animation === false){
+        if (loading_animation === false) {
             setTimeout(() => {
                 setloading_animation(!loading_animation);
                 console.log('play animation')
@@ -40,7 +40,7 @@ function Setup_page(props) {
         return () => {
             document.body.style.overflow = 'unset';
         }
-   
+
     }, []);
 
     //handles switch funtion of unit switching
@@ -133,8 +133,8 @@ function Setup_page(props) {
 
 
     return (
-        <div className='setup_main'>
-            <div className={loading_animation ? 'loading_transition fade' : 'loading_transition'}>
+        <div className={loading_animation ? 'loading_transition fade' : 'loading_transition'}>
+            <div className='setup_main'>
                 <div className='App_margin' />
                 <h1>Fill in the fields below to start your fitness journey.</h1>
 
