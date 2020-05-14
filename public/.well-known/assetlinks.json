@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.appmaker.xzwrip",
+      "sha256_cert_fingerprints": ["E7:41:CF:94:B3:C0:F0:F4:00:22:00:9A:27:E7:7E:CF:50:BC:36:CE:C0:53:5E:28:18:1C:B3:44:A6:50:B7:51"]
+    }
+  }
+]
