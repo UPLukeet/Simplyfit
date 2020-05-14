@@ -236,8 +236,8 @@ function Setup_page(props) {
                             <option value="154">154</option>
                             <option value="155">155</option>
                             <option value="156">156</option>
-                            <option value="157">158</option>
-                            <option value="158">159</option>
+                            <option value="157">157</option>
+                            <option value="158">158</option>
                             <option value="159">159</option>
                             <option value="160">160</option>
                             <option value="161">161</option>

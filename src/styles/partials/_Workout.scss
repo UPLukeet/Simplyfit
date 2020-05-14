@@ -1,0 +1,23 @@
+.main_workout {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    h1 {
+        font-size: 1.2rem;
+        font-family: "Open Sans", sans-serif;
+    }
+    table{
+        padding-top: 10%;
+        margin: auto;
+        margin-left: 1%;
+        margin-right: 1%;
+        font-family: "Open Sans", sans-serif;
+    }
+    td{
+        border: 1px solid black;
+        padding: 3%;
+    }
+    th{
+        font-family: "Open Sans", sans-serif;
+    }
+}

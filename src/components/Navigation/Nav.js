@@ -15,6 +15,7 @@ const Nav = props => (
             <div className='toolbar_nav-items'>
                 <ul>
                 <li><Link to='/'>Main page</Link></li>
+                <li><Link to='/workout_page'>Workout page</Link></li>
                 <li><Link to='/setup_page'>Setup page</Link></li>
                 <li><Link to='/settings_page'>Settings page</Link></li>
                 </ul>
